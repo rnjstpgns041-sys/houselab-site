@@ -57,6 +57,7 @@ def quote_of(t):
     return m.group(1).strip()[:120] if m else ""
 
 def main():
+    os.makedirs("images", exist_ok=True)
     root = ET.fromstring(get(RSS))
     posts = []
     for item in root.iter("item"):
@@ -77,6 +78,9 @@ def main():
         except Exception as e:
             print("page fail", pid, e, file=sys.stderr); page = ""
         body = text_of(page) if page else text_of(desc)
+        if len(posts) < 2:
+            hits = re.findall(r'https?://[^"' + "'" + r'\s)]*pstatic\.net[^"' + "'" + r'\s)]*', page + desc)
+            print("DEBUG", pid, "page", len(page), "desc", len(desc), "pstatic", len(hits), hits[:8])
         images = []
         for i, u in enumerate(image_urls(page, desc)[:IMGS_PER_POST * 3]):
             if len(images) >= IMGS_PER_POST:
