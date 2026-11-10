@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="하우스랩 건설 · 서울·경기·인천 집수리, 부분 보수, 가전 설치 전문. 사진 한 장으로 문자 견적 문의 010-5931-7025">
+<meta property="og:title" content="하우스랩 건설">
+<meta property="og:description" content="서울·경기·인천 집수리 · 부분 보수 · 설치 전문. 사진 보내고 문자로 견적 받기.">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>하우스랩 건설</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 현장 작업지시서 감성. 큰 사진 슬롯 + 얇은 치수선, 상단·하단에 늘 보이는 문자 견적 버튼 */
+:root {
+  --bg: #F1F2EF;          /* 석고보드 */
+  --surface: #FFFFFF;
+  --ink: #1B1F1D;
+  --muted: #5B635E;
+  --line: #D5D9D3;
+  --pine: #23423A;        /* 주 버튼 */
+  --pine-ink: #FFFFFF;
+  --tape: #E7B52C;        /* 줄자 노랑, 표식에만 */
+  --photo-a: #C9CCC5;
+  --photo-b: #AEB3AB;
+  --font-display: "Hahmlet", "Noto Serif KR", serif;
+  --font-body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141716; --surface: #1C201E; --ink: #E8EBE7; --muted: #9AA39D; --line: #2F3532;
+    --pine: #8FC1AE; --pine-ink: #0F1A16; --tape: #E7B52C; --photo-a: #2A2F2C; --photo-b: #222724;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141716; --surface: #1C201E; --ink: #E8EBE7; --muted: #9AA39D; --line: #2F3532;
+  --pine: #8FC1AE; --pine-ink: #0F1A16; --tape: #E7B52C; --photo-a: #2A2F2C; --photo-b: #222724;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+  word-break: keep-all; overflow-wrap: anywhere;
+  padding-bottom: 76px;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--tape); outline-offset: 3px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: -0.01em; }
+p { margin: 0; }
+.wrap { max-width: 1200px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--tape); }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* 버튼 */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 4px; font: 600 15px/1 var(--font-body); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--pine); color: var(--pine-ink); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+/* 헤더 */
+.header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark { width: 30px; height: 30px; border: 2px solid var(--ink); position: relative; flex: none; }
+.logo-mark::before { content: ""; position: absolute; left: 4px; right: 4px; top: 50%; height: 2px; background: var(--ink); }
+.logo-mark::after { content: ""; position: absolute; left: 50%; top: 4px; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--tape); }
+.logo b { font-family: var(--font-display); font-size: 19px; letter-spacing: -0.02em; }
+.nav { display: flex; gap: 28px; font-size: 15px; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--ink); }
+.header-cta { display: flex; align-items: center; gap: 14px; }
+.header-tel { font-family: var(--font-mono); font-size: 14px; color: var(--muted); }
+.header .btn { min-height: 40px; padding: 0 16px; font-size: 14px; }
+@media (max-width: 900px) { .nav, .header-tel { display: none; } }
+
+/* 사진 자리 */
+.photo { position: relative; overflow: hidden; background: var(--photo-a); border-radius: 2px; max-width: 100%; }
+.photo .tag { position: absolute; left: 14px; bottom: 14px; background: var(--surface); color: var(--ink); font-size: 13px; padding: 6px 10px; border-radius: 2px; display: flex; gap: 8px; align-items: center; max-width: calc(100% - 28px); }
+.photo .tag .sub { color: var(--muted); font-size: 12px; }
+.photo .ph-note { position: absolute; right: 12px; top: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--ink); opacity: .55; }
+.tex-tile { background:
+  repeating-linear-gradient(0deg, transparent 0 58px, var(--photo-b) 58px 60px),
+  repeating-linear-gradient(90deg, transparent 0 118px, var(--photo-b) 118px 120px), var(--photo-a); }
+.tex-small { background:
+  repeating-linear-gradient(0deg, transparent 0 28px, var(--photo-b) 28px 30px),
+  repeating-linear-gradient(90deg, transparent 0 28px, var(--photo-b) 28px 30px), var(--photo-a); }
+.tex-stone { background:
+  radial-gradient(120% 60% at 20% 30%, color-mix(in srgb, var(--photo-b) 70%, transparent), transparent 60%),
+  radial-gradient(80% 50% at 80% 80%, color-mix(in srgb, var(--photo-b) 60%, transparent), transparent 70%),
+  linear-gradient(115deg, transparent 45%, color-mix(in srgb, var(--photo-b) 80%, transparent) 46%, transparent 48%), var(--photo-a); }
+.tex-wood { background: repeating-linear-gradient(90deg, var(--photo-a) 0 22px, color-mix(in srgb, var(--photo-b) 55%, var(--photo-a)) 22px 24px, var(--photo-a) 24px 50px, color-mix(in srgb, var(--photo-b) 35%, var(--photo-a)) 50px 51px); }
+.tex-rack { background:
+  linear-gradient(var(--photo-b), var(--photo-b)) 18% 0 / 8px 100% no-repeat,
+  linear-gradient(var(--photo-b), var(--photo-b)) 82% 0 / 8px 100% no-repeat,
+  linear-gradient(var(--photo-b), var(--photo-b)) 0 48% / 100% 10px no-repeat,
+  repeating-linear-gradient(0deg, transparent 0 38px, color-mix(in srgb, var(--photo-b) 45%, transparent) 38px 40px), var(--photo-a); }
+
+/* 히어로 */
+.hero { padding-block: 48px 72px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: end; }
+.hero h1 { font-size: clamp(34px, 5vw, 60px); line-height: 1.22; margin-top: 18px; }
+.hero h1 em { font-style: normal; box-shadow: inset 0 -0.28em 0 color-mix(in srgb, var(--tape) 55%, transparent); }
+.hero-lede { color: var(--muted); font-size: 17px; margin-top: 22px; max-width: 30em; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.hero-facts { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0; margin-top: 40px; border-top: 1px solid var(--line); }
+.hero-facts div { padding: 14px 12px 0 0; }
+.hero-facts dt { font-size: 12px; color: var(--muted); }
+.hero-facts dd { margin: 2px 0 0; font-weight: 600; font-size: 15px; }
+.hero-photo { aspect-ratio: 4 / 5; }
+.dim { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+.dim::before, .dim::after { content: ""; flex: 1; height: 1px; background: var(--muted); opacity: .5; }
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-photo { aspect-ratio: 4 / 3; }
+}
+
+/* 섹션 공통 */
+.section { padding-block: 88px; border-top: 1px solid var(--line); }
+.section-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; margin-bottom: 44px; align-items: end; }
+.section-head h2 { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.3; margin-top: 14px; }
+.section-head p { color: var(--muted); max-width: 34em; }
+@media (max-width: 860px) { .section-head { grid-template-columns: 1fr; gap: 16px; } .section { padding-block: 64px; } }
+
+/* 서비스 */
+.services { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); border-top: 2px solid var(--ink); }
+.service { padding: 24px 22px 28px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; }
+.service + .service { padding-left: 22px; }
+.service:last-child { border-right: 0; }
+.service h3 { font-size: 21px; }
+.service p { color: var(--muted); font-size: 15px; }
+.service ul { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 6px; font-size: 14px; }
+.service li { display: flex; gap: 8px; }
+.service li::before { content: ""; width: 6px; height: 6px; margin-top: .75em; background: var(--tape); flex: none; }
+@media (max-width: 960px) { .services { grid-template-columns: repeat(2, minmax(0,1fr)); } .service:nth-child(2) { border-right: 0; } .service:nth-child(3) { padding-left: 0; } .service:nth-child(n+3) { border-top: 1px solid var(--line); } }
+@media (max-width: 560px) { .services { grid-template-columns: 1fr; } .service, .service + .service { padding-left: 0; border-right: 0; } .service + .service { border-top: 1px solid var(--line); } }
+
+/* 작업 기록 */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.chip { min-height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 500 14px var(--font-body); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.cases { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 40px 28px; }
+.case { display: flex; flex-direction: column; gap: 14px; text-decoration: none; }
+.case .photo { aspect-ratio: 4 / 3; transition: filter .2s ease; }
+.case:hover .photo { filter: brightness(.94); }
+.spec { display: grid; grid-template-columns: auto 1fr; gap: 2px 14px; font-size: 13px; padding-top: 12px; border-top: 1px solid var(--line); }
+.spec dt { color: var(--muted); }
+.spec dd { margin: 0; }
+.case h3 { font-family: var(--font-body); font-weight: 600; font-size: 17px; line-height: 1.5; }
+.case blockquote { margin: 0; color: var(--muted); font-size: 14px; padding-left: 12px; border-left: 2px solid var(--line); }
+.case .more { font-size: 13px; color: var(--muted); display: inline-flex; gap: 6px; }
+.case:hover .more { color: var(--ink); }
+@media (max-width: 960px) { .cases { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 600px) { .cases { grid-template-columns: 1fr; } }
+
+/* 진행 과정 */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); counter-reset: step; }
+.steps li { counter-increment: step; padding: 22px 18px 0 0; border-top: 1px solid var(--line); position: relative; }
+.steps li::before { content: counter(step, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--muted); display: block; margin-bottom: 10px; }
+.steps li::after { content: ""; position: absolute; top: -4px; left: 0; width: 7px; height: 7px; background: var(--tape); }
+.steps h3 { font-family: var(--font-body); font-size: 17px; font-weight: 600; }
+.steps p { color: var(--muted); font-size: 14px; margin-top: 6px; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 28px 20px; } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+/* 지역 */
+.area-grid { display: grid; grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 48px; align-items: start; }
+.area-list { display: grid; gap: 0; border-top: 2px solid var(--ink); }
+.area-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.area-row b { font-family: var(--font-display); font-size: 19px; }
+.area-row span { color: var(--muted); }
+.note-box { background: var(--surface); border: 1px solid var(--line); padding: 26px; display: grid; gap: 12px; }
+.note-box h3 { font-size: 19px; }
+.note-box p { color: var(--muted); font-size: 15px; }
+@media (max-width: 860px) { .area-grid { grid-template-columns: 1fr; } .area-row { grid-template-columns: 90px 1fr; } }
+
+/* 견적 문의 */
+.contact { background: var(--ink); color: var(--bg); border-top: 0; }
+.contact .eyebrow { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+.contact .section-head p { color: color-mix(in srgb, var(--bg) 72%, transparent); }
+.contact-grid { display: grid; grid-template-columns: minmax(0,5fr) minmax(0,7fr); gap: 48px; align-items: start; }
+.big-tel { font-family: var(--font-mono); font-size: clamp(28px, 4vw, 44px); letter-spacing: -0.02em; display: block; user-select: all; }
+.contact-side { display: grid; gap: 22px; }
+.contact-side .row { display: flex; flex-wrap: wrap; gap: 10px; }
+.contact .btn-primary { background: var(--tape); color: #1B1F1D; }
+.contact .btn-ghost { color: var(--bg); border-color: color-mix(in srgb, var(--bg) 60%, transparent); }
+.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 15px; }
+.checklist li { display: grid; grid-template-columns: 28px 1fr; }
+.checklist .mono { color: var(--tape); }
+form.quote { background: var(--surface); color: var(--ink); padding: 28px; display: grid; gap: 18px; border-radius: 2px; }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label, .field .lbl { font-size: 14px; font-weight: 600; }
+.field small { color: var(--muted); font-size: 12px; font-weight: 400; }
+.field input, .field textarea, .field select { width: 100%; font: 15px var(--font-body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 2px; padding: 12px; }
+.field textarea { min-height: 96px; resize: vertical; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+@media (max-width: 560px) { .two { grid-template-columns: 1fr; } form.quote { padding: 20px; } }
+.drop { border: 1px dashed var(--muted); border-radius: 2px; padding: 18px; display: flex; gap: 14px; align-items: center; cursor: pointer; background: var(--bg); }
+.drop input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.drop-text { font-size: 14px; color: var(--muted); }
+.thumbs { display: flex; flex-wrap: wrap; gap: 8px; }
+.thumbs img { width: 64px; height: 64px; object-fit: cover; border-radius: 2px; border: 1px solid var(--line); }
+.preview { background: var(--bg); border: 1px solid var(--line); padding: 14px; font-size: 14px; white-space: pre-wrap; min-height: 60px; }
+.form-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.status { font-size: 13px; color: var(--muted); }
+@media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* 푸터 */
+footer { padding-block: 40px 32px; font-size: 13px; color: var(--muted); }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+
+/* 늘 보이는 상담 바 */
+.dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: var(--surface); border-top: 1px solid var(--line);
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.dock .inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 12px; }
+.dock .msg { flex: 1; min-width: 0; font-size: 14px; color: var(--muted); }
+.dock .msg b { color: var(--ink); }
+.dock .btn { min-height: 46px; }
+@media (max-width: 640px) { .dock .msg { display: none; } .dock .btn { flex: 1; padding: 0 10px; } }
+</style>
+</head>
+<body>
+
+
+<header class="header">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="하우스랩 건설 처음으로"><span class="logo-mark" aria-hidden="true"></span><b>하우스랩 건설</b></a>
+    <nav class="nav" aria-label="주 메뉴">
+      <a href="#services">시공 분야</a>
+      <a href="#cases">작업 기록</a>
+      <a href="#process">진행 방법</a>
+      <a href="#area">시공 지역</a>
+    </nav>
+    <div class="header-cta">
+      <span class="header-tel">010-5931-7025</span>
+      <a class="btn btn-primary" href="#contact">문자 견적 받기</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">집수리 · 부분 보수 · 설치 전문</p>
+        <h1>고칠 곳 사진 한 장이면 <em>견적이 시작됩니다</em></h1>
+        <p class="hero-lede">세탁실 선반부터 주방 상판, 들뜬 타일까지. 작은 불편도 현장에서 직접 확인하고 꼼꼼하게 마무리합니다. 서울·경기·인천 전 지역에 빠르게 방문합니다.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>
+            사진 보내고 견적 받기</a>
+          <a class="btn btn-ghost" href="#cases">작업 기록 보기</a>
+        </div>
+        <dl class="hero-facts">
+          <div><dt>시공 지역</dt><dd>서울·경기·인천</dd></div>
+          <div><dt>상담 방법</dt><dd>문자 · 전화</dd></div>
+          <div><dt>작업 방식</dt><dd>현장 직접 시공</dd></div>
+        </dl>
+      </div>
+      <div>
+        <div class="photo tex-rack hero-photo" role="img" aria-label="현장 사진 자리: 용인 다용도실 세탁기 위 렉 설치">
+          <span class="ph-note">PHOTO</span>
+          <span class="tag">용인 · 다용도실 <span class="sub">세탁기 위 렉 + 건조기</span></span>
+        </div>
+        <p class="dim">대표 현장 사진 · 세로 4:5</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Services</p>
+          <h2>새로 짓기보다, 지금 집을 고쳐 씁니다</h2>
+        </div>
+        <p>가전이 안 들어가는 주방, 건조기 둘 곳 없는 세탁실, 이사 전 원상복구까지. 블로그에 올린 실제 작업을 기준으로 네 분야로 나눴습니다.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <h3>세탁실 · 가전 설치</h3>
+          <p>좁은 다용도실도 높이와 배관을 재고 맞춰 설치합니다.</p>
+          <ul><li>세탁기 위 건조기 렉·선반</li><li>빌트인 콤보 설치</li><li>보일러 점검용 재배치</li></ul>
+        </article>
+        <article class="service">
+          <h3>주방 수리 · 리폼</h3>
+          <p>상판 가공부터 하부장 구조 변경까지 필요한 부분만 손봅니다.</p>
+          <ul><li>가스레인지·하이라이트 교체</li><li>싱크볼 교체, 상판 균열 복원</li><li>식기세척기 급수 밸브</li></ul>
+        </article>
+        <article class="service">
+          <h3>욕실 · 타일 보수</h3>
+          <p>깨뜨리지 않고 떼어내 다시 붙이는 작업에 강합니다.</p>
+          <ul><li>들뜬 벽타일 재부착</li><li>아트월 타공 구멍 복원</li><li>변기 하부 고정 보수</li></ul>
+        </article>
+        <article class="service">
+          <h3>철거 · 원상복구</h3>
+          <p>이사 전후, 떼어낸 자리까지 깔끔하게 정리합니다.</p>
+          <ul><li>벽걸이 TV·미니세탁기 철거</li><li>앙카볼트 제거, 벽면 복원</li><li>빌트인 냉장고 철거·폐기</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cases">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Work log</p>
+          <h2>작업 기록</h2>
+        </div>
+        <p>현장마다 지역, 공간, 작업 범위를 같은 형식으로 적었습니다. 비슷한 상황을 찾아보고 사진과 함께 문의해 주세요.</p>
+      </div>
+      <div class="filters" role="group" aria-label="공간별 보기">
+        <button class="chip" type="button" aria-pressed="true" data-f="all">전체</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="laundry">세탁실</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="kitchen">주방</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="tile">욕실·타일</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="remove">철거·복구</button>
+      </div>
+      <div class="cases" id="caseList"></div>
+    </div>
+  </section>
+
+  <section class="section" id="process">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Process</p>
+          <h2>문의부터 마무리까지</h2>
+        </div>
+        <p>작업 중에는 전화를 바로 받기 어려워 문자 상담을 먼저 권해 드립니다. 사진이 있으면 방문 전에 필요한 자재와 시간을 미리 확인할 수 있습니다.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>사진과 내용 보내기</h3><p>문제 부위 가까이 1장, 전체가 보이게 1장. 지역도 함께 적어 주세요.</p></li>
+        <li><h3>확인 후 상담</h3><p>현장 작업을 마치는 대로 사진을 보고 연락드립니다.</p></li>
+        <li><h3>일정 확정</h3><p>원하시는 날짜와 이동 거리를 맞춰 방문 일정을 잡습니다.</p></li>
+        <li><h3>현장 시공</h3><p>치수를 다시 재고, 주변을 보양한 뒤 작업합니다.</p></li>
+        <li><h3>점검과 정리</h3><p>수평, 고정, 작동을 함께 확인하고 정리까지 마칩니다.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="area">
+    <div class="wrap area-grid">
+      <div>
+        <p class="eyebrow">Area</p>
+        <h2 style="font-size:clamp(26px,3.4vw,40px);line-height:1.3;margin:14px 0 32px">시공 지역</h2>
+        <div class="area-list">
+          <div class="area-row"><b>서울</b><span>전 지역 · 송파, 강동 현장 다수</span></div>
+          <div class="area-row"><b>경기</b><span>전 지역 · 용인, 성남, 광주 등</span></div>
+          <div class="area-row"><b>인천</b><span>전 지역</span></div>
+          <div class="area-row"><b>그 외</b><span>강원 · 충청 · 전라 등 작업 내용에 따라 출장 가능</span></div>
+        </div>
+      </div>
+      <aside class="note-box">
+        <h3>지역을 꼭 함께 알려 주세요</h3>
+        <p>같은 작업이라도 이동 거리와 일정에 따라 안내가 달라집니다. 시·구 단위까지만 적어 주셔도 일정을 빠르게 확인할 수 있습니다.</p>
+        <p style="color:var(--ink);font-size:14px;font-weight:600">예) 성남시 분당구 · 이번 주 중 희망</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>문자로 견적 받기</h2>
+        </div>
+        <p>아래 칸을 채우면 보낼 문자 내용이 만들어집니다. 내용을 복사해 사진과 함께 문자로 보내 주세요.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-side">
+          <div>
+            <p style="font-size:14px;opacity:.7">문자 · 전화</p>
+            <span class="big-tel">010-5931-7025</span>
+          </div>
+          <div class="row">
+            <button class="btn btn-primary" type="button" id="copyTel">번호 복사</button>
+            <a class="btn btn-ghost" href="tel:01059317025">전화 걸기</a>
+          </div>
+          <ul class="checklist">
+            <li><span class="mono">01</span><span>현장 사진 2장 (가까이 1장, 멀리 1장)</span></li>
+            <li><span class="mono">02</span><span>원하는 작업 한 줄</span></li>
+            <li><span class="mono">03</span><span>시공 지역과 희망 날짜</span></li>
+          </ul>
+          <p style="font-size:14px;opacity:.7">작업 중에는 전화를 받지 못할 때가 많습니다. 문자를 남겨 주시면 현장 확인 후 최대한 빨리 연락드립니다.</p>
+        </div>
+
+        <form class="quote" id="quoteForm" novalidate>
+          <div class="field">
+            <span class="lbl">현장 사진 <small>문자에 직접 첨부해 주세요. 여기서는 미리 확인만 합니다.</small></span>
+            <label class="drop" for="photos">
+              <input id="photos" type="file" accept="image/*" multiple>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-8 8"/></svg>
+              <span class="drop-text">사진 고르기 · 가까이 1장, 전체 1장</span>
+            </label>
+            <div class="thumbs" id="thumbs"></div>
+          </div>
+          <div class="field">
+            <label for="job">원하는 작업</label>
+            <textarea id="job" placeholder="예) 세탁기 위에 건조기를 올리고 싶습니다.">세탁기 위에 건조기를 올리고 싶습니다. 다용도실 폭이 좁습니다.</textarea>
+          </div>
+          <div class="two">
+            <div class="field">
+              <label for="region">시공 지역</label>
+              <input id="region" type="text" placeholder="예) 성남시 분당구" value="성남시 분당구">
+            </div>
+            <div class="field">
+              <label for="when">희망 일정</label>
+              <select id="when">
+                <option>이번 주 중</option>
+                <option>다음 주</option>
+                <option>날짜 상관없음</option>
+                <option>날짜 정해져 있음 (문자에 적기)</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <span class="lbl">보낼 문자 내용 <small>예시가 채워져 있습니다</small></span>
+            <div class="preview" id="preview" aria-live="polite"></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit" style="background:var(--pine);color:var(--pine-ink)">문자 내용 복사</button>
+            <a class="btn btn-ghost" id="smsLink" href="sms:01059317025" style="color:var(--ink);border-color:var(--ink)">문자 앱 열기</a>
+            <span class="status" id="status"></span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>하우스랩 건설 · 종합 인테리어 토탈케어 · 집수리 전문</span>
+    <span class="mono">010-5931-7025 · <a href="https://blog.naver.com/psb-7" target="_blank" rel="noopener">blog.naver.com/psb-7</a></span>
+  </div>
+</footer>
+
+<div class="dock" role="region" aria-label="빠른 상담">
+  <div class="inner">
+    <p class="msg"><b>사진 한 장으로 견적 문의</b> · 서울·경기·인천 빠른 방문</p>
+    <a class="btn btn-ghost" href="#contact" data-tel>010-5931-7025</a>
+    <a class="btn btn-primary" href="#contact">문자 견적 받기</a>
+  </div>
+</div>
+
+<script>
+const CASES = [
+  { f:"laundry", tex:"tex-rack", region:"용인", space:"다용도실", scope:"세탁기 위 렉 설치, 전동 리프트로 건조기 상부 적재", date:"2026.10",
+    title:"좁은 다용도실 세탁기 위 렉 설치 후 건조기 올리기", quote:"기존 세탁기는 그대로 사용하고 새로 구입한 건조기를 위에 올리고 싶어요.", url:"https://blog.naver.com/psb-7/224457416129" },
+  { f:"remove", tex:"tex-small", region:"송파", space:"세탁 공간 벽면", scope:"벽걸이 미니세탁기 철거, 앙카볼트 제거, 타공 구멍 복원", date:"2026.11",
+    title:"벽걸이 미니세탁기 철거와 벽면 복원", quote:"세탁기만 떼는 게 아니라 고정 볼트와 남는 구멍까지 정리해 주세요.", url:"https://blog.naver.com/psb-7/224463093778" },
+  { f:"tile", tex:"tex-tile", region:"강동", space:"거실 벽", scope:"들뜬 벽타일 무파손 철거 후 기존 타일 재부착", date:"2026.10",
+    title:"들뜬 거실 벽타일 철거 후 재사용", quote:"기존 타일은 그대로 쓰면서 다시 튼튼하게 붙일 수 있을까요?", url:"https://blog.naver.com/psb-7/224430974349" },
+  { f:"laundry", tex:"tex-rack", region:"강동", space:"베란다", scope:"직렬 세탁기·건조기 임시 철거, 보일러 앞 공간 확보 후 재설치", date:"2026.08",
+    title:"보일러 점검을 위한 세탁기·건조기 이동", quote:"세탁기와 건조기가 보일러 바로 앞을 가리고 있어요.", url:"https://blog.naver.com/psb-7/224379249664" },
+  { f:"kitchen", tex:"tex-stone", region:"송파", space:"주방 하부장", scope:"파손 급수 밸브 정리, 식기세척기용 새 밸브 설치", date:"2026.08",
+    title:"식기세척기 급수 밸브 새로 설치", quote:"급수 밸브가 망가져서 식기세척기를 쓸 수가 없어요.", url:"https://blog.naver.com/psb-7/224381878395" },
+  { f:"kitchen", tex:"tex-stone", region:"경기 광주", space:"주방 상판", scope:"기존 가스레인지 철거, 2구 제품 교체 설치", date:"2026.06",
+    title:"싱크대 2구 가스레인지 교체", quote:"오래된 가스레인지를 새 제품으로 바꾸고 싶어요.", url:"https://blog.naver.com/psb-7/224316527399" },
+  { f:"tile", tex:"tex-stone", region:"송파", space:"거실 아트월", scope:"아트월 타일 타공 구멍 메움과 색 맞춤 복원", date:"2026.06",
+    title:"거실 아트월 타일 구멍 복원", quote:"TV 떼고 남은 구멍을 눈에 안 띄게 메워 주세요.", url:"https://blog.naver.com/psb-7/224317299691" },
+  { f:"kitchen", tex:"tex-wood", region:"지역 입력 예정", space:"주방 상판", scope:"큰 타공부 인조대리석 덧댐 보강 후 매립형 가스레인지 설치", date:"2026.08",
+    title:"사이즈 안 맞는 가스레인지 매립 자리 보강", quote:"새로 산 가스레인지가 기존 자리보다 작아요.", url:"https://blog.naver.com/psb-7/224387214275" },
+  { f:"tile", tex:"tex-small", region:"지역 입력 예정", space:"화장실", scope:"깨진 하부 고정 시멘트 제거, 변기 재고정", date:"2026.10",
+    title:"흔들리는 변기 하부 고정 시멘트 보수", quote:"변기 아래 시멘트가 조금씩 깨져서 떨어지고 있어요.", url:"https://blog.naver.com/psb-7/224449591756" }
+];
+const list = document.getElementById("caseList");
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function render(f) {
+  list.innerHTML = CASES.filter(c => f === "all" || c.f === f).map(c => `
+    <a class="case" href="${c.url}" target="_blank" rel="noopener">
+      <div class="photo ${c.tex}" role="img" aria-label="현장 사진 자리: ${esc(c.title)}">
+        <span class="ph-note">BEFORE / AFTER</span>
+        <span class="tag">${esc(c.region)} · ${esc(c.space)}</span>
+      </div>
+      <h3>${esc(c.title)}</h3>
+      <blockquote>“${esc(c.quote)}”</blockquote>
+      <dl class="spec">
+        <dt>지역</dt><dd>${esc(c.region)}</dd>
+        <dt>공간</dt><dd>${esc(c.space)}</dd>
+        <dt>작업 범위</dt><dd>${esc(c.scope)}</dd>
+        <dt>작업일</dt><dd class="mono">${c.date}</dd>
+      </dl>
+      <span class="more">블로그에서 전체 과정 보기 →</span>
+    </a>`).join("");
+}
+render("all");
+document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+  render(b.dataset.f);
+}));
+
+const $ = id => document.getElementById(id);
+function buildMsg() {
+  const n = $("photos").files.length;
+  return `안녕하세요. 하우스랩 건설 홈페이지 보고 문의드립니다.\n\n작업 내용: ${$("job").value.trim() || "(입력해 주세요)"}\n지역: ${$("region").value.trim() || "(입력해 주세요)"}\n희망 일정: ${$("when").value}\n현장 사진: ${n ? n + "장 함께 보냅니다" : "함께 보냅니다"}\n\n확인 후 상담 부탁드립니다.`;
+}
+function update() {
+  const msg = buildMsg();
+  $("preview").textContent = msg;
+  $("smsLink").href = "sms:01059317025?body=" + encodeURIComponent(msg);
+}
+["job","region","when"].forEach(id => $(id).addEventListener("input", update));
+$("photos").addEventListener("change", e => {
+  const t = $("thumbs"); t.innerHTML = "";
+  [...e.target.files].slice(0, 6).forEach(f => { const img = document.createElement("img"); img.alt = f.name; img.src = URL.createObjectURL(f); t.appendChild(img); });
+  update();
+});
+update();
+async function copy(text, okMsg) {
+  try { await navigator.clipboard.writeText(text); $("status").textContent = okMsg; }
+  catch { const r = document.createRange(); r.selectNodeContents($("preview")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); $("status").textContent = "자동 복사가 안 돼서 내용을 선택해 두었습니다. 직접 복사해 주세요."; }
+}
+$("quoteForm").addEventListener("submit", e => { e.preventDefault(); copy(buildMsg(), "복사했습니다. 문자에 붙여넣고 사진을 첨부해 보내 주세요."); });
+$("copyTel").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText("010-5931-7025"); $("copyTel").textContent = "복사했습니다"; }
+  catch { $("copyTel").textContent = "010-5931-7025"; }
+  setTimeout(() => $("copyTel").textContent = "번호 복사", 2000);
+});
+</script>
+
+</body>
+</html>
