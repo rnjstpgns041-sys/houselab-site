@@ -25,14 +25,15 @@ def image_urls(page, desc):
     found = []
     for src in re.findall(r'(?:data-lazy-src|src|content)="(https://[^"]+pstatic\.net/[^"]+)"', page + desc):
         src = html.unescape(src)
-        if any(k in src for k in ("profile", "sticker", "storep", "static", "blogpfthumb", "ssl.pstatic.net/static")):
+        if any(k in src for k in ("ssl.pstatic.net", "blogpfthumb", "dthumb", "storep", "sticker", "mblogvideo")):
             continue
         base = src.split("?")[0]
-        if not re.search(r"\.(jpe?g|png|webp)$", base, re.I):
+        if not re.search(r"\.(jpe?g|png|webp)$", base, re.I) or "type=w80_blur" in src:
             continue
         if base in [b for b, _ in found]:
             continue
         found.append((base, src))
+    found.sort(key=lambda bs: 0 if re.search(r"\.jpe?g$", bs[0], re.I) else 1)
     out = []
     for base, src in found:
         if "postfiles" in base or "blogfiles" in base:
@@ -78,10 +79,6 @@ def main():
         except Exception as e:
             print("page fail", pid, e, file=sys.stderr); page = ""
         body = text_of(page) if page else text_of(desc)
-        if len(posts) < 2:
-            hits = re.findall(r'https?://[^"' + "'" + r'\s)]*pstatic\.net[^"' + "'" + r'\s)]*', page + desc)
-            os.makedirs("debug", exist_ok=True); open(f"debug/{pid}.html", "w").write(page)
-            print("DEBUG", pid, image_urls(page, desc)[:5], "page", len(page), "desc", len(desc), "pstatic", len(hits), hits[:8])
         images = []
         for i, u in enumerate(image_urls(page, desc)[:IMGS_PER_POST * 3]):
             if len(images) >= IMGS_PER_POST:
