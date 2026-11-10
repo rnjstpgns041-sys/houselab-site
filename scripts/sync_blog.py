@@ -28,7 +28,8 @@ def image_urls(page, desc):
         if any(k in src for k in ("ssl.pstatic.net", "blogpfthumb", "dthumb", "storep", "sticker", "mblogvideo")):
             continue
         base = src.split("?")[0]
-        if not re.search(r"\.(jpe?g|png|webp)$", base, re.I) or "type=w80_blur" in src:
+        # 현장 카메라 사진(JPEG)만 사용. 표지용 PNG 일러스트는 제외
+        if not re.search(r"\.jpe?g$", base, re.I) or "type=w80_blur" in src:
             continue
         if base in [b for b, _ in found]:
             continue

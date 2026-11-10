@@ -500,7 +500,7 @@ function fromPost(p) {
     f: c.f || kind[0], tex: c.tex || TEX[kind[0]], region,
     space: c.space || kind[1], scope: c.scope || p.title,
     date: (p.date || c.date || "").slice(0, 7), complex: c.complex || "",
-    title: c.title || p.title, quote: p.quote || c.quote || "", url: p.url, img: (p.images || [])[0] || ""
+    title: c.title || p.title, quote: p.quote || c.quote || "", url: p.url, img: (p.images || [])[1] || (p.images || [])[0] || ""
   };
 }
 let ITEMS = CASES;
@@ -519,7 +519,7 @@ function card(c) {
         ${c.region ? `<dt>지역</dt><dd>${esc(c.region)}</dd>` : ""}
         ${c.complex ? `<dt>단지</dt><dd>${esc(c.complex)}</dd>` : ""}
         <dt>공간</dt><dd>${esc(c.space)}</dd>
-        <dt>작업 범위</dt><dd>${esc(c.scope)}</dd>
+        ${c.scope && c.scope !== c.title ? `<dt>작업 범위</dt><dd>${esc(c.scope)}</dd>` : ""}
         ${c.date ? `<dt>작업일</dt><dd class="mono">${esc(c.date)}</dd>` : ""}
       </dl>
       <span class="more">블로그에서 전체 과정 보기 →</span>
@@ -532,7 +532,10 @@ function render(f) {
 render("all");
 fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(d => {
   if (!d || !Array.isArray(d.posts) || !d.posts.length) return;
-  ITEMS = d.posts.map(fromPost);
+  // 실제 시공 글(고객 의뢰 내용이 있는 글)만 작업 기록에 표시
+  const jobs = d.posts.filter(p => p.quote || CURATED[p.id]);
+  if (!jobs.length) return;
+  ITEMS = jobs.map(fromPost);
   render(FILTER);
   const heroPick = ITEMS.find(c => c.img && c.complex) || ITEMS.find(c => c.img);
   const hero = document.querySelector(".hero-photo");
