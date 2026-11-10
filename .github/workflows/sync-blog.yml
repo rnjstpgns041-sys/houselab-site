@@ -1,0 +1,36 @@
+name: 블로그 글·사진 가져오기
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # 매일 오전 9시 (한국 시간)
+    - cron: "0 9 * * *"   # 매일 오후 6시 (한국 시간)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/**", ".github/workflows/sync-blog.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-blog
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python scripts/sync_blog.py
+      - name: 바뀐 내용 저장
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add posts.json images
+          if git diff --cached --quiet; then echo "변경 없음"; exit 0; fi
+          git commit -m "블로그 글·사진 자동 업데이트"
+          git push

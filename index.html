@@ -88,7 +88,8 @@ p { margin: 0; }
 
 /* 사진 자리 */
 .photo { position: relative; overflow: hidden; background: var(--photo-a); border-radius: 2px; max-width: 100%; }
-.photo .tag { position: absolute; left: 14px; bottom: 14px; background: var(--surface); color: var(--ink); font-size: 13px; padding: 6px 10px; border-radius: 2px; display: flex; gap: 8px; align-items: center; max-width: calc(100% - 28px); }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo .tag { z-index: 1;  position: absolute; left: 14px; bottom: 14px; background: var(--surface); color: var(--ink); font-size: 13px; padding: 6px 10px; border-radius: 2px; display: flex; gap: 8px; align-items: center; max-width: calc(100% - 28px); }
 .photo .tag .sub { color: var(--muted); font-size: 12px; }
 .photo .ph-note { position: absolute; right: 12px; top: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: .08em; color: var(--ink); opacity: .55; }
 .tex-tile { background:
@@ -460,7 +461,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 <script>
 const CASES = [
-  { f:"laundry", tex:"tex-rack", region:"용인", space:"다용도실", scope:"세탁기 위 렉 설치, 전동 리프트로 건조기 상부 적재", date:"2026.10",
+  { f:"laundry", tex:"tex-rack", region:"용인", space:"다용도실", scope:"세탁기 위 렉 설치, 전동 리프트로 건조기 상부 적재", date:"2026.10", complex:"신동백서해그랑블 2단지",
     title:"좁은 다용도실 세탁기 위 렉 설치 후 건조기 올리기", quote:"기존 세탁기는 그대로 사용하고 새로 구입한 건조기를 위에 올리고 싶어요.", url:"https://blog.naver.com/psb-7/224457416129" },
   { f:"remove", tex:"tex-small", region:"송파", space:"세탁 공간 벽면", scope:"벽걸이 미니세탁기 철거, 앙카볼트 제거, 타공 구멍 복원", date:"2026.11",
     title:"벽걸이 미니세탁기 철거와 벽면 복원", quote:"세탁기만 떼는 게 아니라 고정 볼트와 남는 구멍까지 정리해 주세요.", url:"https://blog.naver.com/psb-7/224463093778" },
@@ -480,26 +481,68 @@ const CASES = [
     title:"흔들리는 변기 하부 고정 시멘트 보수", quote:"변기 아래 시멘트가 조금씩 깨져서 떨어지고 있어요.", url:"https://blog.naver.com/psb-7/224449591756" }
 ];
 const list = document.getElementById("caseList");
-const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function render(f) {
-  list.innerHTML = CASES.filter(c => f === "all" || c.f === f).map(c => `
-    <a class="case" href="${c.url}" target="_blank" rel="noopener">
-      <div class="photo ${c.tex}" role="img" aria-label="현장 사진 자리: ${esc(c.title)}">
-        <span class="ph-note">BEFORE / AFTER</span>
-        <span class="tag">${esc(c.region)} · ${esc(c.space)}</span>
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const idOf = u => (String(u).match(/(\d{9,})/) || [])[1];
+const CURATED = Object.fromEntries(CASES.map(c => [idOf(c.url), c]));
+const REGIONS = ["송파","강동","강남","서초","용인","경기광주","광주","성남","분당","하남","수원","인천","구리","남양주","광명","고양","부천","안양","화성","평택","김포","파주","의정부","시흥","안산","서울"];
+const KINDS = [
+  ["laundry", "세탁실", /세탁|건조기|렉|콤보|보일러/],
+  ["kitchen", "주방", /주방|싱크|가스|하이라이트|식기|상판|하부장|냉장고|대리석|아일랜드/],
+  ["tile", "욕실·타일", /타일|변기|욕실|화장실|아트월/],
+  ["remove", "철거·복구", /철거|복구|복원|제거/]
+];
+const TEX = { laundry:"tex-rack", kitchen:"tex-stone", tile:"tex-tile", remove:"tex-small" };
+function fromPost(p) {
+  const c = CURATED[p.id] || {};
+  const kind = KINDS.find(k => k[2].test(p.title)) || KINDS[3];
+  const region = c.region || REGIONS.find(r => p.title.startsWith(r)) || "";
+  return {
+    f: c.f || kind[0], tex: c.tex || TEX[kind[0]], region,
+    space: c.space || kind[1], scope: c.scope || p.title,
+    date: (p.date || c.date || "").slice(0, 7), complex: c.complex || "",
+    title: c.title || p.title, quote: p.quote || c.quote || "", url: p.url, img: (p.images || [])[0] || ""
+  };
+}
+let ITEMS = CASES;
+let FILTER = "all";
+function card(c) {
+  const tag = [c.region, c.space].filter(Boolean).join(" · ");
+  return `
+    <a class="case" href="${esc(c.url)}" target="_blank" rel="noopener">
+      <div class="photo ${c.img ? "" : c.tex}" ${c.img ? "" : `role="img" aria-label="현장 사진 자리: ${esc(c.title)}"`}>
+        ${c.img ? `<img src="${esc(c.img)}" alt="${esc(c.title)} 현장 사진" loading="lazy">` : `<span class="ph-note">BEFORE / AFTER</span>`}
+        ${tag ? `<span class="tag">${esc(tag)}</span>` : ""}
       </div>
       <h3>${esc(c.title)}</h3>
-      <blockquote>“${esc(c.quote)}”</blockquote>
+      ${c.quote ? `<blockquote>“${esc(c.quote)}”</blockquote>` : ""}
       <dl class="spec">
-        <dt>지역</dt><dd>${esc(c.region)}</dd>
+        ${c.region ? `<dt>지역</dt><dd>${esc(c.region)}</dd>` : ""}
+        ${c.complex ? `<dt>단지</dt><dd>${esc(c.complex)}</dd>` : ""}
         <dt>공간</dt><dd>${esc(c.space)}</dd>
         <dt>작업 범위</dt><dd>${esc(c.scope)}</dd>
-        <dt>작업일</dt><dd class="mono">${c.date}</dd>
+        ${c.date ? `<dt>작업일</dt><dd class="mono">${esc(c.date)}</dd>` : ""}
       </dl>
       <span class="more">블로그에서 전체 과정 보기 →</span>
-    </a>`).join("");
+    </a>`;
+}
+function render(f) {
+  FILTER = f;
+  list.innerHTML = ITEMS.filter(c => f === "all" || c.f === f).slice(0, 12).map(card).join("");
 }
 render("all");
+fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(d => {
+  if (!d || !Array.isArray(d.posts) || !d.posts.length) return;
+  ITEMS = d.posts.map(fromPost);
+  render(FILTER);
+  const heroPick = ITEMS.find(c => c.img && c.complex) || ITEMS.find(c => c.img);
+  const hero = document.querySelector(".hero-photo");
+  if (heroPick && hero) {
+    hero.className = "photo hero-photo";
+    hero.removeAttribute("role"); hero.removeAttribute("aria-label");
+    hero.innerHTML = `<img src="${esc(heroPick.img)}" alt="${esc(heroPick.title)} 현장 사진"><span class="tag">${esc([heroPick.region, heroPick.space].filter(Boolean).join(" · "))} <span class="sub">${esc(heroPick.title)}</span></span>`;
+    const dim = document.querySelector(".dim"); if (dim) dim.textContent = "최근 현장 · 블로그에서 자동으로 가져온 사진";
+  }
+}).catch(() => {});
 document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
   render(b.dataset.f);
