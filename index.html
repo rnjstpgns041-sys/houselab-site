@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 /* Layout: 현장 작업지시서 감성. 큰 사진 슬롯 + 얇은 치수선, 상단·하단에 늘 보이는 문자 견적 버튼 */
@@ -28,7 +29,8 @@
   --tape: #E7B52C;        /* 줄자 노랑, 표식에만 */
   --photo-a: #C9CCC5;
   --photo-b: #AEB3AB;
-  --font-display: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
+  --font-display: "Gowun Batang", "Nanum Myeongjo", "AppleMyungjo", serif;
+  --font-accent: "Cormorant Garamond", "Gowun Batang", Georgia, serif;
   --font-body: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
   --font-mono: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif;
   --gutter: max(16px, env(safe-area-inset-left, 0px));
@@ -59,10 +61,11 @@ body {
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--tape); outline-offset: 3px; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: -0.035em; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
 p { margin: 0; }
 .wrap { max-width: 1200px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter-r); }
-.eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.eyebrow { font-family: var(--font-accent); font-style: italic; font-size: 20px; font-weight: 600; letter-spacing: 0.01em; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.eyebrow.ko { font-family: var(--font-body); font-style: normal; font-size: 14px; letter-spacing: 0.06em; }
 .eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--tape); }
 .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 
@@ -80,7 +83,7 @@ p { margin: 0; }
 .logo-mark { width: 30px; height: 30px; border: 2px solid var(--ink); position: relative; flex: none; }
 .logo-mark::before { content: ""; position: absolute; left: 4px; right: 4px; top: 50%; height: 2px; background: var(--ink); }
 .logo-mark::after { content: ""; position: absolute; left: 50%; top: 4px; transform: translateX(-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--tape); }
-.logo b { font-family: var(--font-display); font-size: 19px; font-weight: 800; letter-spacing: -0.04em; }
+.logo b { font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -0.02em; }
 .nav { display: flex; gap: 28px; font-size: 15px; }
 .nav a { text-decoration: none; color: var(--muted); }
 .nav a:hover { color: var(--ink); }
@@ -115,7 +118,7 @@ p { margin: 0; }
 /* 히어로 */
 .hero { padding-block: 48px 72px; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: end; }
-.hero h1 { font-size: clamp(36px, 5.4vw, 66px); line-height: 1.2; font-weight: 800; letter-spacing: -0.045em; margin-top: 20px; }
+.hero h1 { font-size: clamp(36px, 5.2vw, 64px); line-height: 1.28; font-weight: 700; letter-spacing: -0.03em; margin-top: 20px; }
 .hero h1 em { font-style: normal; box-shadow: inset 0 -0.28em 0 color-mix(in srgb, var(--tape) 55%, transparent); }
 .hero-lede { color: var(--muted); font-size: 18px; line-height: 1.75; margin-top: 24px; max-width: 28em; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
@@ -134,7 +137,7 @@ p { margin: 0; }
 /* 섹션 공통 */
 .section { padding-block: 88px; border-top: 1px solid var(--line); }
 .section-head { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; margin-bottom: 44px; align-items: end; }
-.section-head h2 { font-size: clamp(28px, 3.8vw, 46px); line-height: 1.25; font-weight: 800; letter-spacing: -0.045em; margin-top: 14px; }
+.section-head h2 { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.32; font-weight: 700; letter-spacing: -0.025em; margin-top: 10px; }
 .section-head p { color: var(--muted); max-width: 34em; }
 @media (max-width: 860px) { .section-head { grid-template-columns: 1fr; gap: 16px; } .section { padding-block: 64px; } }
 
@@ -143,7 +146,7 @@ p { margin: 0; }
 .service { padding: 24px 22px 28px 0; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; }
 .service + .service { padding-left: 22px; }
 .service:last-child { border-right: 0; }
-.service h3 { font-size: 21px; letter-spacing: -0.035em; }
+.service h3 { font-size: 22px; letter-spacing: -0.02em; }
 .service p { color: var(--muted); font-size: 15px; }
 .service ul { list-style: none; padding: 0; margin: 4px 0 0; display: grid; gap: 6px; font-size: 14px; }
 .service li { display: flex; gap: 8px; }
@@ -183,7 +186,7 @@ p { margin: 0; }
 .area-grid { display: grid; grid-template-columns: minmax(0,7fr) minmax(0,5fr); gap: 48px; align-items: start; }
 .area-list { display: grid; gap: 0; border-top: 2px solid var(--ink); }
 .area-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-.area-row b { font-family: var(--font-display); font-size: 20px; letter-spacing: -0.03em; }
+.area-row b { font-family: var(--font-display); font-size: 21px; letter-spacing: -0.02em; }
 .area-row span { color: var(--muted); }
 .note-box { background: var(--surface); border: 1px solid var(--line); padding: 26px; display: grid; gap: 12px; }
 .note-box h3 { font-size: 19px; }
@@ -241,7 +244,7 @@ footer { font-size: 14px; color: var(--muted); }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: #3BA55C; box-shadow: 0 0 0 4px color-mix(in srgb, #3BA55C 22%, transparent); display: inline-block; margin-right: 8px; vertical-align: middle; }
 
 /* 시공 분야 사진 */
-.service .thumb { aspect-ratio: 4 / 3; overflow: hidden; background: var(--photo-a); margin-bottom: 4px; }
+.service .thumb { height: clamp(180px, 16vw, 210px); overflow: hidden; background: var(--photo-a); margin-bottom: 4px; }
 .service .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
 .service:hover .thumb img { transform: scale(1.04); }
 
@@ -255,7 +258,7 @@ footer { font-size: 14px; color: var(--muted); }
 .ba-frame input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
 .ba-frame .badge.after { left: auto; right: 12px; }
 .ba-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-.ba-info h3 { font-size: clamp(24px, 2.8vw, 34px); line-height: 1.3; font-weight: 800; letter-spacing: -0.04em; margin: 14px 0 16px; }
+.ba-info h3 { font-size: clamp(24px, 2.8vw, 34px); line-height: 1.38; font-weight: 700; letter-spacing: -0.025em; margin: 14px 0 16px; }
 .ba-info blockquote { margin: 0 0 20px; color: var(--muted); padding-left: 14px; border-left: 2px solid var(--tape); }
 .ba-info .hint { font-size: 13px; color: var(--muted); margin-top: 18px; }
 @media (max-width: 860px) { .ba-grid { grid-template-columns: 1fr; gap: 24px; } }
@@ -329,7 +332,7 @@ footer a:hover { color: var(--ink); }
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="eyebrow">집수리 · 부분 보수 · 설치 전문</p>
+        <p class="eyebrow ko">집수리 · 부분 보수 · 설치 전문</p>
         <h1>고칠 곳 사진 한 장이면 <em>견적이 시작됩니다</em></h1>
         <p class="hero-lede">세탁실 선반부터 주방 상판, 들뜬 타일까지. 작은 불편도 현장에서 직접 확인하고 꼼꼼하게 마무리합니다. 서울·경기·인천 전 지역에 빠르게 방문합니다.</p>
         <div class="hero-actions">
@@ -487,7 +490,7 @@ footer a:hover { color: var(--ink); }
     <div class="wrap area-grid">
       <div>
         <p class="eyebrow">Area</p>
-        <h2 style="font-size:clamp(28px,3.8vw,46px);line-height:1.25;font-weight:800;letter-spacing:-0.045em;margin:14px 0 32px">시공 지역</h2>
+        <h2 style="font-size:clamp(28px,3.8vw,46px);line-height:1.25;font-weight:700;letter-spacing:-0.025em;line-height:1.32;margin:10px 0 32px">시공 지역</h2>
         <div class="area-list">
           <div class="area-row"><b>서울</b><span>전 지역 · 송파, 강동 현장 다수</span></div>
           <div class="area-row"><b>경기</b><span>전 지역 · 용인, 성남, 광주 등</span></div>
