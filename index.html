@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="하우스랩 건설 · 서울·경기·인천 집수리, 부분 보수, 가전 설치 전문. 사진 한 장으로 문자 견적 문의 010-5931-7025">
 <meta property="og:title" content="하우스랩 건설">
+<meta property="og:image" content="https://psb-7.com/images/224468665130-2.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2323423A'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='white' stroke-width='2.5'/%3E%3Crect x='9' y='15' width='14' height='2.5' fill='white'/%3E%3Ccircle cx='16' cy='10.5' r='2' fill='%23E7B52C'/%3E%3C/svg%3E">
 <meta property="og:description" content="서울·경기·인천 집수리 · 부분 보수 · 설치 전문. 사진 보내고 문자로 견적 받기.">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>하우스랩 건설</title>
@@ -219,8 +221,78 @@ form.quote { background: var(--surface); color: var(--ink); padding: 28px; displ
 @media (max-width: 860px) { .contact-grid { grid-template-columns: 1fr; } }
 
 /* 푸터 */
-footer { padding-block: 40px 32px; font-size: 13px; color: var(--muted); }
-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+footer { font-size: 14px; color: var(--muted); }
+
+/* 첫 화면 사진 */
+.hero-visual { position: relative; padding-left: 44px; }
+.hero-visual .main { aspect-ratio: 4 / 5; }
+.hero-visual .main .tag { left: auto; right: 14px; }
+.hero-visual .inset { position: absolute; left: 0; bottom: 56px; width: 36%; aspect-ratio: 3 / 4; border: 6px solid var(--surface); box-shadow: 0 18px 40px -18px rgba(0,0,0,.45); }
+.badge { position: absolute; top: 12px; left: 12px; z-index: 1; font: 600 11px/1 var(--font-mono); letter-spacing: .12em; padding: 6px 8px; background: var(--ink); color: var(--bg); }
+.badge.after { background: var(--tape); color: #1B1F1D; }
+.hero-meta { display: flex; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 13px; color: var(--muted); padding-left: 44px; }
+.hero-meta a { color: var(--ink); }
+@media (max-width: 860px) { .hero-visual { padding-left: 0; } .hero-visual .inset { left: 12px; bottom: 12px; width: 34%; border-width: 4px; } .hero-meta { padding-left: 0; } }
+
+/* 실시간 연동 띠 */
+.live { display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: center; padding-block: 16px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.live b { color: var(--ink); font-weight: 600; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: #3BA55C; box-shadow: 0 0 0 4px color-mix(in srgb, #3BA55C 22%, transparent); display: inline-block; margin-right: 8px; vertical-align: middle; }
+
+/* 시공 분야 사진 */
+.service .thumb { aspect-ratio: 4 / 3; overflow: hidden; background: var(--photo-a); margin-bottom: 4px; }
+.service .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.service:hover .thumb img { transform: scale(1.04); }
+
+/* 작업 전후 비교 */
+.ba-grid { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 48px; align-items: center; }
+.ba-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--photo-a); touch-action: pan-y; user-select: none; }
+.ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+.ba-frame .after-img { clip-path: inset(0 0 0 var(--pos, 50%)); }
+.ba-line { position: absolute; top: 0; bottom: 0; left: var(--pos, 50%); width: 2px; background: #fff; transform: translateX(-1px); pointer-events: none; box-shadow: 0 0 0 1px rgba(0,0,0,.15); }
+.ba-knob { position: absolute; top: 50%; left: 50%; width: 46px; height: 46px; border-radius: 50%; background: #fff; transform: translate(-50%, -50%); display: grid; place-items: center; box-shadow: 0 6px 18px rgba(0,0,0,.25); color: #1B1F1D; }
+.ba-frame input[type=range] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: ew-resize; margin: 0; }
+.ba-frame .badge.after { left: auto; right: 12px; }
+.ba-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.ba-info h3 { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.35; margin: 14px 0 16px; }
+.ba-info blockquote { margin: 0 0 20px; color: var(--muted); padding-left: 14px; border-left: 2px solid var(--tape); }
+.ba-info .hint { font-size: 13px; color: var(--muted); margin-top: 18px; }
+@media (max-width: 860px) { .ba-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+/* 현장 사진 띠 */
+.strip { overflow: hidden; padding-block: 8px 72px; }
+.strip-track { display: flex; gap: 14px; width: max-content; animation: drift 70s linear infinite; }
+.strip:hover .strip-track { animation-play-state: paused; }
+.strip a { flex: none; width: 240px; aspect-ratio: 3 / 4; overflow: hidden; background: var(--photo-a); display: block; }
+.strip img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.strip a:hover img { transform: scale(1.05); }
+@keyframes drift { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .strip { overflow-x: auto; } .strip-track { animation: none; } }
+@media (max-width: 600px) { .strip a { width: 170px; } }
+
+/* 작업 기록 카드 */
+.case .photo img { transition: transform .5s ease; }
+.case:hover .photo img { transform: scale(1.04); }
+
+/* 자주 묻는 질문 */
+.faq { border-top: 2px solid var(--ink); }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 16px; padding: 22px 0; font-weight: 600; font-size: 17px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font: 400 24px/1 var(--font-mono); color: var(--muted); transition: transform .2s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq p { color: var(--muted); padding: 0 0 22px; max-width: 46em; }
+
+/* 푸터 */
+footer { background: var(--surface); border-top: 1px solid var(--line); padding-block: 48px 40px; }
+footer .wrap { display: grid; grid-template-columns: minmax(0, 2fr) repeat(2, minmax(0, 1fr)); gap: 32px; }
+footer h4 { margin: 0 0 10px; font-size: 13px; color: var(--ink); }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--ink); }
+.foot-brand p { margin-top: 12px; max-width: 28em; }
+.foot-copy { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; font-size: 12px; }
+@media (max-width: 700px) { footer .wrap { grid-template-columns: 1fr 1fr; } .foot-brand { grid-column: 1 / -1; } }
 
 /* 늘 보이는 상담 바 */
 .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: var(--surface); border-top: 1px solid var(--line);
@@ -240,6 +312,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <a class="logo" href="#top" aria-label="하우스랩 건설 처음으로"><span class="logo-mark" aria-hidden="true"></span><b>하우스랩 건설</b></a>
     <nav class="nav" aria-label="주 메뉴">
       <a href="#services">시공 분야</a>
+      <a href="#beforeafter">전후 비교</a>
       <a href="#cases">작업 기록</a>
       <a href="#process">진행 방법</a>
       <a href="#area">시공 지역</a>
@@ -271,12 +344,22 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         </dl>
       </div>
       <div>
-        <div class="photo tex-rack hero-photo" role="img" aria-label="현장 사진 자리: 용인 다용도실 세탁기 위 렉 설치">
-          <span class="ph-note">PHOTO</span>
-          <span class="tag">용인 · 다용도실 <span class="sub">세탁기 위 렉 + 건조기</span></span>
+        <div class="hero-visual">
+          <div class="photo main">
+            <span class="badge after">AFTER</span>
+            <img src="images/224468665130-2.jpg" alt="세탁기 위 앵글 선반에 건조기를 올린 작업 후 모습" fetchpriority="high">
+            <span class="tag">세탁실 <span class="sub">세탁기 위 건조기 선반 설치</span></span>
+          </div>
+          <div class="photo inset">
+            <span class="badge">BEFORE</span>
+            <img src="images/224468665130-1.jpg" alt="세탁기만 놓여 있던 작업 전 세탁실">
+          </div>
         </div>
-        <p class="dim">대표 현장 사진 · 세로 4:5</p>
+        <p class="hero-meta"><span>실제 시공 현장 사진</span><a href="https://blog.naver.com/psb-7/224468665130" target="_blank" rel="noopener">작업 과정 보기 →</a></p>
       </div>
+    </div>
+    <div class="wrap">
+      <p class="live" id="live"><span><span class="dot" aria-hidden="true"></span><b>네이버 블로그와 연동</b> · 새 시공 글이 하루 두 번 자동으로 올라옵니다</span><span id="liveLatest"></span></p>
     </div>
   </section>
 
@@ -291,25 +374,51 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       </div>
       <div class="services">
         <article class="service">
+          <div class="thumb"><img src="images/224407276139-2.jpg" alt="세탁기 옆 건조기 선반 설치 현장" loading="lazy"></div>
           <h3>세탁실 · 가전 설치</h3>
           <p>좁은 다용도실도 높이와 배관을 재고 맞춰 설치합니다.</p>
           <ul><li>세탁기 위 건조기 렉·선반</li><li>빌트인 콤보 설치</li><li>보일러 점검용 재배치</li></ul>
         </article>
         <article class="service">
+          <div class="thumb"><img src="images/224424462114-2.jpg" alt="하이라이트 교체 설치 후 주방 상판" loading="lazy"></div>
           <h3>주방 수리 · 리폼</h3>
           <p>상판 가공부터 하부장 구조 변경까지 필요한 부분만 손봅니다.</p>
           <ul><li>가스레인지·하이라이트 교체</li><li>싱크볼 교체, 상판 균열 복원</li><li>식기세척기 급수 밸브</li></ul>
         </article>
         <article class="service">
+          <div class="thumb"><img src="images/224449591756-2.jpg" alt="변기 하부 고정 보수 후 모습" loading="lazy"></div>
           <h3>욕실 · 타일 보수</h3>
           <p>깨뜨리지 않고 떼어내 다시 붙이는 작업에 강합니다.</p>
           <ul><li>들뜬 벽타일 재부착</li><li>아트월 타공 구멍 복원</li><li>변기 하부 고정 보수</li></ul>
         </article>
         <article class="service">
+          <div class="thumb"><img src="images/224456254403-2.jpg" alt="벽걸이 TV 철거 후 정리된 벽면" loading="lazy"></div>
           <h3>철거 · 원상복구</h3>
           <p>이사 전후, 떼어낸 자리까지 깔끔하게 정리합니다.</p>
           <ul><li>벽걸이 TV·미니세탁기 철거</li><li>앙카볼트 제거, 벽면 복원</li><li>빌트인 냉장고 철거·폐기</li></ul>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="beforeafter">
+    <div class="wrap ba-grid">
+      <div>
+        <div class="ba-frame" id="baFrame" style="--pos:50%">
+          <img id="baBefore" src="images/224457416129-1.jpg" alt="작업 전">
+          <img class="after-img" id="baAfter" src="images/224457416129-2.jpg" alt="작업 후">
+          <span class="badge">BEFORE</span><span class="badge after">AFTER</span>
+          <span class="ba-line" aria-hidden="true"><span class="ba-knob"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></span>
+          <input type="range" id="baRange" min="0" max="100" value="50" aria-label="작업 전후 사진 비교 위치">
+        </div>
+        <div class="ba-tabs" role="group" aria-label="비교할 현장 고르기" id="baTabs"></div>
+      </div>
+      <div class="ba-info">
+        <p class="eyebrow">Before / After</p>
+        <h3 id="baTitle">용인 좁은 다용도실 세탁기 위 렉 설치 후 건조기 올리기</h3>
+        <blockquote id="baQuote">“기존 세탁기는 그대로 사용하고 새로 구입한 건조기를 위쪽에 설치하고 싶습니다.”</blockquote>
+        <a class="btn btn-ghost" id="baLink" href="https://blog.naver.com/psb-7/224457416129" target="_blank" rel="noopener">이 현장 작업 과정 보기</a>
+        <p class="hint">사진 위의 가운데 선을 좌우로 움직여 작업 전과 후를 비교해 보세요.</p>
       </div>
     </div>
   </section>
@@ -333,6 +442,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="cases" id="caseList"></div>
     </div>
   </section>
+  <div class="strip" aria-label="최근 현장 사진"><div class="strip-track" id="strip"></div></div>
 
   <section class="section" id="process">
     <div class="wrap">
@@ -350,6 +460,25 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <li><h3>현장 시공</h3><p>치수를 다시 재고, 주변을 보양한 뒤 작업합니다.</p></li>
         <li><h3>점검과 정리</h3><p>수평, 고정, 작동을 함께 확인하고 정리까지 마칩니다.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2>자주 묻는 질문</h2>
+        </div>
+        <p>블로그로 많이 들어오는 질문을 모았습니다. 우리 집 상황이 궁금하면 사진과 함께 문자로 물어봐 주세요.</p>
+      </div>
+      <div class="faq">
+        <details open><summary>세탁기 위에 건조기를 바로 올려도 되나요?</summary><p>제품의 설치 조건에 따라 다릅니다. 직접 올리기 어려운 경우에는 세탁기 주변에 별도의 렉과 상판을 설치해 건조기가 올라갈 자리를 만듭니다.</p></details>
+        <details><summary>다용도실 입구가 좁아도 설치할 수 있나요?</summary><p>현장 구조에 맞춰 방법을 바꿉니다. 사람이 들어 올리기 어려운 곳은 전동 리프트로 건조기를 상판 높이까지 올려 설치한 사례가 있습니다.</p></details>
+        <details><summary>기존 세탁기는 옮겨야 하나요?</summary><p>반드시 옮길 필요는 없습니다. 주변 공간이 확보되면 세탁기는 지금 자리에 두고 그 주변으로 렉을 설치할 수 있습니다.</p></details>
+        <details><summary>견적은 어떻게 받나요?</summary><p>문제가 있는 부분을 가까이 찍은 사진 1장, 주변이 보이는 사진 1장, 원하는 작업과 지역을 문자로 보내 주세요. 작업 중에는 전화를 바로 받기 어려워 문자가 가장 빠릅니다.</p></details>
+        <details><summary>어느 지역까지 오시나요?</summary><p>서울·경기·인천 전 지역에 방문하고, 작업 내용에 따라 강원·충청·전라 지역도 출장 시공합니다.</p></details>
+      </div>
     </div>
   </section>
 
@@ -446,8 +575,19 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
 <footer>
   <div class="wrap">
-    <span>하우스랩 건설 · 종합 인테리어 토탈케어 · 집수리 전문</span>
-    <span class="mono">010-5931-7025 · <a href="https://blog.naver.com/psb-7" target="_blank" rel="noopener">blog.naver.com/psb-7</a></span>
+    <div class="foot-brand">
+      <a class="logo" href="#top"><span class="logo-mark" aria-hidden="true"></span><b>하우스랩 건설</b></a>
+      <p>종합 인테리어 토탈케어 · 집수리 전문. 서울·경기·인천 현장을 직접 방문해 고칩니다.</p>
+    </div>
+    <div>
+      <h4>바로가기</h4>
+      <ul><li><a href="#services">시공 분야</a></li><li><a href="#beforeafter">전후 비교</a></li><li><a href="#cases">작업 기록</a></li><li><a href="#faq">자주 묻는 질문</a></li></ul>
+    </div>
+    <div>
+      <h4>문의</h4>
+      <ul><li class="mono">010-5931-7025</li><li><a href="#contact">문자 견적 받기</a></li><li><a href="https://blog.naver.com/psb-7" target="_blank" rel="noopener">네이버 블로그</a></li></ul>
+    </div>
+    <p class="foot-copy">© 하우스랩 건설</p>
   </div>
 </footer>
 
@@ -480,6 +620,8 @@ const CASES = [
   { f:"tile", tex:"tex-small", region:"지역 입력 예정", space:"화장실", scope:"깨진 하부 고정 시멘트 제거, 변기 재고정", date:"2026.10",
     title:"흔들리는 변기 하부 고정 시멘트 보수", quote:"변기 아래 시멘트가 조금씩 깨져서 떨어지고 있어요.", url:"https://blog.naver.com/psb-7/224449591756" }
 ];
+const CASES_PHOTOS = ["224468665130","224457416129","224456254403","224449591756","224430974349","224424462114","224407276139","224461642539","224463093778","224429539221"]
+  .map(id => ({ src: `images/${id}-2.jpg`, url: `https://blog.naver.com/psb-7/${id}`, title: "현장 사진" }));
 const list = document.getElementById("caseList");
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const idOf = u => (String(u).match(/(\d{9,})/) || [])[1];
@@ -530,6 +672,36 @@ function render(f) {
   list.innerHTML = ITEMS.filter(c => f === "all" || c.f === f).slice(0, 12).map(card).join("");
 }
 render("all");
+
+// 현장 사진 띠
+function buildStrip(photos) {
+  const html = photos.map(ph => `<a href="${esc(ph.url)}" target="_blank" rel="noopener" title="${esc(ph.title)}"><img src="${esc(ph.src)}" alt="${esc(ph.title)}" loading="lazy"></a>`).join("");
+  document.getElementById("strip").innerHTML = html + html.replace(/<a /g, '<a aria-hidden="true" tabindex="-1" ');
+}
+buildStrip(CASES_PHOTOS);
+
+// 작업 전후 비교
+const BA = [
+  { id: "224457416129", label: "건조기 렉 설치", title: "용인 좁은 다용도실 세탁기 위 렉 설치 후 건조기 올리기", quote: "기존 세탁기는 그대로 사용하고 새로 구입한 건조기를 위쪽에 설치하고 싶습니다." },
+  { id: "224456254403", label: "TV 철거·복구", title: "무타공 벽걸이TV 이사 전 철거 및 콘센트 원상복구", quote: "TV와 설치 장비를 모두 철거하고 콘센트도 원래대로 복구해 주세요." },
+  { id: "224449591756", label: "변기 하부 보수", title: "변기 흔들림 원인 하부 고정 시멘트 깨짐 보수", quote: "깨진 부분을 제거하고 다시 단단하게 고정해 주세요." },
+  { id: "224407276139", label: "건조기 선반", title: "건조기 선반 설치 세탁실 공간 넓게 활용하기", quote: "세탁기와 건조기를 따로 놓고 쓰는데 다용도실이 너무 좁아요." }
+];
+const baFrame = document.getElementById("baFrame");
+document.getElementById("baRange").addEventListener("input", e => baFrame.style.setProperty("--pos", e.target.value + "%"));
+function showBA(i) {
+  const c = BA[i];
+  document.getElementById("baBefore").src = `images/${c.id}-1.jpg`;
+  document.getElementById("baAfter").src = `images/${c.id}-2.jpg`;
+  document.getElementById("baTitle").textContent = c.title;
+  document.getElementById("baQuote").textContent = `“${c.quote}”`;
+  document.getElementById("baLink").href = `https://blog.naver.com/psb-7/${c.id}`;
+  document.getElementById("baRange").value = 50; baFrame.style.setProperty("--pos", "50%");
+  document.querySelectorAll("#baTabs .chip").forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+}
+document.getElementById("baTabs").innerHTML = BA.map((c, i) => `<button class="chip" type="button" aria-pressed="${i ? "false" : "true"}">${esc(c.label)}</button>`).join("");
+document.querySelectorAll("#baTabs .chip").forEach((b, i) => b.addEventListener("click", () => showBA(i)));
+
 fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(d => {
   if (!d || !Array.isArray(d.posts) || !d.posts.length) return;
   // 실제 시공 글(고객 의뢰 내용이 있는 글)만 작업 기록에 표시
@@ -537,14 +709,10 @@ fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).the
   if (!jobs.length) return;
   ITEMS = jobs.map(fromPost);
   render(FILTER);
-  const heroPick = ITEMS.find(c => c.img && c.complex) || ITEMS.find(c => c.img);
-  const hero = document.querySelector(".hero-photo");
-  if (heroPick && hero) {
-    hero.className = "photo hero-photo";
-    hero.removeAttribute("role"); hero.removeAttribute("aria-label");
-    hero.innerHTML = `<img src="${esc(heroPick.img)}" alt="${esc(heroPick.title)} 현장 사진"><span class="tag">${esc([heroPick.region, heroPick.space].filter(Boolean).join(" · "))} <span class="sub">${esc(heroPick.title)}</span></span>`;
-    const dim = document.querySelector(".dim"); if (dim) dim.textContent = "최근 현장 · 블로그에서 자동으로 가져온 사진";
-  }
+  const latest = d.posts.find(p => p.date);
+  if (latest) document.getElementById("liveLatest").innerHTML = `최근 글 <b>${esc(latest.date)}</b> · <a href="${esc(latest.url)}" target="_blank" rel="noopener">${esc(latest.title)}</a>`;
+  const photos = d.posts.filter(p => (p.images || []).length).flatMap(p => p.images.map(src => ({ src, url: p.url, title: p.title })));
+  if (photos.length) buildStrip(photos);
 }).catch(() => {});
 document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
