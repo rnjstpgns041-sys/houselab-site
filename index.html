@@ -26,7 +26,8 @@
   --line: #D5D9D3;
   --pine: #23423A;        /* 주 버튼 */
   --pine-ink: #FFFFFF;
-  --tape: #E7B52C;        /* 줄자 노랑, 표식에만 */
+  --tape: #F2C230;        /* 줄자 노랑: 강조·버튼 */
+  --night: #101513;       /* 첫 화면 바탕 */
   --photo-a: #C9CCC5;
   --photo-b: #AEB3AB;
   --font-display: "Gowun Batang", "Nanum Myeongjo", "AppleMyungjo", serif;
@@ -72,7 +73,8 @@ p { margin: 0; }
 /* 버튼 */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: 4px; font: 600 15px/1 var(--font-body); text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, background .15s ease; }
 .btn:hover { transform: translateY(-1px); }
-.btn-primary { background: var(--pine); color: var(--pine-ink); }
+.btn-primary { background: var(--tape); color: #14110A; font-weight: 700; box-shadow: 0 8px 24px -10px color-mix(in srgb, var(--tape) 80%, transparent); }
+.btn-primary:hover { background: #FFD24A; }
 .btn-ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
 .btn svg { width: 18px; height: 18px; flex: none; }
 
@@ -298,6 +300,36 @@ footer a:hover { color: var(--ink); }
 .foot-copy { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 18px; font-size: 12px; }
 @media (max-width: 700px) { footer .wrap { grid-template-columns: 1fr 1fr; } .foot-brand { grid-column: 1 / -1; } }
 
+/* 첫 화면: 어두운 바탕 + 큰 글씨 */
+.hero { position: relative; background: var(--night); color: #F4F2EA; overflow: hidden; padding-block: 72px 0; }
+.hero::before { content: ""; position: absolute; inset: 0; background: url("images/224407276139-2.jpg") center / cover no-repeat; opacity: .22; filter: grayscale(.3) blur(2px); transform: scale(1.05); }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--night) 0%, color-mix(in srgb, var(--night) 82%, transparent) 45%, color-mix(in srgb, var(--night) 40%, transparent) 100%); }
+.hero > * { position: relative; z-index: 1; }
+.hero .eyebrow.ko { color: var(--tape); font-weight: 700; }
+.hero h1 { color: #FFFFFF; font-size: clamp(44px, 6.4vw, 86px); line-height: 1.16; letter-spacing: -0.035em; }
+.hero h1 em { font-style: normal; box-shadow: none; color: var(--tape); }
+.hero-lede { color: #C9CCC4; font-size: 19px; }
+.hero .btn { min-height: 58px; padding: 0 28px; font-size: 17px; }
+.hero .btn-ghost { color: #FFFFFF; border-color: rgba(255,255,255,.55); }
+.hero .btn-ghost:hover { background: rgba(255,255,255,.08); }
+.hero-facts { border-top-color: rgba(255,255,255,.18); }
+.hero-facts dt { color: #9DA39B; }
+.hero-facts dd { color: #FFFFFF; font-size: 17px; }
+@media (max-width: 560px) { .hero-facts dd { font-size: 14px; } .hero h1 { font-size: 42px; } }
+@media (min-width: 861px) { .hero .hero-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); } }
+.hero-meta { color: #9DA39B; }
+.hero-meta a { color: #FFFFFF; }
+.hero-visual .inset { border-color: var(--night); }
+.hero .live { color: #9DA39B; border-top-color: rgba(255,255,255,.14); margin-top: 48px; }
+.hero .live b, .hero .live a { color: #FFFFFF; }
+
+/* 노란 띠 */
+.ticker { background: var(--tape); color: #14110A; overflow: hidden; border-block: 1px solid #14110A; }
+.ticker-track { display: flex; width: max-content; animation: drift 40s linear infinite; }
+.ticker span { font: 700 clamp(18px, 2vw, 24px)/1 var(--font-body); letter-spacing: -0.02em; padding: 18px 0; white-space: nowrap; display: flex; align-items: center; }
+.ticker span::after { content: "✦"; font-size: .7em; margin: 0 28px; }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+
 /* 늘 보이는 상담 바 */
 .dock { position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: var(--surface); border-top: 1px solid var(--line);
   padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
@@ -366,6 +398,7 @@ footer a:hover { color: var(--ink); }
       <p class="live" id="live"><span><span class="dot" aria-hidden="true"></span><b>네이버 블로그와 연동</b> · 새 시공 글이 하루 두 번 자동으로 올라옵니다</span><span id="liveLatest"></span></p>
     </div>
   </section>
+  <div class="ticker" aria-label="주요 시공 항목"><div class="ticker-track"><span>세탁기 위 건조기 선반</span><span>빌트인 가전 설치</span><span>주방 상판 보수</span><span>가스레인지·하이라이트 교체</span><span>싱크대 문짝 수리</span><span>들뜬 타일 재부착</span><span>변기 하부 보수</span><span>벽걸이 TV 철거·원상복구</span><span>냉장고 철거·폐기</span><span aria-hidden="true">세탁기 위 건조기 선반</span><span aria-hidden="true">빌트인 가전 설치</span><span aria-hidden="true">주방 상판 보수</span><span aria-hidden="true">가스레인지·하이라이트 교체</span><span aria-hidden="true">싱크대 문짝 수리</span><span aria-hidden="true">들뜬 타일 재부착</span><span aria-hidden="true">변기 하부 보수</span><span aria-hidden="true">벽걸이 TV 철거·원상복구</span><span aria-hidden="true">냉장고 철거·폐기</span></div></div>
 
   <section class="section" id="services">
     <div class="wrap">
