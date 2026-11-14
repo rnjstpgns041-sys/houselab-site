@@ -552,6 +552,89 @@ footer a:hover { color: var(--gold-2); }
 .dock .msg, .dock .msg b { color: #E8E2D5; }
 .dock .btn-ghost { color: #F2EEE6; border-color: rgba(242,238,230,.45); }
 .dock .btn-primary { background: var(--gold); color: #16150F; }
+
+/* ===== 한눈에 보이게: 첫 화면 버튼·단계·분야 타일, 모바일 압축 ===== */
+:root { --muted: #5C584F; }
+.hx { padding-block: 96px 0; }
+.hx h1 { font-size: clamp(38px, 6.4vw, 84px); max-width: 15ch; }
+.hx-sub { color: #C9C3B6; font-size: clamp(17px, 1.8vw, 21px); }
+.hx-cta { gap: 12px; margin-top: 34px; }
+.pill.big { min-height: 58px; padding: 0 34px; font-size: 19px; font-weight: 700; min-width: 168px; justify-content: center; }
+.pill.ghost { background: transparent; color: #F2EEE6; border: 1.5px solid rgba(242,238,230,.55); box-shadow: none; }
+.pill.ghost:hover { background: rgba(242,238,230,.08); }
+.hx-tel { margin: 16px 0 0; font-size: 22px; font-weight: 700; letter-spacing: .02em; color: var(--gold-2); font-variant-numeric: tabular-nums; }
+.hx-steps { list-style: none; display: flex; justify-content: center; align-items: center; gap: 10px; padding: 0; margin: 30px auto 0; flex-wrap: wrap; }
+.hx-steps li { display: inline-flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 600; color: #E8E2D5; }
+.hx-steps li + li::before { content: ""; width: 26px; height: 1px; background: rgba(200,169,106,.6); margin-right: 2px; }
+.hx-steps span { width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; border: 1px solid var(--gold); color: var(--gold); font-size: 14px; font-weight: 700; }
+.hx-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 64px; }
+.tile { text-align: left; display: grid; gap: 6px; padding: 24px 22px; border-radius: 18px; text-decoration: none; background: rgba(255,255,255,.04); border: 1px solid rgba(200,169,106,.25); color: #F2EEE6; transition: background .25s ease, border-color .25s ease, transform .25s ease; }
+.tile:hover { background: rgba(200,169,106,.1); border-color: var(--gold); transform: translateY(-3px); }
+.tile svg { color: var(--gold); margin-bottom: 6px; }
+.tile b { font-size: 19px; letter-spacing: -0.03em; }
+.tile span { font-size: 14px; color: #A9A398; }
+.hx .live { padding-block: 34px 40px; }
+
+/* 섹션 제목·본문 또렷하게 */
+.section-head p { color: var(--muted); }
+.service p, .case blockquote { color: var(--muted); }
+.service h3 { font-size: 24px; }
+.service ul { font-size: 16px; gap: 8px; }
+.case h3 { font-size: 20px; line-height: 1.4; }
+.case blockquote { font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.spec { font-size: 14px; }
+.more-wrap { text-align: center; margin-top: 36px; }
+.pill.ghost-dark { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); box-shadow: none; cursor: pointer; font: inherit; font-weight: 700; }
+.pill.ghost-dark:hover { background: var(--ink); color: var(--bg); }
+
+@media (max-width: 700px) {
+  .hx { padding-block: 52px 0; }
+  .hx-kicker { font-size: 19px; }
+  .hx h1 { font-size: 38px; line-height: 1.15; }
+  .hx-sub { font-size: 16px; margin-top: 16px; }
+  .hx-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .pill.big { min-width: 0; padding: 0 12px; min-height: 56px; font-size: 18px; }
+  .hx-tel { font-size: 20px; }
+  .hx-steps { gap: 6px; margin-top: 22px; }
+  .hx-steps li { font-size: 14px; gap: 6px; }
+  .hx-steps li + li::before { width: 12px; }
+  .hx-steps span { width: 24px; height: 24px; font-size: 12px; }
+  .hx-tiles { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 34px; }
+  .tile { padding: 16px 14px; gap: 3px; }
+  .tile svg { width: 24px; height: 24px; margin-bottom: 4px; }
+  .tile b { font-size: 16px; }
+  .tile span { font-size: 12.5px; }
+  .hx .live { padding-block: 22px 26px; font-size: 13px; }
+
+  .promise-list li { padding: 22px 16px; }
+  .promise-list .pn { font-size: 26px; margin-bottom: 8px; }
+  .promise-list p { display: none; }
+  .promise-list b { font-size: 16px; margin: 0; }
+
+  .section { padding-block: 60px; }
+  .section-head { margin-bottom: 30px; gap: 10px; }
+  .section-head h2 { font-size: 32px; line-height: 1.2; }
+  .section-head p { font-size: 16px; }
+  .eyebrow, .eyebrow.ko { font-size: 19px; }
+
+  /* 시공 분야: 사진 왼쪽, 글 오른쪽 */
+  .service, .service + .service { display: grid; grid-template-columns: 112px 1fr; gap: 4px 14px; padding: 12px; align-items: center; }
+  .service .thumb { grid-row: 1 / span 2; height: 112px; margin: 0; border-radius: 12px; }
+  .service h3 { font-size: 19px; padding: 0; margin: 0; align-self: end; }
+  .service p { display: none; }
+  .service ul { padding: 0; margin: 0; font-size: 14px; gap: 2px; align-self: start; }
+  .services { gap: 10px; }
+
+  .case .photo { aspect-ratio: 16 / 10; }
+  .case h3 { font-size: 18px; }
+  .case blockquote { -webkit-line-clamp: 2; font-size: 14px; }
+  .steps li { display: grid; grid-template-columns: 44px 1fr; column-gap: 8px; padding: 18px 18px; align-items: baseline; }
+  .steps li::before { grid-row: 1 / span 2; margin: 0; font-size: 28px; }
+  .steps li h3 { margin: 0 0 4px; font-size: 18px; }
+  .steps li p { margin: 0; font-size: 14.5px; }
+  .steps { gap: 10px; }
+  .strip { display: none; }
+}
 </style>
 </head>
 <body>
@@ -581,15 +664,22 @@ footer a:hover { color: var(--gold-2); }
       <h1>고칠 곳 사진 한 장이면<br><span class="grad">견적이 시작됩니다.</span></h1>
       <p class="hx-sub">세탁실 선반부터 주방 상판, 들뜬 타일까지.<br class="br-pc"> 서울·경기·인천 어디든 현장에서 직접 고칩니다.</p>
       <div class="hx-cta">
-        <a class="pill" href="sms:01059317025" data-sms>문자하기</a>
-        <a class="more-link" href="#cases">작업 기록 보기 <span aria-hidden="true">›</span></a>
+        <a class="pill big" href="sms:01059317025" data-sms>문자하기</a>
+        <a class="pill ghost big" href="tel:01059317025">전화하기</a>
       </div>
+      <p class="hx-tel">010-5931-7025</p>
+      <ol class="hx-steps" aria-label="견적 받는 방법">
+        <li><span>1</span>사진 찍기</li>
+        <li><span>2</span>문자 보내기</li>
+        <li><span>3</span>방문 시공</li>
+      </ol>
     </div>
     <div class="wrap">
-      <div class="hx-stage">
-        <figure class="hx-main"><img src="images/224468665130-2.jpg" alt="세탁기 위 앵글 선반에 건조기를 올린 작업 후 모습" fetchpriority="high"><figcaption>After · 세탁기 위 건조기 선반 설치</figcaption></figure>
-        <figure class="hx-side"><img src="images/224468665130-1.jpg" alt="세탁기만 놓여 있던 작업 전 세탁실"><figcaption>Before</figcaption></figure>
-        <figure class="hx-side two"><img src="images/224456254403-2.jpg" alt="벽걸이 TV 철거 후 정리된 벽면"><figcaption>TV 철거 · 원상복구</figcaption></figure>
+      <div class="hx-tiles">
+        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/></svg><b>세탁실 · 가전</b><span>건조기 선반, 렉 설치</span></a>
+        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="8.5" cy="13" r="2.2"/><circle cx="15.5" cy="13" r="2.2"/><path d="M7 4v2M12 4v2M17 4v2"/></svg><b>주방 수리</b><span>상판, 하이라이트 교체</span></a>
+        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg><b>욕실 · 타일</b><span>들뜬 타일, 변기 보수</span></a>
+        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7L4 14v6h6l7-7"/></svg><b>철거 · 원상복구</b><span>TV, 가전 철거, 벽 복원</span></a>
       </div>
       <p class="live" id="live"><span><span class="dot" aria-hidden="true"></span><b>네이버 블로그와 연동</b> · 새 시공 글이 하루 두 번 자동으로 올라옵니다</span><span id="liveLatest"></span></p>
     </div>
@@ -681,6 +771,7 @@ footer a:hover { color: var(--gold-2); }
         <button class="chip" type="button" aria-pressed="false" data-f="remove">철거·복구</button>
       </div>
       <div class="cases" id="caseList"></div>
+      <div class="more-wrap"><button class="pill ghost-dark" type="button" id="moreCases" hidden>작업 기록 더 보기</button></div>
     </div>
   </section>
   <div class="strip" aria-label="최근 현장 사진"><div class="strip-track" id="strip"></div></div>
@@ -908,10 +999,16 @@ function card(c) {
       <span class="more">블로그에서 전체 과정 보기 →</span>
     </a>`;
 }
+let SHOW_ALL = false;
 function render(f) {
   FILTER = f;
-  list.innerHTML = ITEMS.filter(c => f === "all" || c.f === f).slice(0, 12).map(card).join("");
+  const all = ITEMS.filter(c => f === "all" || c.f === f).slice(0, 12);
+  const n = SHOW_ALL ? all.length : (innerWidth < 700 ? 3 : 6);
+  list.innerHTML = all.slice(0, n).map(card).join("");
+  const b = document.getElementById("moreCases");
+  if (b) { b.hidden = all.length <= n; b.textContent = `작업 기록 더 보기 (${all.length - n}건)`; }
 }
+document.getElementById("moreCases").addEventListener("click", () => { SHOW_ALL = true; render(FILTER); });
 render("all");
 
 // 현장 사진 띠
