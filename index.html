@@ -474,8 +474,8 @@ html, body { overflow-x: clip; }
       <a href="#area">시공 지역</a>
     </nav>
     <div class="header-cta">
-      <span class="header-tel">010-5931-7025</span>
-      <a class="btn btn-primary" href="#contact">문자 견적 받기</a>
+      <a class="header-tel" href="tel:01059317025">010-5931-7025</a>
+      <a class="btn btn-primary" href="sms:01059317025" data-sms>문자하기</a>
     </div>
   </div>
 </header>
@@ -487,7 +487,7 @@ html, body { overflow-x: clip; }
       <h1>고칠 곳 사진 한 장이면<br><span class="grad">견적이 시작됩니다.</span></h1>
       <p class="hx-sub">세탁실 선반부터 주방 상판, 들뜬 타일까지.<br class="br-pc"> 서울·경기·인천 어디든 현장에서 직접 고칩니다.</p>
       <div class="hx-cta">
-        <a class="pill" href="#contact">문자로 견적 받기</a>
+        <a class="pill" href="sms:01059317025" data-sms>문자하기</a>
         <a class="more-link" href="#cases">작업 기록 보기 <span aria-hidden="true">›</span></a>
       </div>
     </div>
@@ -646,7 +646,7 @@ html, body { overflow-x: clip; }
       <div class="section-head">
         <div>
           <p class="eyebrow">Contact</p>
-          <h2>문자로 견적 받기</h2>
+          <h2>문자하기</h2>
         </div>
         <p>아래 칸을 채우면 보낼 문자 내용이 만들어집니다. 내용을 복사해 사진과 함께 문자로 보내 주세요.</p>
       </div>
@@ -658,7 +658,7 @@ html, body { overflow-x: clip; }
           </div>
           <div class="row">
             <button class="btn btn-primary" type="button" id="copyTel">번호 복사</button>
-            <a class="btn btn-ghost" href="tel:01059317025">전화 걸기</a>
+            <a class="btn btn-ghost" href="tel:01059317025">전화하기</a>
           </div>
           <ul class="checklist">
             <li><span class="mono">01</span><span>현장 사진 2장 (가까이 1장, 멀리 1장)</span></li>
@@ -703,7 +703,7 @@ html, body { overflow-x: clip; }
           </div>
           <div class="form-actions">
             <button class="btn btn-primary" type="submit" style="background:var(--pine);color:var(--pine-ink)">문자 내용 복사</button>
-            <a class="btn btn-ghost" id="smsLink" href="sms:01059317025" style="color:var(--ink);border-color:var(--ink)">문자 앱 열기</a>
+            <a class="btn btn-ghost" id="smsLink" href="sms:01059317025" style="color:var(--ink);border-color:var(--ink)">문자하기</a>
             <span class="status" id="status"></span>
           </div>
         </form>
@@ -724,7 +724,7 @@ html, body { overflow-x: clip; }
     </div>
     <div>
       <h4>문의</h4>
-      <ul><li class="mono">010-5931-7025</li><li><a href="#contact">문자 견적 받기</a></li><li><a href="https://blog.naver.com/psb-7" target="_blank" rel="noopener">네이버 블로그</a></li></ul>
+      <ul><li class="mono"><a href="tel:01059317025">010-5931-7025</a></li><li><a href="sms:01059317025" data-sms>문자하기</a></li><li><a href="https://blog.naver.com/psb-7" target="_blank" rel="noopener">네이버 블로그</a></li></ul>
     </div>
     <p class="foot-copy">© 하우스랩 건설</p>
   </div>
@@ -733,8 +733,8 @@ html, body { overflow-x: clip; }
 <div class="dock" role="region" aria-label="빠른 상담">
   <div class="inner">
     <p class="msg"><b>사진 한 장으로 견적 문의</b> · 서울·경기·인천 빠른 방문</p>
-    <a class="btn btn-ghost" href="#contact" data-tel>010-5931-7025</a>
-    <a class="btn btn-primary" href="#contact">문자 견적 받기</a>
+    <a class="btn btn-ghost" href="tel:01059317025">전화하기</a>
+    <a class="btn btn-primary" href="sms:01059317025" data-sms>문자하기</a>
   </div>
 </div>
 
@@ -859,6 +859,15 @@ document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () =
 }));
 
 const $ = id => document.getElementById(id);
+// 휴대폰: 아이폰은 "&body=", 안드로이드는 "?body=" 형식을 씀
+const IS_IOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const IS_MOBILE = IS_IOS || /Android|Mobile/i.test(navigator.userAgent);
+const SMS_SEP = IS_IOS ? "&" : "?";
+// PC에서는 전화·문자 앱이 없으니 문의 칸으로 이동
+if (!IS_MOBILE) document.querySelectorAll('a[href^="sms:"], a[href^="tel:"]').forEach(a => {
+  if (a.closest("#contact")) return;
+  a.addEventListener("click", e => { e.preventDefault(); document.getElementById("contact").scrollIntoView({ behavior: "smooth" }); });
+});
 function buildMsg() {
   const n = $("photos").files.length;
   return `안녕하세요. 하우스랩 건설 홈페이지 보고 문의드립니다.\n\n작업 내용: ${$("job").value.trim() || "(입력해 주세요)"}\n지역: ${$("region").value.trim() || "(입력해 주세요)"}\n희망 일정: ${$("when").value}\n현장 사진: ${n ? n + "장 함께 보냅니다" : "함께 보냅니다"}\n\n확인 후 상담 부탁드립니다.`;
@@ -866,7 +875,7 @@ function buildMsg() {
 function update() {
   const msg = buildMsg();
   $("preview").textContent = msg;
-  $("smsLink").href = "sms:01059317025?body=" + encodeURIComponent(msg);
+  $("smsLink").href = "sms:01059317025" + SMS_SEP + "body=" + encodeURIComponent(msg);
 }
 ["job","region","when"].forEach(id => $(id).addEventListener("input", update));
 $("photos").addEventListener("change", e => {
