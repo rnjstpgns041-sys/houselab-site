@@ -14,6 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 /* Layout: 현장 작업지시서 감성. 큰 사진 슬롯 + 얇은 치수선, 상단·하단에 늘 보이는 문자 견적 버튼 */
@@ -458,6 +459,99 @@ html, body { overflow-x: clip; }
 .rv { transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
 .rv.pre { opacity: 0; transform: translateY(28px); }
 @media (prefers-reduced-motion: reduce) { .rv, .rv.pre { opacity: 1; transform: none; transition: none; } }
+
+/* ===== 프리미엄: 블랙 & 샴페인 골드, 아이보리 바탕 ===== */
+:root { --bg: #FBFAF7; --alt: #F3F0E9; --surface: #FFFFFF; --ink: #16150F; --muted: #6B675E; --line: #E4DED2; --accent: #8A6A2F; --accent-ink: #FBFAF7;
+  --gold: #C8A96A; --gold-2: #E8D5A6; --night: #0D0D0B; --night-2: #17160F; --serif: "Cormorant Garamond", "Times New Roman", serif; --radius: 20px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #0D0D0B; --alt: #15140F; --surface: #1C1B16; --ink: #F2EEE6; --muted: #A9A398; --line: #2C2A23; --accent: #D4B57A; --accent-ink: #16150F; } }
+:root[data-theme="dark"] { --bg: #0D0D0B; --alt: #15140F; --surface: #1C1B16; --ink: #F2EEE6; --muted: #A9A398; --line: #2C2A23; --accent: #D4B57A; --accent-ink: #16150F; }
+::selection { background: var(--gold); color: #16150F; }
+
+/* 영문 라벨: 세리프 이탤릭 + 골드 선 */
+.eyebrow, .eyebrow.ko { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 22px; letter-spacing: .01em; color: var(--accent); display: inline-flex; align-items: center; gap: 14px; }
+.eyebrow::before, .eyebrow::after { content: ""; display: inline-block; width: 28px; height: 1px; background: currentColor; opacity: .6; }
+.ba-info .eyebrow::after, .area-grid .eyebrow::after { display: none; }
+
+/* 헤더: 짙은 반투명 유리 */
+.header { background: rgba(13,13,11,.82); border-bottom: 1px solid rgba(200,169,106,.18); color: #F2EEE6; }
+.header .nav a, .header .logo b, .header .header-tel { color: #F2EEE6; }
+.header .header-tel { text-decoration: none; opacity: .75; }
+.logo-mark { border-color: var(--gold); border-width: 1.5px; }
+.logo-mark::before { background: var(--gold); }
+.logo-mark::after { background: var(--gold-2); }
+.header .btn-primary { background: var(--gold); color: #16150F; }
+.header .btn-primary:hover { background: var(--gold-2); }
+
+/* 버튼 */
+.btn-primary { background: var(--ink); color: var(--bg); }
+.btn-primary:hover { background: color-mix(in srgb, var(--ink) 85%, var(--gold)); }
+.pill { background: linear-gradient(135deg, var(--gold-2), var(--gold) 55%, #A9874A); color: #16150F; box-shadow: 0 10px 30px -10px rgba(200,169,106,.6); letter-spacing: -0.01em; }
+.pill:hover { background: var(--gold-2); }
+
+/* 첫 화면: 블랙 */
+.hx { background: radial-gradient(1200px 520px at 50% -10%, #2A2416 0%, var(--night) 60%); color: #F2EEE6; }
+.hx-kicker { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 24px; color: var(--gold); letter-spacing: .02em; }
+.hx h1 { color: #F7F3EA; font-weight: 600; }
+.grad { background: linear-gradient(90deg, #F1E2BC, #C8A96A 50%, #9C7A3C); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hx-sub { color: #B5AFA2; }
+.hx .more-link { color: var(--gold-2); }
+.hx-stage figure { box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); outline: 1px solid rgba(200,169,106,.22); outline-offset: -1px; }
+.hx-stage figcaption { background: rgba(13,13,11,.55); border: 1px solid rgba(200,169,106,.35); color: #F2EEE6; }
+.hx .live { color: #8E887B; }
+.hx .live b, .hx .live a { color: #E8E2D5; }
+.dot { background: var(--gold); box-shadow: 0 0 0 4px rgba(200,169,106,.2); }
+
+/* 약속 띠 */
+.promise { background: var(--night); color: #F2EEE6; border-top: 1px solid rgba(200,169,106,.18); }
+.promise-list { list-style: none; margin: 0 auto; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
+.promise-list li { padding: 40px 28px 44px; border-left: 1px solid rgba(200,169,106,.18); }
+.promise-list li:first-child { border-left: 0; }
+.promise-list .pn { font-family: var(--serif); font-style: italic; font-size: 34px; line-height: 1; color: var(--gold); display: block; margin-bottom: 16px; }
+.promise-list b { display: block; font-size: 19px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; color: #F7F3EA; }
+.promise-list p { margin: 0; font-size: 15px; line-height: 1.6; color: #A9A398; }
+@media (max-width: 900px) { .promise-list { grid-template-columns: 1fr 1fr; } .promise-list li:nth-child(3) { border-left: 0; } .promise-list li:nth-child(n+3) { border-top: 1px solid rgba(200,169,106,.18); } }
+@media (max-width: 520px) { .promise-list li { padding: 28px 16px 30px; } .promise-list b { font-size: 17px; } .promise-list p { font-size: 14px; } }
+
+/* 섹션 */
+.section-head h2 { font-weight: 600; }
+#beforeafter, #process, #area { background: var(--alt); }
+
+/* 카드: 흰 카드 + 얇은 테두리 + 부드러운 그림자 */
+.service, .service + .service, .case { background: var(--surface); border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(22,21,15,.04), 0 12px 32px -18px rgba(22,21,15,.18); transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+.service:hover, .case:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 24px 50px -24px rgba(22,21,15,.35); }
+.service .thumb img, .case .photo img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+.service:hover .thumb img, .case:hover .photo img { transform: scale(1.05); }
+.service .thumb { overflow: hidden; }
+.service ul li::before { color: var(--accent); }
+.steps li { background: var(--surface); border: 1px solid var(--line); }
+.steps li::before { font-family: var(--serif); font-style: italic; font-size: 30px; font-weight: 500; letter-spacing: 0; color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.chip { background: var(--surface); border: 1px solid var(--line); }
+.note-box { background: var(--surface); border: 1px solid var(--line); }
+.badge { background: var(--night); color: #F2EEE6; border-radius: 999px; padding: 7px 11px; }
+.badge.after { background: var(--gold); color: #16150F; }
+.ba-knob { background: var(--gold) !important; color: #16150F !important; }
+.ba-info blockquote { border-left-color: var(--gold); font-family: var(--font-body); }
+.faq details { border-color: var(--line); }
+.faq summary::after { color: var(--accent); }
+
+/* 문의: 블랙 & 골드 */
+.contact { background: radial-gradient(900px 420px at 80% 0%, #241F13 0%, var(--night) 65%); color: #F2EEE6; }
+.contact .eyebrow { color: var(--gold); }
+.contact .btn-primary, .contact-side .btn-primary { background: var(--gold); color: #16150F; }
+.contact .checklist .mono { color: var(--gold); }
+.contact .big-tel { color: #F7F3EA; }
+form.quote { border: 1px solid rgba(200,169,106,.25); }
+form.quote .btn-primary { background: var(--night) !important; color: var(--gold-2) !important; }
+
+/* 푸터 & 하단 바 */
+footer { background: var(--night); color: #8E887B; border-top: 1px solid rgba(200,169,106,.18); }
+footer h4, footer .logo b { color: #F2EEE6; }
+footer a:hover { color: var(--gold-2); }
+.dock { background: rgba(13,13,11,.86); border-top: 1px solid rgba(200,169,106,.25); }
+.dock .msg, .dock .msg b { color: #E8E2D5; }
+.dock .btn-ghost { color: #F2EEE6; border-color: rgba(242,238,230,.45); }
+.dock .btn-primary { background: var(--gold); color: #16150F; }
 </style>
 </head>
 <body>
@@ -483,7 +577,7 @@ html, body { overflow-x: clip; }
 <main id="top">
   <section class="hero hx">
     <div class="wrap hx-head">
-      <p class="hx-kicker">하우스랩 건설</p>
+      <p class="hx-kicker">House Lab · Premium Home Repair</p>
       <h1>고칠 곳 사진 한 장이면<br><span class="grad">견적이 시작됩니다.</span></h1>
       <p class="hx-sub">세탁실 선반부터 주방 상판, 들뜬 타일까지.<br class="br-pc"> 서울·경기·인천 어디든 현장에서 직접 고칩니다.</p>
       <div class="hx-cta">
@@ -501,6 +595,14 @@ html, body { overflow-x: clip; }
     </div>
   </section>
 
+  <section class="promise" aria-label="하우스랩 건설의 약속">
+    <ul class="promise-list">
+      <li><span class="pn">01</span><b>사진으로 먼저 확인</b><p>방문 전에 사진으로 자재와 시간을 가늠해 헛걸음을 줄입니다.</p></li>
+      <li><span class="pn">02</span><b>필요한 곳만 정확히</b><p>전체 공사 대신 문제 부위만 고쳐 비용과 기간을 아낍니다.</p></li>
+      <li><span class="pn">03</span><b>보양부터 정리까지</b><p>주변을 덮고 작업한 뒤 먼지와 자재까지 치우고 마칩니다.</p></li>
+      <li><span class="pn">04</span><b>모든 현장 공개</b><p>작업 과정을 사진과 함께 블로그에 그대로 기록합니다.</p></li>
+    </ul>
+  </section>
 
   <section class="section" id="services">
     <div class="wrap">
