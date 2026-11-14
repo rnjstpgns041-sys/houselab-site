@@ -14,7 +14,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
 /* Layout: 현장 작업지시서 감성. 큰 사진 슬롯 + 얇은 치수선, 상단·하단에 늘 보이는 문자 견적 버튼 */
@@ -338,6 +337,127 @@ footer a:hover { color: var(--ink); }
 .dock .msg b { color: var(--ink); }
 .dock .btn { min-height: 46px; }
 @media (max-width: 640px) { .dock .msg { display: none; } .dock .btn { flex: 1; padding: 0 10px; } }
+
+/* ===== 애플 스타일: 밝고 넓은 화면, 가운데 큰 제목, 둥근 카드 ===== */
+:root { --bg: #FFFFFF; --alt: #F5F5F7; --ink: #1D1D1F; --muted: #6E6E73; --line: #E3E3E6; --accent: #0B7A55; --accent-ink: #FFFFFF; --radius: 22px; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #000000; --alt: #111113; --surface: #1C1C1E; --ink: #F5F5F7; --muted: #A1A1A6; --line: #2C2C2E; --accent: #3DD68C; --accent-ink: #00170C; } }
+:root[data-theme="dark"] { --bg: #000000; --alt: #111113; --surface: #1C1C1E; --ink: #F5F5F7; --muted: #A1A1A6; --line: #2C2C2E; --accent: #3DD68C; --accent-ink: #00170C; }
+body { background: var(--bg); font-size: 17px; letter-spacing: -0.015em; }
+h1, h2, h3, .logo b, .area-row b { font-family: var(--font-body); font-weight: 700; letter-spacing: -0.035em; }
+.eyebrow, .eyebrow.ko { font-family: var(--font-body); font-style: normal; font-size: 15px; font-weight: 600; letter-spacing: 0; color: var(--accent); }
+.eyebrow::before { display: none; }
+
+/* 헤더: 얇고 반투명 */
+.header { background: color-mix(in srgb, var(--bg) 78%, transparent); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent); }
+.header .wrap { height: 52px; }
+.nav a { font-size: 13px; color: var(--ink); opacity: .8; }
+.nav a:hover { opacity: 1; }
+.header .btn { min-height: 32px; padding: 0 14px; font-size: 13px; border-radius: 999px; }
+
+/* 버튼: 알약 모양 */
+.btn { border-radius: 999px; }
+.btn-primary, .contact .btn-primary { background: var(--accent); color: var(--accent-ink); box-shadow: none; }
+.btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, #000); }
+.pill { display: inline-flex; align-items: center; min-height: 50px; padding: 0 26px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 17px; text-decoration: none; transition: background .2s ease; }
+.pill:hover { background: color-mix(in srgb, var(--accent) 88%, #000); }
+.more-link { color: var(--accent); text-decoration: none; font-size: 17px; font-weight: 500; }
+.more-link:hover { text-decoration: underline; }
+
+/* 첫 화면 */
+.hx { background: var(--alt); color: var(--ink); padding-block: 84px 0; text-align: center; }
+.hx::before, .hx::after { display: none; }
+.hx-kicker { font-size: 19px; font-weight: 600; color: var(--muted); }
+.hx h1 { color: var(--ink); font-size: clamp(40px, 7vw, 92px); line-height: 1.08; letter-spacing: -0.045em; margin: 12px auto 0; max-width: 14ch; text-wrap: balance; }
+.grad { background: linear-gradient(90deg, #0B7A55, #2AA876 45%, #C99A1E); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hx-sub { color: var(--muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.5; margin: 22px auto 0; max-width: 30em; }
+.hx-cta { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 14px 28px; margin-top: 30px; }
+.hx-stage { display: grid; grid-template-columns: 1fr 2.2fr 1fr; gap: 18px; align-items: end; margin-top: 56px; }
+.hx-stage figure { margin: 0; position: relative; overflow: hidden; border-radius: var(--radius); background: var(--photo-a); }
+.hx-stage img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hx-main { order: 2; aspect-ratio: 4 / 5; }
+.hx-side { order: 1; aspect-ratio: 3 / 4; }
+.hx-side.two { order: 3; }
+.hx-stage figcaption { position: absolute; left: 14px; bottom: 14px; font-size: 13px; font-weight: 600; color: #fff; background: rgba(0,0,0,.45); backdrop-filter: blur(8px); padding: 6px 12px; border-radius: 999px; }
+.hx .live { justify-content: center; text-align: center; border-top: 0; margin: 0; padding-block: 28px 36px; color: var(--muted); }
+.hx .live b, .hx .live a { color: var(--ink); }
+.br-pc { display: inline; }
+@media (max-width: 700px) {
+  .hx { padding-block: 56px 0; }
+  .hx-stage { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .hx-main { grid-column: 1 / -1; order: 0; aspect-ratio: 4 / 5; }
+  .hx-side, .hx-side.two { order: 1; aspect-ratio: 1; }
+  .br-pc { display: none; }
+}
+
+/* 섹션: 가운데 제목, 번갈아 배경 */
+.section { border-top: 0; padding-block: 110px; }
+#beforeafter, #process, #area { background: var(--alt); }
+.section-head { grid-template-columns: 1fr; text-align: center; justify-items: center; gap: 14px; margin-bottom: 56px; }
+.section-head h2 { font-family: var(--font-body); font-size: clamp(34px, 5vw, 60px); line-height: 1.1; font-weight: 700; letter-spacing: -0.045em; margin-top: 6px; }
+.section-head p { font-size: 19px; line-height: 1.55; max-width: 36em; }
+@media (max-width: 860px) { .section { padding-block: 76px; } }
+
+/* 시공 분야: 둥근 카드 */
+.services { border-top: 0; gap: 18px; }
+.service, .service + .service { background: var(--alt); border: 0; border-radius: var(--radius); padding: 0 0 28px; overflow: hidden; }
+.service:nth-child(n) { border-top: 0; padding-left: 0; }
+.service .thumb { height: 220px; margin: 0 0 8px; }
+.service h3, .service p, .service ul { padding-inline: 24px; }
+.service h3 { font-size: 23px; }
+@media (max-width: 960px) { .services { gap: 14px; } }
+
+/* 전후 비교 */
+.ba-frame { border-radius: var(--radius); }
+.ba-info h3 { font-family: var(--font-body); font-weight: 700; letter-spacing: -0.035em; }
+.ba-info blockquote { border-left-color: var(--accent); }
+
+/* 작업 기록 카드 */
+.case { background: var(--alt); border-radius: var(--radius); overflow: hidden; padding-bottom: 22px; transition: transform .3s ease, box-shadow .3s ease; }
+.case:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -20px rgba(0,0,0,.25); }
+.case .photo { border-radius: 0; }
+.case h3, .case blockquote, .case .spec, .case .more { margin-inline: 22px; }
+.case .more { color: var(--accent); font-weight: 600; }
+.cases { gap: 22px; }
+.chip { background: var(--alt); border-color: transparent; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.filters { justify-content: center; }
+.strip { background: var(--bg); padding-block: 0 110px; }
+.strip a { border-radius: 18px; }
+
+/* 진행 과정 */
+.steps { gap: 14px; }
+.steps li { background: var(--bg); border-top: 0; border-radius: var(--radius); padding: 28px 22px; }
+.steps li::after { display: none; }
+.steps li::before { color: var(--accent); font-size: 15px; }
+
+/* 자주 묻는 질문 */
+.faq { max-width: 820px; margin: 0 auto; border-top: 0; }
+.faq summary { font-size: 20px; }
+
+/* 지역 */
+.area-list { border-top: 0; }
+.area-grid h2 { font-family: var(--font-body) !important; }
+.note-box { border: 0; border-radius: var(--radius); background: var(--bg); }
+
+/* 견적 문의 */
+.contact { background: #000; color: #F5F5F7; }
+.contact .section-head h2 { color: #F5F5F7; }
+.contact .eyebrow { color: #3DD68C; }
+.contact .btn-primary { background: #3DD68C; color: #00170C; }
+.contact .checklist .mono { color: #3DD68C; }
+form.quote { border-radius: var(--radius); }
+.field input, .field textarea, .field select, .drop, .preview { border-radius: 12px; }
+form.quote .btn-primary { background: var(--accent) !important; color: var(--accent-ink) !important; }
+
+/* 하단 고정 바 */
+.dock { background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); }
+
+html, body { overflow-x: clip; }
+.section-head .eyebrow { justify-content: center; }
+/* 스크롤하면 부드럽게 나타나기 */
+.rv { transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.rv.pre { opacity: 0; transform: translateY(28px); }
+@media (prefers-reduced-motion: reduce) { .rv, .rv.pre { opacity: 1; transform: none; transition: none; } }
 </style>
 </head>
 <body>
@@ -361,44 +481,26 @@ footer a:hover { color: var(--ink); }
 </header>
 
 <main id="top">
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow ko">집수리 · 부분 보수 · 설치 전문</p>
-        <h1>고칠 곳 사진 한 장이면 <em>견적이 시작됩니다</em></h1>
-        <p class="hero-lede">세탁실 선반부터 주방 상판, 들뜬 타일까지. 작은 불편도 현장에서 직접 확인하고 꼼꼼하게 마무리합니다. 서울·경기·인천 전 지역에 빠르게 방문합니다.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contact">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg>
-            사진 보내고 견적 받기</a>
-          <a class="btn btn-ghost" href="#cases">작업 기록 보기</a>
-        </div>
-        <dl class="hero-facts">
-          <div><dt>시공 지역</dt><dd>서울·경기·인천</dd></div>
-          <div><dt>상담 방법</dt><dd>문자 · 전화</dd></div>
-          <div><dt>작업 방식</dt><dd>현장 직접 시공</dd></div>
-        </dl>
-      </div>
-      <div>
-        <div class="hero-visual">
-          <div class="photo main">
-            <span class="badge after">AFTER</span>
-            <img src="images/224468665130-2.jpg" alt="세탁기 위 앵글 선반에 건조기를 올린 작업 후 모습" fetchpriority="high">
-            <span class="tag">세탁실 <span class="sub">세탁기 위 건조기 선반 설치</span></span>
-          </div>
-          <div class="photo inset">
-            <span class="badge">BEFORE</span>
-            <img src="images/224468665130-1.jpg" alt="세탁기만 놓여 있던 작업 전 세탁실">
-          </div>
-        </div>
-        <p class="hero-meta"><span>실제 시공 현장 사진</span><a href="https://blog.naver.com/psb-7/224468665130" target="_blank" rel="noopener">작업 과정 보기 →</a></p>
+  <section class="hero hx">
+    <div class="wrap hx-head">
+      <p class="hx-kicker">하우스랩 건설</p>
+      <h1>고칠 곳 사진 한 장이면<br><span class="grad">견적이 시작됩니다.</span></h1>
+      <p class="hx-sub">세탁실 선반부터 주방 상판, 들뜬 타일까지.<br class="br-pc"> 서울·경기·인천 어디든 현장에서 직접 고칩니다.</p>
+      <div class="hx-cta">
+        <a class="pill" href="#contact">문자로 견적 받기</a>
+        <a class="more-link" href="#cases">작업 기록 보기 <span aria-hidden="true">›</span></a>
       </div>
     </div>
     <div class="wrap">
+      <div class="hx-stage">
+        <figure class="hx-main"><img src="images/224468665130-2.jpg" alt="세탁기 위 앵글 선반에 건조기를 올린 작업 후 모습" fetchpriority="high"><figcaption>After · 세탁기 위 건조기 선반 설치</figcaption></figure>
+        <figure class="hx-side"><img src="images/224468665130-1.jpg" alt="세탁기만 놓여 있던 작업 전 세탁실"><figcaption>Before</figcaption></figure>
+        <figure class="hx-side two"><img src="images/224456254403-2.jpg" alt="벽걸이 TV 철거 후 정리된 벽면"><figcaption>TV 철거 · 원상복구</figcaption></figure>
+      </div>
       <p class="live" id="live"><span><span class="dot" aria-hidden="true"></span><b>네이버 블로그와 연동</b> · 새 시공 글이 하루 두 번 자동으로 올라옵니다</span><span id="liveLatest"></span></p>
     </div>
   </section>
-  <div class="ticker" aria-label="주요 시공 항목"><div class="ticker-track"><span>세탁기 위 건조기 선반</span><span>빌트인 가전 설치</span><span>주방 상판 보수</span><span>가스레인지·하이라이트 교체</span><span>싱크대 문짝 수리</span><span>들뜬 타일 재부착</span><span>변기 하부 보수</span><span>벽걸이 TV 철거·원상복구</span><span>냉장고 철거·폐기</span><span aria-hidden="true">세탁기 위 건조기 선반</span><span aria-hidden="true">빌트인 가전 설치</span><span aria-hidden="true">주방 상판 보수</span><span aria-hidden="true">가스레인지·하이라이트 교체</span><span aria-hidden="true">싱크대 문짝 수리</span><span aria-hidden="true">들뜬 타일 재부착</span><span aria-hidden="true">변기 하부 보수</span><span aria-hidden="true">벽걸이 TV 철거·원상복구</span><span aria-hidden="true">냉장고 철거·폐기</span></div></div>
+
 
   <section class="section" id="services">
     <div class="wrap">
@@ -783,6 +885,14 @@ $("copyTel").addEventListener("click", async () => {
   catch { $("copyTel").textContent = "010-5931-7025"; }
   setTimeout(() => $("copyTel").textContent = "번호 복사", 2000);
 });
+
+// 스크롤하면 나타나기 (처음 보이는 화면은 그대로)
+(() => {
+  if (!("IntersectionObserver" in window) || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const els = document.querySelectorAll(".section-head, .service, .ba-grid > *, .steps li, .faq details, .area-grid > *, .contact-grid > *");
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
+  els.forEach(el => { el.classList.add("rv"); if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("pre"); io.observe(el); } });
+})();
 </script>
 
 </body>
