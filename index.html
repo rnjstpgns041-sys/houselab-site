@@ -771,6 +771,31 @@ footer a:hover { color: var(--gold-2); }
 .ba-tabs .chip { flex: none; }
 .ba-count { margin: 10px 0 0; font-size: 15px; color: var(--muted); }
 .ba-count b { color: var(--accent); }
+
+/* 견적 기준·점검, 현장 사진 */
+#guide { background: var(--alt); }
+.guide-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.guide-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 28px; }
+.guide-card h3 { font-size: 24px; margin: 0 0 18px; }
+.guide-list { list-style: none; counter-reset: g; margin: 0; padding: 0; display: grid; gap: 14px; }
+.guide-list li { counter-increment: g; display: grid; grid-template-columns: 34px 1fr; column-gap: 10px; }
+.guide-list li::before { content: counter(g); grid-row: 1 / span 2; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: #16150F; font-weight: 800; font-size: 14px; }
+.guide-list b { font-size: 17px; }
+.guide-list span { font-size: 15px; color: var(--muted); }
+.guide-note { margin: 20px 0 0; font-size: 14.5px; color: var(--muted); }
+.guide-card .pill { margin-top: 22px; }
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.gallery a { display: block; aspect-ratio: 1; overflow: hidden; border-radius: 14px; background: var(--alt); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+.gallery a:hover img { transform: scale(1.06); }
+@media (max-width: 700px) {
+  .guide-grid { grid-template-columns: 1fr; gap: 12px; }
+  .guide-card { padding: 22px 18px; }
+  .guide-card h3 { font-size: 20px; }
+  .guide-card .pill { width: 100%; }
+  .gallery { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+  .gallery a { border-radius: 8px; }
+}
 </style>
 </head>
 <body>
@@ -784,6 +809,7 @@ footer a:hover { color: var(--gold-2); }
       <a href="#beforeafter">전후 비교</a>
       <a href="#cases">작업 기록</a>
       <a href="#process">진행 방법</a>
+      <a href="#gallery">현장 사진</a>
       <a href="#area">시공 지역</a>
     </nav>
     <div class="header-cta">
@@ -954,6 +980,53 @@ footer a:hover { color: var(--gold-2); }
         <li><h3>현장 시공</h3><p>치수를 다시 재고, 주변을 보양한 뒤 작업합니다.</p></li>
         <li><h3>점검과 정리</h3><p>수평, 고정, 작동을 함께 확인하고 정리까지 마칩니다.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="section" id="guide">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Guide</p>
+          <h2>견적과 시공 후 점검</h2>
+        </div>
+        <p>사진과 내용을 보고 견적을 안내합니다. 금액은 아래 네 가지로 정해집니다.</p>
+      </div>
+      <div class="guide-grid">
+        <div class="guide-card">
+          <h3>견적 산정 기준</h3>
+          <ol class="guide-list">
+            <li><b>작업 범위</b><span>고칠 부위와 크기, 철거나 원상복구가 함께 필요한지</span></li>
+            <li><b>자재·제품</b><span>고객님이 준비한 제품인지, 자재를 새로 준비해야 하는지</span></li>
+            <li><b>현장 여건</b><span>배관·전기 위치, 상판 가공 여부, 엘리베이터·주차</span></li>
+            <li><b>이동 거리와 일정</b><span>시공 지역과 희망 날짜</span></li>
+          </ol>
+          <p class="guide-note">사진 2장(가까이 1장, 전체 1장)과 지역을 보내 주시면 견적이 빨라집니다.</p>
+        </div>
+        <div class="guide-card">
+          <h3>시공 후 점검</h3>
+          <ol class="guide-list">
+            <li><b>작업 직후 함께 확인</b><span>수평, 고정, 문 여닫힘, 급수·배수와 작동 상태</span></li>
+            <li><b>보양과 정리</b><span>작업 전 주변을 덮고, 끝나면 먼지와 자재까지 치웁니다</span></li>
+            <li><b>사용 중 문제가 생기면</b><span>사진과 함께 문자 주세요. 확인 후 연락드립니다</span></li>
+          </ol>
+          <a class="pill big" href="tel:01059317025"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>견적 전화 문의</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Gallery</p>
+          <h2>실제 현장 사진</h2>
+        </div>
+        <p>블로그에 기록한 현장에서 직접 찍은 사진입니다. 누르면 그 현장의 작업 과정을 볼 수 있습니다.</p>
+      </div>
+      <div class="gallery" id="gallery-grid"></div>
+      <div class="more-wrap"><button class="pill ghost-dark" type="button" id="moreGallery" hidden>사진 더 보기</button></div>
     </div>
   </section>
 
@@ -1487,6 +1560,20 @@ document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", 
   const b = document.querySelector(`.filters .chip[data-f="${a.dataset.go}"]`);
   if (b) b.click();
 }));
+
+// 실제 현장 사진 모음
+fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(d => {
+  if (!d) return;
+  const pics = d.posts.filter(p => p.quote && (p.images || []).length).flatMap(p => [p.images[0], p.after || p.images[1]].filter(Boolean).map(src => ({ src, url: p.url, title: p.title })));
+  const grid = document.getElementById("gallery-grid"), btn = document.getElementById("moreGallery");
+  let n = innerWidth < 700 ? 9 : 12;
+  const draw = () => {
+    grid.innerHTML = pics.slice(0, n).map(ph => `<a href="${esc(ph.url)}" target="_blank" rel="noopener"><img src="${esc(ph.src)}" alt="${esc(ph.title)} 현장 사진" loading="lazy"></a>`).join("");
+    btn.hidden = n >= pics.length; btn.textContent = `사진 더 보기 (${pics.length - n}장)`;
+  };
+  btn.addEventListener("click", () => { n += 12; draw(); });
+  draw();
+}).catch(() => {});
 </script>
 
 </body>
