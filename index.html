@@ -689,6 +689,26 @@ footer a:hover { color: var(--gold-2); }
 .area-grid { grid-template-columns: minmax(0,8fr) minmax(0,4fr) !important; }
 @media (max-width: 860px) { .area-grid { grid-template-columns: 1fr !important; } }
 @media (max-width: 700px) { .area-chips li { font-size: 13.5px; padding: 5px 10px; } .area-row b { font-size: 20px; } }
+
+/* ===== 첫 화면: 세부 카테고리 ===== */
+.hx-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 60px; text-align: left; }
+.cat { border-radius: 18px; padding: 20px 18px 18px; background: rgba(13,13,11,.6); border: 1px solid rgba(200,169,106,.28); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.cat-h { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #F7F3EA; padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid rgba(200,169,106,.22); }
+.cat-h svg { color: var(--gold); flex: none; width: 26px; height: 26px; }
+.cat-h b { font-size: 19px; letter-spacing: -0.03em; }
+.cat-n { font-size: 12px; font-weight: 700; color: #16150F; background: var(--gold); border-radius: 999px; padding: 2px 8px; }
+.cat-arrow { margin-left: auto; color: var(--gold); font-size: 22px; line-height: 1; }
+.cat ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.cat li a { display: inline-block; font-size: 14px; padding: 7px 11px; border-radius: 999px; text-decoration: none; color: #E8E2D5; background: rgba(255,255,255,.06); border: 1px solid rgba(242,238,230,.14); transition: background .2s, border-color .2s, color .2s; }
+.cat li a:hover { background: rgba(200,169,106,.18); border-color: var(--gold); color: #fff; }
+@media (max-width: 1000px) { .hx-cats { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 700px) {
+  .hx-cats { grid-template-columns: 1fr; gap: 10px; margin-top: 30px; }
+  .cat { padding: 14px 14px 14px; }
+  .cat-h { padding-bottom: 10px; margin-bottom: 10px; }
+  .cat-h b { font-size: 17px; }
+  .cat li a { font-size: 13.5px; padding: 6px 10px; }
+}
 </style>
 </head>
 <body>
@@ -716,7 +736,7 @@ footer a:hover { color: var(--gold-2); }
     <div class="wrap hx-head">
       <p class="hx-kicker">House Lab · Premium Home Repair</p>
       <h1>집에 고칠 곳 있으면<br><span class="grad">전화 한 통이면 됩니다.</span></h1>
-      <p class="hx-sub">세탁실 선반부터 주방 상판, 들뜬 타일까지.<br class="br-pc"> 서울·경기·인천 어디든 현장에서 직접 고칩니다.</p>
+      <p class="hx-sub">주방 싱크볼부터 들뜬 타일, 이사 전 철거까지.<br class="br-pc"> 서울·경기·인천 어디든 현장에서 직접 고칩니다.</p>
       <div class="hx-cta">
         <a class="pill big" href="tel:01059317025"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>전화하기</a>
         <a class="pill ghost big" href="sms:01059317025" data-sms><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>문자하기</a>
@@ -729,11 +749,11 @@ footer a:hover { color: var(--gold-2); }
       </ol>
     </div>
     <div class="wrap">
-      <div class="hx-tiles">
-        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="8.5" cy="13" r="2.2"/><circle cx="15.5" cy="13" r="2.2"/><path d="M7 4v2M12 4v2M17 4v2"/></svg><b>주방 수리</b><span>싱크볼, 상판, 하이라이트</span></a>
-        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg><b>욕실 · 타일</b><span>들뜬 타일, 변기 보수</span></a>
-        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7L4 14v6h6l7-7"/></svg><b>철거 · 원상복구</b><span>TV, 가전 철거, 벽 복원</span></a>
-        <a class="tile" href="#services"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/></svg><b>세탁실 · 가전</b><span>건조기 선반, 렉 설치</span></a>
+      <div class="hx-cats">
+        <div class="cat"><a class="cat-h" href="#cases" data-go="kitchen"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="8.5" cy="13" r="2.2"/><circle cx="15.5" cy="13" r="2.2"/><path d="M7 4v2M12 4v2M17 4v2"/></svg><b>주방</b><span class="cat-n">6</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="kitchen">싱크볼·수전 교체</a></li><li><a href="#cases" data-go="kitchen">가스레인지·하이라이트</a></li><li><a href="#cases" data-go="kitchen">상판·대리석 균열 보수</a></li><li><a href="#cases" data-go="kitchen">싱크대 문짝·경첩</a></li><li><a href="#cases" data-go="kitchen">식기세척기 밸브</a></li><li><a href="#cases" data-go="kitchen">하부장 리폼</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="#cases" data-go="tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg><b>욕실 · 타일</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="tile">들뜬 벽타일 재부착</a></li><li><a href="#cases" data-go="tile">변기 흔들림 보수</a></li><li><a href="#cases" data-go="tile">아트월 구멍 복원</a></li><li><a href="#cases" data-go="tile">실리콘 재시공</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="#cases" data-go="remove"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7L4 14v6h6l7-7"/></svg><b>철거 · 원상복구</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="remove">벽걸이 TV 철거</a></li><li><a href="#cases" data-go="remove">상부장·냉장고장 철거</a></li><li><a href="#cases" data-go="remove">빌트인 냉장고 폐기</a></li><li><a href="#cases" data-go="remove">앙카볼트·벽면 복원</a></li><li><a href="#cases" data-go="remove">이사 전 원상복구</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="#cases" data-go="laundry"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/></svg><b>세탁실 · 가전</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="laundry">세탁기 위 건조기 설치</a></li><li><a href="#cases" data-go="laundry">건조기 렉·선반</a></li><li><a href="#cases" data-go="laundry">벽걸이 세탁기 철거</a></li><li><a href="#cases" data-go="laundry">보일러실 공간 정리</a></li></ul></div>
       </div>
       <p class="live" id="live"><span><span class="dot" aria-hidden="true"></span><b>네이버 블로그와 연동</b> · 새 시공 글이 하루 두 번 자동으로 올라옵니다</span><span id="liveLatest"></span></p>
     </div>
@@ -823,10 +843,10 @@ footer a:hover { color: var(--gold-2); }
       </div>
       <div class="filters" role="group" aria-label="공간별 보기">
         <button class="chip" type="button" aria-pressed="true" data-f="all">전체</button>
-        <button class="chip" type="button" aria-pressed="false" data-f="laundry">세탁실</button>
         <button class="chip" type="button" aria-pressed="false" data-f="kitchen">주방</button>
         <button class="chip" type="button" aria-pressed="false" data-f="tile">욕실·타일</button>
         <button class="chip" type="button" aria-pressed="false" data-f="remove">철거·복구</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="laundry">세탁실</button>
       </div>
       <div class="cases" id="caseList"></div>
       <div class="more-wrap"><button class="pill ghost-dark" type="button" id="moreCases" hidden>작업 기록 더 보기</button></div>
@@ -1172,6 +1192,12 @@ $("copyTel").addEventListener("click", async () => {
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.remove("pre"); io.unobserve(e.target); } }), { rootMargin: "0px 0px -8% 0px" });
   els.forEach(el => { el.classList.add("rv"); if (el.getBoundingClientRect().top > innerHeight) { el.classList.add("pre"); io.observe(el); } });
 })();
+
+// 첫 화면 세부 항목 누르면 작업 기록을 그 분야로 걸러서 보여주기
+document.querySelectorAll("[data-go]").forEach(a => a.addEventListener("click", () => {
+  const b = document.querySelector(`.filters .chip[data-f="${a.dataset.go}"]`);
+  if (b) b.click();
+}));
 </script>
 
 </body>
