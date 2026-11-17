@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="하우스랩 건설 · 서울·경기·인천 집수리, 부분 보수, 가전 설치 전문. 사진 한 장으로 문자 견적 문의 010-5931-7025">
+<meta name="description" content="서울 25개 구·경기 31개 시군·인천 전 지역 방문 집수리. 하우스랩 건설 · 서울·경기·인천 집수리, 부분 보수, 가전 설치 전문. 사진 한 장으로 문자 견적 문의 010-5931-7025">
 <meta property="og:title" content="하우스랩 건설">
 <meta property="og:image" content="https://psb-7.com/images/224468665130-2.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2323423A'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='white' stroke-width='2.5'/%3E%3Crect x='9' y='15' width='14' height='2.5' fill='white'/%3E%3Ccircle cx='16' cy='10.5' r='2' fill='%23E7B52C'/%3E%3C/svg%3E">
@@ -676,6 +676,19 @@ footer a:hover { color: var(--gold-2); }
               radial-gradient(900px 420px at 50% 0%, rgba(60,48,22,.45), transparent 70%); }
 .tile { background: rgba(13,13,11,.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .hx-steps li { text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+
+/* ===== 시공 지역: 구·시·군 이름 전부 ===== */
+.area-row { display: block !important; padding: 22px 0 !important; }
+.area-row b { display: flex; align-items: baseline; gap: 10px; font-size: 22px; margin-bottom: 12px; }
+.area-row b small { font-size: 14px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.area-chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.area-chips li { font-size: 14.5px; padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); color: var(--ink); line-height: 1.3; }
+.area-chips li.hot { background: var(--gold); border-color: var(--gold); color: #16150F; font-weight: 700; }
+.area-legend { margin: 16px 0 0; font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.dot-hot { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); display: inline-block; }
+.area-grid { grid-template-columns: minmax(0,8fr) minmax(0,4fr) !important; }
+@media (max-width: 860px) { .area-grid { grid-template-columns: 1fr !important; } }
+@media (max-width: 700px) { .area-chips li { font-size: 13.5px; padding: 5px 10px; } .area-row b { font-size: 20px; } }
 </style>
 </head>
 <body>
@@ -872,10 +885,11 @@ footer a:hover { color: var(--gold-2); }
         <p class="eyebrow">Area</p>
         <h2 style="font-size:clamp(28px,3.8vw,46px);line-height:1.25;font-weight:700;letter-spacing:-0.025em;line-height:1.32;margin:10px 0 32px">시공 지역</h2>
         <div class="area-list">
-          <div class="area-row"><b>서울</b><span>전 지역 · 송파, 강동 현장 다수</span></div>
-          <div class="area-row"><b>경기</b><span>전 지역 · 용인, 성남, 광주 등</span></div>
-          <div class="area-row"><b>인천</b><span>전 지역</span></div>
-          <div class="area-row"><b>그 외</b><span>강원 · 충청 · 전라 등 작업 내용에 따라 출장 가능</span></div>
+          <div class="area-row"><b>서울 <small>25개 구 전 지역</small></b><ul class="area-chips"><li>강남구</li><li class=hot>강동구</li><li>강북구</li><li>강서구</li><li>관악구</li><li>광진구</li><li>구로구</li><li>금천구</li><li>노원구</li><li>도봉구</li><li>동대문구</li><li>동작구</li><li>마포구</li><li>서대문구</li><li>서초구</li><li>성동구</li><li>성북구</li><li class=hot>송파구</li><li>양천구</li><li>영등포구</li><li>용산구</li><li>은평구</li><li>종로구</li><li>중구</li><li>중랑구</li></ul></div>
+          <div class="area-row"><b>경기 <small>31개 시·군 전 지역</small></b><ul class="area-chips"><li>수원시</li><li class=hot>성남시</li><li class=hot>용인시</li><li>고양시</li><li>부천시</li><li>화성시</li><li>안산시</li><li>남양주시</li><li>안양시</li><li>평택시</li><li>시흥시</li><li>파주시</li><li>의정부시</li><li>김포시</li><li class=hot>광주시</li><li>광명시</li><li>하남시</li><li>군포시</li><li>오산시</li><li>이천시</li><li>양주시</li><li>구리시</li><li>안성시</li><li>포천시</li><li>의왕시</li><li>여주시</li><li>동두천시</li><li>과천시</li><li>양평군</li><li>가평군</li><li>연천군</li></ul></div>
+          <div class="area-row"><b>인천 <small>10개 구·군 전 지역</small></b><ul class="area-chips"><li>중구</li><li>동구</li><li>미추홀구</li><li>연수구</li><li>남동구</li><li>부평구</li><li>계양구</li><li>서구</li><li>강화군</li><li>옹진군</li></ul></div>
+          <div class="area-row"><b>그 외 <small>작업 내용에 따라 출장</small></b><ul class="area-chips"><li>강원도</li><li>충청북도</li><li>충청남도</li><li>대전</li><li>세종</li><li>전라북도</li><li>전라남도</li><li>광주광역시</li></ul></div>
+          <p class="area-legend"><span class="dot-hot"></span>금색 표시는 시공이 많은 지역입니다</p>
         </div>
       </div>
       <aside class="note-box">
