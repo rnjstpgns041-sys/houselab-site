@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2323423A'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='white' stroke-width='2.5'/%3E%3Crect x='9' y='15' width='14' height='2.5' fill='white'/%3E%3Ccircle cx='16' cy='10.5' r='2' fill='%23E7B52C'/%3E%3C/svg%3E">
 <meta property="og:description" content="서울·경기·인천 집수리 · 부분 보수 · 설치 전문. 사진 보내고 문자로 견적 받기.">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>하우스랩 건설</title>
+<title>하우스랩 건설 | 서울·경기·인천 집수리 전문업체 · 무료 견적</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -590,7 +590,7 @@ footer a:hover { color: var(--gold-2); }
 @media (max-width: 700px) {
   .hx { padding-block: 52px 0; }
   .hx-kicker { font-size: 19px; }
-  .hx h1 { font-size: 33px; line-height: 1.2; max-width: none; }
+  .hx h1 { font-size: 29px; line-height: 1.25; max-width: none; }
   .hx-sub { font-size: 16px; margin-top: 16px; }
   .hx-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .pill.big { min-width: 0; padding: 0 12px; min-height: 56px; font-size: 18px; }
@@ -711,7 +711,7 @@ footer a:hover { color: var(--gold-2); }
 }
 
 /* 카테고리 8개 */
-.hx-cats { grid-template-columns: repeat(4, 1fr); }
+.hx-cats { grid-template-columns: repeat(5, 1fr); }
 .cats-note { margin: 14px 0 0; font-size: 14px; color: #A9A398; text-align: center; }
 .eyebrow { white-space: nowrap; }
 @media (max-width: 700px) {
@@ -747,6 +747,30 @@ footer a:hover { color: var(--gold-2); }
   .hx-cta .pill.big { font-size: 15.5px; padding: 0 8px; }
   .hx-cta .ico { margin-right: 5px; width: 18px; height: 18px; }
 }
+
+/* 첫 화면 문구: 지역 + 강점 배지 */
+.hx-area { display: inline-flex; align-items: center; gap: 6px; margin: 18px 0 0; font-size: 16px; font-weight: 600; color: var(--gold-2); }
+.hx-badges { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 0; margin: 14px 0 0; }
+.hx-badges li { font-size: 15px; font-weight: 700; padding: 7px 14px; border-radius: 999px; color: #F7F3EA; background: rgba(200,169,106,.14); border: 1px solid rgba(200,169,106,.5); }
+.hx-badges li::before { content: "✓ "; color: var(--gold); }
+@media (max-width: 700px) {
+  .hx-area { font-size: 14.5px; margin-top: 12px; }
+  .hx-badges { gap: 6px; margin-top: 10px; }
+  .hx-badges li { font-size: 13px; padding: 5px 10px; }
+}
+@media (max-width: 1200px) and (min-width: 701px) { .hx-cats { grid-template-columns: repeat(3, 1fr); } }
+
+/* 전후 비교: 분야 + 현장 탭 */
+.ba-cats { display: flex; gap: 6px; margin-top: 16px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding-bottom: 2px; }
+.ba-cats::-webkit-scrollbar, .ba-tabs::-webkit-scrollbar { display: none; }
+.bac { flex: none; font: inherit; font-size: 14px; font-weight: 700; padding: 8px 14px; border-radius: 10px; cursor: pointer; background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+.bac span { font-size: 12px; color: var(--accent); margin-left: 2px; }
+.bac[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: #16150F; }
+.bac[aria-pressed="true"] span { color: #16150F; }
+.ba-tabs { flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin-top: 10px !important; padding-bottom: 4px; }
+.ba-tabs .chip { flex: none; }
+.ba-count { margin: 10px 0 0; font-size: 15px; color: var(--muted); }
+.ba-count b { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -773,8 +797,10 @@ footer a:hover { color: var(--gold-2); }
   <section class="hero hx">
     <div class="wrap hx-head">
       <p class="hx-kicker">House Lab · Premium Home Repair</p>
-      <h1>집에 고칠 곳 있으면<br><span class="grad">전화 한 통이면 됩니다.</span></h1>
-      <p class="hx-sub">주방 싱크볼부터 들뜬 타일, 이사 전 철거까지.<br class="br-pc"> 서울·경기·인천 어디든 현장에서 직접 고칩니다.</p>
+      <h1>집수리 전문업체,<br><span class="grad">필요한 곳만 정확하게 고칩니다.</span></h1>
+      <p class="hx-sub">싱크대 수리부터 욕실 보수, 붙박이장, 문짝·경첩 교체,<br class="br-pc"> 가전 설치, 철거 및 원상복구까지.</p>
+      <p class="hx-area"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>서울·경기·인천 출장 시공</p>
+      <ul class="hx-badges"><li>사진 상담</li><li>무료 견적</li><li>현장 직접 시공</li></ul>
       <div class="hx-cta">
         <a class="pill big" href="tel:01059317025"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>전화하기</a>
         <a class="pill ghost big" href="sms:01059317025" data-sms><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>무료견적 문자하기</a>
@@ -788,17 +814,19 @@ footer a:hover { color: var(--gold-2); }
     </div>
     <div class="wrap">
       <div class="hx-cats">
-        <div class="cat"><a class="cat-h" href="#cases" data-go="kitchen"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="8.5" cy="13" r="2.2"/><circle cx="15.5" cy="13" r="2.2"/><path d="M7 4v2M12 4v2M17 4v2"/></svg><b>주방</b><span class="cat-n">6</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="kitchen">싱크볼·수전 교체</a></li><li><a href="#cases" data-go="kitchen">가스레인지·하이라이트</a></li><li><a href="#cases" data-go="kitchen">상판·대리석 균열 보수</a></li><li><a href="#cases" data-go="kitchen">싱크대 문짝·경첩</a></li><li><a href="#cases" data-go="kitchen">식기세척기 밸브</a></li><li><a href="#cases" data-go="kitchen">하부장 리폼</a></li></ul></div>
-        <div class="cat"><a class="cat-h" href="#cases" data-go="tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg><b>욕실 · 타일</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="tile">들뜬 벽타일 재부착</a></li><li><a href="#cases" data-go="tile">변기 흔들림 보수</a></li><li><a href="#cases" data-go="tile">아트월 구멍 복원</a></li><li><a href="#cases" data-go="tile">실리콘 재시공</a></li></ul></div>
-        <div class="cat"><a class="cat-h" href="#cases" data-go="remove"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7L4 14v6h6l7-7"/></svg><b>철거 · 원상복구</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="remove">벽걸이 TV 철거</a></li><li><a href="#cases" data-go="remove">상부장·냉장고장 철거</a></li><li><a href="#cases" data-go="remove">빌트인 냉장고 폐기</a></li><li><a href="#cases" data-go="remove">앙카볼트·벽면 복원</a></li><li><a href="#cases" data-go="remove">이사 전 원상복구</a></li></ul></div>
-        <div class="cat"><a class="cat-h" href="#cases" data-go="laundry"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/></svg><b>세탁실 · 가전</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="laundry">세탁기 위 건조기 설치</a></li><li><a href="#cases" data-go="laundry">건조기 렉·선반</a></li><li><a href="#cases" data-go="laundry">벽걸이 세탁기 철거</a></li><li><a href="#cases" data-go="laundry">보일러실 공간 정리</a></li></ul></div>
-        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="13" height="7" rx="1.5"/><path d="M17 6.5h3v5h-8.5v3"/><rect x="10" y="14.5" width="3" height="6.5" rx="1"/></svg><b>도배·마루·장판</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">부분 도배</a></li><li><a href="tel:01059317025">전체 도배</a></li><li><a href="tel:01059317025">마루 보수·교체</a></li><li><a href="tel:01059317025">장판 시공</a></li><li><a href="tel:01059317025">걸레받이 교체</a></li></ul></div>
-        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"/><path d="M2 14h3v4h14v-4h3"/><path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M5 18v2M19 18v2"/></svg><b>인테리어</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">주방 리모델링</a></li><li><a href="tel:01059317025">욕실 리모델링</a></li><li><a href="tel:01059317025">부분 인테리어</a></li><li><a href="tel:01059317025">입주 전 인테리어</a></li></ul></div>
-        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><b>각종 공사</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">문·문틀 보수</a></li><li><a href="tel:01059317025">몰딩 교체</a></li><li><a href="tel:01059317025">조명·콘센트 교체</a></li><li><a href="tel:01059317025">선반·커튼레일 설치</a></li><li><a href="tel:01059317025">방문 손잡이·도어락</a></li></ul></div>
-        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M12 1.5v1.5M4.5 8H3M21 8h-1.5M6.7 2.7l1 1M17.3 2.7l-1 1"/><path d="M2 21h20M5 21v-5h14v5M9 16v5M15 16v5"/></svg><b>야외작업</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">베란다·외벽 실리콘</a></li><li><a href="tel:01059317025">방충망·방범창</a></li><li><a href="tel:01059317025">데크·펜스 보수</a></li><li><a href="tel:01059317025">옥상·외부 방수</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="#cases" data-go="kitchen"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="8.5" cy="13" r="2.2"/><circle cx="15.5" cy="13" r="2.2"/><path d="M7 4v2M12 4v2M17 4v2"/></svg><b>주방 수리</b><span class="cat-n">6</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="kitchen">싱크대 문짝</a></li><li><a href="#cases" data-go="kitchen">경첩</a></li><li><a href="#cases" data-go="kitchen">상판 크랙</a></li><li><a href="tel:01059317025">팝업 배수구</a></li><li><a href="#cases" data-go="kitchen">싱크볼·수전 교체</a></li><li><a href="tel:01059317025">하부장 리폼</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="#cases" data-go="tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M6 12V6a2 2 0 0 1 4 0"/><path d="M8 20l-1 2M16 20l1 2"/></svg><b>욕실 수리</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">세면대 누수</a></li><li><a href="tel:01059317025">배관</a></li><li><a href="#cases" data-go="tile">변기</a></li><li><a href="tel:01059317025">실리콘</a></li><li><a href="#cases" data-go="tile">들뜬 타일 재부착</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="16" rx="1.5"/><path d="M12 3v16M10 10v2M14 10v2M6 19v2M18 19v2"/></svg><b>가구 수리</b><span class="cat-n">3</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">붙박이장 롤러</a></li><li><a href="tel:01059317025">슬라이딩 도어</a></li><li><a href="tel:01059317025">서랍·레일</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><circle cx="14.5" cy="12" r="1"/></svg><b>문 수리</b><span class="cat-n">3</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">문짝·문틀 교체</a></li><li><a href="tel:01059317025">경첩</a></li><li><a href="tel:01059317025">손잡이·도어락</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="#cases" data-go="laundry"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/></svg><b>가전 설치</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">인덕션</a></li><li><a href="#cases" data-go="kitchen">하이라이트</a></li><li><a href="#cases" data-go="kitchen">식기세척기</a></li><li><a href="#cases" data-go="laundry">세탁기 위 건조기</a></li><li><a href="#cases" data-go="laundry">건조기 렉·선반</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="#cases" data-go="remove"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7L4 14v6h6l7-7"/></svg><b>철거·복원</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="remove">TV 철거</a></li><li><a href="#cases" data-go="restore">벽면·오디오 구멍 복원</a></li><li><a href="#cases" data-go="remove">앙카 제거</a></li><li><a href="#cases" data-go="remove">상부장·냉장고장 철거</a></li><li><a href="#cases" data-go="remove">이사 전 원상복구</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="13" height="7" rx="1.5"/><path d="M17 6.5h3v5h-8.5v3"/><rect x="10" y="14.5" width="3" height="6.5" rx="1"/></svg><b>바닥·벽면</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">데코타일</a></li><li><a href="tel:01059317025">마루</a></li><li><a href="tel:01059317025">장판</a></li><li><a href="tel:01059317025">도배</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"/><path d="M2 14h3v4h14v-4h3"/><path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M5 18v2M19 18v2"/></svg><b>인테리어</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">주방 리모델링</a></li><li><a href="tel:01059317025">욕실 리모델링</a></li><li><a href="tel:01059317025">부분 인테리어</a></li><li><a href="tel:01059317025">입주 전 인테리어</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><b>각종 공사</b><span class="cat-n">3</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">몰딩 교체</a></li><li><a href="tel:01059317025">조명·콘센트 교체</a></li><li><a href="tel:01059317025">선반·커튼레일 설치</a></li></ul></div>
+        <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M12 1.5v1.5M4.5 8H3M21 8h-1.5M6.7 2.7l1 1M17.3 2.7l-1 1"/><path d="M2 21h20M5 21v-5h14v5M9 16v5M15 16v5"/></svg><b>야외작업</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">베란다·외벽 실리콘</a></li><li><a href="tel:01059317025">방충망·방범창</a></li><li><a href="tel:01059317025">데크·펜스 보수</a></li><li><a href="tel:01059317025">옥상·외부 방수</a></li></ul></div>
       </div>
       <p class="cats-note">위 항목 외에도 집에 관련된 작업은 전화로 물어보세요.</p>
-      <p class="live" id="live"><span><span class="dot" aria-hidden="true"></span><b>네이버 블로그와 연동</b> · 새 시공 글이 하루 두 번 자동으로 올라옵니다</span><span id="liveLatest"></span></p>
+      
     </div>
   </section>
 
@@ -862,12 +890,14 @@ footer a:hover { color: var(--gold-2); }
       <div>
         <div class="ba-pair">
           <figure><img id="baBefore" src="images/224480171508-1.jpg" alt="작업 전"><span class="badge">BEFORE</span></figure>
-          <figure><img id="baAfter" src="images/224480171508-2.jpg" alt="작업 후"><span class="badge after">AFTER</span></figure>
+          <figure><img id="baAfter" src="images/224480171508-a.jpg" alt="작업 후"><span class="badge after">AFTER</span></figure>
         </div>
+        <div class="ba-cats" role="group" aria-label="분야 고르기" id="baCats"></div>
         <div class="ba-tabs" role="group" aria-label="비교할 현장 고르기" id="baTabs"></div>
       </div>
       <div class="ba-info">
         <p class="eyebrow">Before / After</p>
+        <p class="ba-count">실제 현장 전후 사진 <b>22건</b></p>
         <h3 id="baTitle">한샘 사각 싱크볼 설치와 수전 교체</h3>
         <blockquote id="baQuote">“상판과 하부장은 그대로 두고 싱크볼과 수전만 새 제품으로 바꿔 주세요.”</blockquote>
         <a class="btn btn-ghost" id="baLink" href="https://blog.naver.com/psb-7/224480171508" target="_blank" rel="noopener">이 현장 작업 과정 보기</a>
@@ -889,8 +919,10 @@ footer a:hover { color: var(--gold-2); }
         <button class="chip" type="button" aria-pressed="true" data-f="all">전체</button>
         <button class="chip" type="button" aria-pressed="false" data-f="kitchen">주방</button>
         <button class="chip" type="button" aria-pressed="false" data-f="tile">욕실·타일</button>
-        <button class="chip" type="button" aria-pressed="false" data-f="remove">철거·복구</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="remove">철거</button>
         <button class="chip" type="button" aria-pressed="false" data-f="laundry">세탁실</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="restore">복원</button>
+        <button class="chip" type="button" aria-pressed="false" data-f="etc">기타 수리</button>
       </div>
       <div class="cases" id="caseList"></div>
       <div class="more-wrap"><button class="pill ghost-dark" type="button" id="moreCases" hidden>작업 기록 더 보기</button></div>
@@ -1076,7 +1108,7 @@ const CASES = [
     title:"식기세척기 급수 밸브 새로 설치", quote:"급수 밸브가 망가져서 식기세척기를 쓸 수가 없어요.", url:"https://blog.naver.com/psb-7/224381878395" },
   { f:"kitchen", tex:"tex-stone", region:"경기 광주", space:"주방 상판", scope:"기존 가스레인지 철거, 2구 제품 교체 설치", date:"2026.06",
     title:"싱크대 2구 가스레인지 교체", quote:"오래된 가스레인지를 새 제품으로 바꾸고 싶어요.", url:"https://blog.naver.com/psb-7/224316527399" },
-  { f:"tile", tex:"tex-stone", region:"송파", space:"거실 아트월", scope:"아트월 타일 타공 구멍 메움과 색 맞춤 복원", date:"2026.06",
+  { f:"restore", tex:"tex-stone", region:"송파", space:"거실 아트월", scope:"아트월 타일 타공 구멍 메움과 색 맞춤 복원", date:"2026.06",
     title:"거실 아트월 타일 구멍 복원", quote:"TV 떼고 남은 구멍을 눈에 안 띄게 메워 주세요.", url:"https://blog.naver.com/psb-7/224317299691" },
   { f:"kitchen", tex:"tex-wood", region:"지역 입력 예정", space:"주방 상판", scope:"큰 타공부 인조대리석 덧댐 보강 후 매립형 가스레인지 설치", date:"2026.08",
     title:"사이즈 안 맞는 가스레인지 매립 자리 보강", quote:"새로 산 가스레인지가 기존 자리보다 작아요.", url:"https://blog.naver.com/psb-7/224387214275" },
@@ -1094,12 +1126,18 @@ const KINDS = [
   ["laundry", "세탁실", /세탁|건조기|렉|콤보|보일러/],
   ["kitchen", "주방", /주방|싱크|가스|하이라이트|식기|상판|하부장|냉장고|대리석|아일랜드/],
   ["tile", "욕실·타일", /타일|변기|욕실|화장실|아트월/],
-  ["remove", "철거·복구", /철거|복구|복원|제거/]
+  ["remove", "철거", /철거|제거|폐기/],
+  ["restore", "복원", /복원|균열|메우|보수|원상복구|재부착|재사용/],
+  ["etc", "기타 수리", /./]
 ];
-const TEX = { laundry:"tex-rack", kitchen:"tex-stone", tile:"tex-tile", remove:"tex-small" };
+const TEX = { laundry:"tex-rack", kitchen:"tex-stone", tile:"tex-tile", remove:"tex-small", restore:"tex-stone", etc:"tex-small" };
 function fromPost(p) {
   const c = CURATED[p.id] || {};
-  const kind = (/철거|원상복구/.test(p.title) ? KINDS[3] : null) || KINDS.find(k => k[2].test(p.title)) || KINDS[3];
+  const K = f => KINDS.find(k => k[0] === f);
+  const t = p.title;
+  const kind = (K("restore")[2].test(t) && !/철거/.test(t) ? K("restore") : null)
+    || (/철거|폐기/.test(t) ? K("remove") : null)
+    || KINDS.find(k => k[2].test(t));
   const region = c.region || REGIONS.find(r => p.title.startsWith(r)) || "";
   return {
     f: c.f || kind[0], tex: c.tex || TEX[kind[0]], region,
@@ -1110,7 +1148,7 @@ function fromPost(p) {
 }
 // 전체 보기: 주방 → 욕실·타일 → 철거를 번갈아 섞고 세탁실은 맨 뒤로, 다양한 작업이 앞에 오도록
 function mix(arr) {
-  const order = ["kitchen", "tile", "remove"], g = order.map(k => arr.filter(c => c.f === k)), out = [];
+  const order = ["kitchen", "tile", "remove", "restore", "etc"], g = order.map(k => arr.filter(c => c.f === k)), out = [];
   for (let i = 0; g.some(x => x[i]); i++) g.forEach(x => x[i] && out.push(x[i]));
   return out.concat(arr.filter(c => !order.includes(c.f)));
 }
@@ -1157,24 +1195,229 @@ buildStrip(CASES_PHOTOS);
 
 // 작업 전후 비교
 const BA = [
-  { id: "224480171508", label: "싱크볼·수전 교체", title: "한샘 사각 싱크볼 설치와 수전 교체", quote: "상판과 하부장은 그대로 두고 싱크볼과 수전만 새 제품으로 바꿔 주세요." },
-  { id: "224456254403", label: "TV 철거·복구", title: "무타공 벽걸이TV 이사 전 철거 및 콘센트 원상복구", quote: "TV와 설치 장비를 모두 철거하고 콘센트도 원래대로 복구해 주세요." },
-  { id: "224473898655", label: "상부장 철거", title: "새집 이사 전 냉장고장 상부장 철거", quote: "냉장고가 들어가도록 한쪽 상부장만 떼어 공간을 만들어 주세요.", swap: true },
-  { id: "224449591756", label: "변기 하부 보수", title: "변기 흔들림 원인 하부 고정 시멘트 깨짐 보수", quote: "깨진 부분을 제거하고 다시 단단하게 고정해 주세요." },
-  { id: "224430974349", label: "벽타일 재부착", title: "강동 들뜬 거실 벽타일 철거 후 재사용", quote: "기존 타일은 그대로 쓰면서 다시 튼튼하게 붙일 수 있을까요?" },
-  { id: "224457416129", label: "건조기 렉 설치", title: "용인 좁은 다용도실 세탁기 위 렉 설치 후 건조기 올리기", quote: "기존 세탁기는 그대로 사용하고 새로 구입한 건조기를 위쪽에 설치하고 싶습니다." }
-];
-function showBA(i) {
-  const c = BA[i];
-  document.getElementById("baBefore").src = `images/${c.id}-${c.swap ? 2 : 1}.jpg`;
-  document.getElementById("baAfter").src = `images/${c.id}-${c.swap ? 1 : 2}.jpg`;
-  document.getElementById("baTitle").textContent = c.title;
-  document.getElementById("baQuote").textContent = `“${c.quote}”`;
-  document.getElementById("baLink").href = `https://blog.naver.com/psb-7/${c.id}`;
-  document.querySelectorAll("#baTabs .chip").forEach((b, j) => b.setAttribute("aria-pressed", j === i ? "true" : "false"));
+{
+"id": "224480171508",
+"label": "싱크볼·수전 교체",
+"cat": "kitchen",
+"title": "주방 분위기를 바꾸는 방법 한샘 사각 싱크볼 설치와 수전 교체",
+"quote": "기존 싱크볼과 수전이 오래되어 새 제품으로 교체하고 싶습니다. 싱크대 전체를 바꾸는 것은 아니고 현재 상판과 하부장은…",
+"b": "images/224480171508-1.jpg",
+"a": "images/224480171508-a.jpg"
+},
+{
+"id": "224456254403",
+"label": "TV 철거·복구",
+"cat": "remove",
+"title": "무타공 벽걸이TV 이사 전 철거 및 콘센트 원상복구",
+"quote": "이사를 가게 되어 벽걸이TV를 철거해야 합니다 무타공 방식으로 설치하면서 콘센트를 이용했는데 TV와 설치 장비를 모두…",
+"b": "images/224456254403-1.jpg",
+"a": "images/224456254403-a.jpg"
+},
+{
+"id": "224449591756",
+"label": "변기 하부 보수",
+"cat": "bath",
+"title": "변기 흔들림 원인 하부 고정 시멘트 깨짐 보수",
+"quote": "변기 아래쪽 시멘트가 조금씩 깨져서 떨어지고 있습니다 그대로 사용해도 되는지 걱정되는데 깨진 부분을 제거하고 다시…",
+"b": "images/224449591756-1.jpg",
+"a": "images/224449591756-a.jpg"
+},
+{
+"id": "224461642539",
+"label": "싱크대 문짝·경첩",
+"cat": "kitchen",
+"title": "싱크대 문짝 경첩 파손 나사 구멍 메우고 다시 설치",
+"quote": "싱크대 아래 수납장 문이 경첩 부분이 빠지면서 떨어졌습니다 문은 그대로 사용하고 싶은데 파손된 부분을 수리해서 다시…",
+"b": "images/224461642539-1.jpg",
+"a": "images/224461642539-a.jpg"
+},
+{
+"id": "224370716572",
+"label": "아트월 타일 복원",
+"cat": "bath",
+"title": "강남 거실 타일 부분 교체 아트월 파손 복원 후기",
+"quote": "거실 아트월 타일이 충격을 받아 한 장이 크게 깨진 상태입니다. 깨진 부분이 날카롭고 파편이 떨어질까 걱정되어 손상된…",
+"b": "images/224370716572-1.jpg",
+"a": "images/224370716572-a.jpg"
+},
+{
+"id": "224473898655",
+"label": "상부장 철거",
+"cat": "remove",
+"title": "새집으로 이사 전 냉장고장 상부장 철거 작업",
+"quote": "이사하면서 사용하던 냉장고 두 대를 모두 가져갈 예정입니다. 그런데 이사할 집의 냉장고장 상부장 크기가 서로 달라서…",
+"b": "images/224473898655-1.jpg",
+"a": "images/224473898655-a.jpg"
+},
+{
+"id": "224424462114",
+"label": "하이라이트 교체",
+"cat": "appl",
+"title": "하이라이트 교체 고장 난 가스 겸용 제품 철거 후 설치",
+"quote": "세입자가 사용하고 있는 가스와 하이라이트 겸용 제품이 고장이 나서 사용할 수가 없습니다 창고에 예전에 사용하던 3구…",
+"b": "images/224424462114-1.jpg",
+"a": "images/224424462114-a.jpg"
+},
+{
+"id": "224377062977",
+"label": "콘센트 재설치",
+"cat": "etc",
+"title": "노원 거실 콘센트 빠짐 재설치 노출된 배선 정리",
+"quote": "",
+"b": "images/224377062977-1.jpg",
+"a": "images/224377062977-a.jpg"
+},
+{
+"id": "224430974349",
+"label": "벽타일 재부착",
+"cat": "bath",
+"title": "강동 타일 시공 들뜬 거실 벽타일 철거 후 재사용",
+"quote": "거실 벽에 붙어 있는 타일이 들떠 있는 것 같습니다 기존 타일은 그대로 사용하면서 다시 튼튼하게 붙일 수 있을까요",
+"b": "images/224430974349-1.jpg",
+"a": "images/224430974349-a.jpg"
+},
+{
+"id": "224429539221",
+"label": "빌트인 냉장고 철거",
+"cat": "remove",
+"title": "빌트인 냉장고 철거 후 외부 이동 폐기까지 진행",
+"quote": "주방에 설치된 대형 빌트인 냉장고를 이제 사용하지 않을 예정입니다 제품이 너무 크고 무거워서 직접 빼내기가 어렵습니다…",
+"b": "images/224429539221-1.jpg",
+"a": "images/224429539221-a.jpg"
+},
+{
+"id": "224380185643",
+"label": "가스레인지 교체",
+"cat": "appl",
+"title": "가스레인지 교체 기존 대리석 크기 넓혀 새 제품 설치",
+"quote": "기존에 사용하던 가스레인지가 오래되어 새 제품으로 교체하려고 합니다. 새 가스레인지를 구입했는데 기존 제품과 크기가…",
+"b": "images/224380185643-1.jpg",
+"a": "images/224380185643-a.jpg"
+},
+{
+"id": "224378153205",
+"label": "베란다 수납장 제작",
+"cat": "etc",
+"title": "베란다 빈 공간 활용 수납장 제작 및 문 설치",
+"quote": "거실 베란다 끝 공간이 그냥 비어 있어서 활용하기가 아쉽습니다. 생활용품이나 자주 사용하지 않는 물건을 보관할 수 있도록…",
+"b": "images/224378153205-1.jpg",
+"a": "images/224378153205-a.jpg"
+},
+{
+"id": "224366398094",
+"label": "상부장 높이 리폼",
+"cat": "kitchen",
+"title": "냉장고장 상부장 높이 줄이기 새 냉장고 설치 전 맞춤 리폼 작업",
+"quote": "기존 냉장고는 냉장고장 안에 잘 들어갔는데 이번에 새로 구입한 냉장고는 높이가 더 큰 제품입니다. 제품 사이즈를 확인해…",
+"b": "images/224366398094-1.jpg",
+"a": "images/224366398094-a.jpg"
+},
+{
+"id": "224369083470",
+"label": "식기세척기 교체",
+"cat": "appl",
+"title": "송파 오래된 SK 식기세척기 교체 밀레 빌트인 설치 완료",
+"quote": "",
+"b": "images/224369083470-1.jpg",
+"a": "images/224369083470-a.jpg"
+},
+{
+"id": "224364687869",
+"label": "오븐장 철거",
+"cat": "remove",
+"title": "성남 오븐장 철거 식기세척기 자리 만들기 주방 리폼",
+"quote": "기존에 사용하던 빌트인 가스레인지와 오븐장은 더 이상 사용하지 않습니다. 며칠 뒤 식기세척기가 들어올 예정이라 미리…",
+"b": "images/224364687869-1.jpg",
+"a": "images/224364687869-a.jpg"
+},
+{
+"id": "224361286425",
+"label": "식기세척기 빌트인",
+"cat": "appl",
+"title": "하남 6인용 식기세척기 빌트인 설치 빈 공간 리폼으로 완성한 작업",
+"quote": "",
+"b": "images/224361286425-1.jpg",
+"a": "images/224361286425-a.jpg"
+},
+{
+"id": "224359020669",
+"label": "하이라이트 매립",
+"cat": "appl",
+"title": "하이라이트 교체 설치 기존 공간이 맞지 않아 대리석 절단으로 해결",
+"quote": "",
+"b": "images/224359020669-1.jpg",
+"a": "images/224359020669-a.jpg"
+},
+{
+"id": "224355100717",
+"label": "3구 가스레인지",
+"cat": "appl",
+"title": "고장 난 가스레인지 교체 하츠 3구 가스레인지 설치 후기",
+"quote": "",
+"b": "images/224355100717-1.jpg",
+"a": "images/224355100717-a.jpg"
+},
+{
+"id": "224463093778",
+"label": "미니세탁기 철거",
+"cat": "remove",
+"title": "송파 벽걸이 미니 세탁기 철거 앙카볼트 제거와 벽면 복원",
+"quote": "벽에 설치되어 있는 미니 세탁기를 철거하려고 합니다 세탁기만 떼어내는 것이 아니라 벽에 박혀 있는 고정 볼트도 제거하고…",
+"b": "images/224463093778-1.jpg",
+"a": "images/224463093778-a.jpg"
+},
+{
+"id": "224369550348",
+"label": "AI 콤보 설치",
+"cat": "appl",
+"title": "삼성 AI 콤보 빌트인 설치 세탁장 맞춤 공간에 시공",
+"quote": "",
+"b": "images/224369550348-1.jpg",
+"a": "images/224369550348-a.jpg"
+},
+{
+"id": "224457416129",
+"label": "건조기 렉 설치",
+"cat": "appl",
+"title": "용인 좁은 다용도실 세탁기 위 렉 설치 후 건조기 올리기",
+"quote": "기존 세탁기는 그대로 사용하고 새로 구입한 건조기를 위쪽에 설치하고 싶습니다 다용도실이 좁아서 건조기를 놓을 자리가…",
+"b": "images/224457416129-1.jpg",
+"a": "images/224457416129-a.jpg"
+},
+{
+"id": "224353421575",
+"label": "세탁기·건조기 직렬",
+"cat": "appl",
+"title": "좁은 베란다 세탁기 건조기 직렬 설치 전동 리프트 시공 후기",
+"quote": "고층 아파트라 베란다 공간이 많이 좁습니다. 세탁기 위에 건조기를 올리고 싶은데, 통로가 너무 좁아서 사람 둘이…",
+"b": "images/224353421575-1.jpg",
+"a": "images/224353421575-a.jpg"
 }
-document.getElementById("baTabs").innerHTML = BA.map((c, i) => `<button class="chip" type="button" aria-pressed="${i ? "false" : "true"}">${esc(c.label)}</button>`).join("");
-document.querySelectorAll("#baTabs .chip").forEach((b, i) => b.addEventListener("click", () => showBA(i)));
+];
+const BA_CATS = [["all","전체"],["kitchen","주방"],["bath","욕실·타일"],["remove","철거·복원"],["appl","가전 설치"],["etc","기타"]];
+let BA_CAT = "all", BA_CUR = 0;
+function showBA(i) {
+  const c = BA[i]; BA_CUR = i;
+  document.getElementById("baBefore").src = c.b;
+  document.getElementById("baAfter").src = c.a;
+  document.getElementById("baTitle").textContent = c.title;
+  document.getElementById("baQuote").textContent = c.quote ? `“${c.quote}”` : "";
+  document.getElementById("baQuote").hidden = !c.quote;
+  document.getElementById("baLink").href = `https://blog.naver.com/psb-7/${c.id}`;
+  document.querySelectorAll("#baTabs .chip").forEach(b => b.setAttribute("aria-pressed", +b.dataset.i === i ? "true" : "false"));
+}
+function drawBATabs() {
+  document.getElementById("baCats").innerHTML = BA_CATS.filter(([k]) => k === "all" || BA.some(c => c.cat === k))
+    .map(([k, n]) => `<button type="button" class="bac" data-k="${k}" aria-pressed="${k === BA_CAT}">${n} <span>${k === "all" ? BA.length : BA.filter(c => c.cat === k).length}</span></button>`).join("");
+  document.getElementById("baTabs").innerHTML = BA.map((c, i) => [c, i]).filter(([c]) => BA_CAT === "all" || c.cat === BA_CAT)
+    .map(([c, i]) => `<button class="chip" type="button" data-i="${i}" aria-pressed="${i === BA_CUR}">${esc(c.label)}</button>`).join("");
+  document.querySelectorAll("#baCats .bac").forEach(b => b.addEventListener("click", () => {
+    BA_CAT = b.dataset.k; const first = BA.findIndex(c => BA_CAT === "all" || c.cat === BA_CAT);
+    BA_CUR = first; drawBATabs(); showBA(first);
+  }));
+  document.querySelectorAll("#baTabs .chip").forEach(b => b.addEventListener("click", () => showBA(+b.dataset.i)));
+}
+drawBATabs(); showBA(0);
 
 fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).then(d => {
   if (!d || !Array.isArray(d.posts) || !d.posts.length) return;
@@ -1182,14 +1425,15 @@ fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).the
   const jobs = d.posts.filter(p => p.quote || CURATED[p.id]);
   if (!jobs.length) return;
   ITEMS = mix(jobs.map(fromPost));
+  document.querySelectorAll(".filters .chip").forEach(b => { const f = b.dataset.f; b.hidden = f !== "all" && !ITEMS.some(c => c.f === f); });
   render(FILTER);
   const latest = d.posts.find(p => p.date);
-  if (latest) document.getElementById("liveLatest").innerHTML = `최근 글 <b>${esc(latest.date)}</b> · <a href="${esc(latest.url)}" target="_blank" rel="noopener">${esc(latest.title)}</a>`;
+  if (latest && document.getElementById("liveLatest")) document.getElementById("liveLatest").innerHTML = `최근 글 <b>${esc(latest.date)}</b> · <a href="${esc(latest.url)}" target="_blank" rel="noopener">${esc(latest.title)}</a>`;
   const photos = d.posts.filter(p => (p.images || []).length).flatMap(p => p.images.map(src => ({ src, url: p.url, title: p.title })));
   if (photos.length) buildStrip(photos);
 }).catch(() => {});
-document.querySelectorAll(".chip").forEach(b => b.addEventListener("click", () => {
-  document.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+document.querySelectorAll(".filters .chip").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".filters .chip").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
   render(b.dataset.f);
 }));
 
