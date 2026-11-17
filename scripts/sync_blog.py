@@ -6,7 +6,7 @@ from email.utils import parsedate_to_datetime
 
 BLOG = "psb-7"
 RSS = f"https://rss.blog.naver.com/{BLOG}.xml"
-MAX_POSTS = 15
+MAX_POSTS = 40
 IMGS_PER_POST = 2
 UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
 SKIP_CATEGORY = ("연락처",)
@@ -91,10 +91,21 @@ def main():
                 except Exception as e:
                     print("img fail", u, e, file=sys.stderr); continue
             images.append(path)
+        # 글의 마지막 현장 사진 = 보통 시공 완료(After) 사진
+        after = ""
+        urls = image_urls(page, desc)
+        if len(urls) > IMGS_PER_POST:
+            apath = f"images/{pid}-a.jpg"
+            if not os.path.exists(apath):
+                try:
+                    save_image(get(urls[-1]), apath); time.sleep(0.5)
+                except Exception as e:
+                    print("img fail", urls[-1], e, file=sys.stderr); apath = ""
+            after = apath
         posts.append({
             "id": pid, "title": title, "url": f"https://blog.naver.com/{BLOG}/{pid}",
             "date": date, "category": cat, "summary": text_of(desc)[:160],
-            "quote": quote_of(body), "images": images,
+            "quote": quote_of(body), "images": images, "after": after, "nimg": len(urls),
         })
         if len(posts) >= MAX_POSTS:
             break
