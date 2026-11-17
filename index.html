@@ -709,6 +709,30 @@ footer a:hover { color: var(--gold-2); }
   .cat-h b { font-size: 17px; }
   .cat li a { font-size: 13.5px; padding: 6px 10px; }
 }
+
+/* 카테고리 8개 */
+.hx-cats { grid-template-columns: repeat(4, 1fr); }
+.cats-note { margin: 14px 0 0; font-size: 14px; color: #A9A398; text-align: center; }
+.eyebrow { white-space: nowrap; }
+@media (max-width: 700px) {
+  .hx-cats { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cat { padding: 12px 10px; }
+  .cat-h { gap: 6px; flex-wrap: wrap; padding-bottom: 8px; margin-bottom: 8px; }
+  .cat-h svg { width: 20px; height: 20px; }
+  .cat-h b { font-size: 15px; }
+  .cat-n { font-size: 11px; padding: 1px 6px; }
+  .cat-arrow { display: none; }
+  .cat ul { gap: 4px; }
+  .cat li a { font-size: 12.5px; padding: 5px 8px; }
+}
+
+@media (max-width: 700px) {
+  .cat-h { flex-wrap: nowrap; }
+  .cat ul { display: block; line-height: 1.55; }
+  .cat li { display: inline; }
+  .cat li a { display: inline; padding: 0; border: 0; background: none; font-size: 13px; color: #CFC8BA; }
+  .cat li + li::before { content: " · "; color: var(--gold); }
+}
 </style>
 </head>
 <body>
@@ -754,7 +778,12 @@ footer a:hover { color: var(--gold-2); }
         <div class="cat"><a class="cat-h" href="#cases" data-go="tile"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18M12 3v18"/></svg><b>욕실 · 타일</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="tile">들뜬 벽타일 재부착</a></li><li><a href="#cases" data-go="tile">변기 흔들림 보수</a></li><li><a href="#cases" data-go="tile">아트월 구멍 복원</a></li><li><a href="#cases" data-go="tile">실리콘 재시공</a></li></ul></div>
         <div class="cat"><a class="cat-h" href="#cases" data-go="remove"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7L4 14v6h6l7-7"/></svg><b>철거 · 원상복구</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="remove">벽걸이 TV 철거</a></li><li><a href="#cases" data-go="remove">상부장·냉장고장 철거</a></li><li><a href="#cases" data-go="remove">빌트인 냉장고 폐기</a></li><li><a href="#cases" data-go="remove">앙카볼트·벽면 복원</a></li><li><a href="#cases" data-go="remove">이사 전 원상복구</a></li></ul></div>
         <div class="cat"><a class="cat-h" href="#cases" data-go="laundry"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/></svg><b>세탁실 · 가전</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="laundry">세탁기 위 건조기 설치</a></li><li><a href="#cases" data-go="laundry">건조기 렉·선반</a></li><li><a href="#cases" data-go="laundry">벽걸이 세탁기 철거</a></li><li><a href="#cases" data-go="laundry">보일러실 공간 정리</a></li></ul></div>
+        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="13" height="7" rx="1.5"/><path d="M17 6.5h3v5h-8.5v3"/><rect x="10" y="14.5" width="3" height="6.5" rx="1"/></svg><b>도배·마루·장판</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">부분 도배</a></li><li><a href="tel:01059317025">전체 도배</a></li><li><a href="tel:01059317025">마루 보수·교체</a></li><li><a href="tel:01059317025">장판 시공</a></li><li><a href="tel:01059317025">걸레받이 교체</a></li></ul></div>
+        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18v-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v6"/><path d="M2 14h3v4h14v-4h3"/><path d="M6 10V7a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3"/><path d="M5 18v2M19 18v2"/></svg><b>인테리어</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">주방 리모델링</a></li><li><a href="tel:01059317025">욕실 리모델링</a></li><li><a href="tel:01059317025">부분 인테리어</a></li><li><a href="tel:01059317025">입주 전 인테리어</a></li></ul></div>
+        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><b>각종 공사</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">문·문틀 보수</a></li><li><a href="tel:01059317025">몰딩 교체</a></li><li><a href="tel:01059317025">조명·콘센트 교체</a></li><li><a href="tel:01059317025">선반·커튼레일 설치</a></li><li><a href="tel:01059317025">방문 손잡이·도어락</a></li></ul></div>
+        <div class="cat cat-more"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M12 1.5v1.5M4.5 8H3M21 8h-1.5M6.7 2.7l1 1M17.3 2.7l-1 1"/><path d="M2 21h20M5 21v-5h14v5M9 16v5M15 16v5"/></svg><b>야외작업</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">베란다·외벽 실리콘</a></li><li><a href="tel:01059317025">방충망·방범창</a></li><li><a href="tel:01059317025">데크·펜스 보수</a></li><li><a href="tel:01059317025">옥상·외부 방수</a></li></ul></div>
       </div>
+      <p class="cats-note">위 항목 외에도 집에 관련된 작업은 전화로 물어보세요.</p>
       <p class="live" id="live"><span><span class="dot" aria-hidden="true"></span><b>네이버 블로그와 연동</b> · 새 시공 글이 하루 두 번 자동으로 올라옵니다</span><span id="liveLatest"></span></p>
     </div>
   </section>
