@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://psb-7.com/sitemap.xml
