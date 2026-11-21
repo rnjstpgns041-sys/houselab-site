@@ -857,6 +857,23 @@ footer a:hover { color: var(--gold-2); }
 }
 @media (max-width: 360px) { .hx-cats .cat-h b { font-size: 11px; } }
 @media (max-width: 360px) { .hx-cta .pill.big { font-size: 14px; } .hx-cta .ico { display: none; } }
+
+/* 모바일: 시공 분야를 밝은 아이보리 구역으로 분리 */
+@media (max-width: 700px) {
+  .hx > .wrap:last-child { position: relative; z-index: 2; max-width: none; margin: 40px 0 0; padding: 26px 16px 26px; background: #F4EFE4; color: #16150F; box-shadow: inset 0 3px 0 var(--gold); }
+  .cats-title { margin: 0 2px 12px; padding: 0; border: 0; color: #16150F; }
+  .cats-title small { color: #6B675E; }
+  .hx-cats .cat { background: #FFFFFF; border: 1px solid #E2D7BF; backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 1px 2px rgba(22,21,15,.05); }
+  .hx-cats .cat-h { color: #16150F; }
+  .hx-cats .cat-h svg { color: #8A6A2F; }
+  .hx-cats .cat.on { background: #16150F; border-color: #16150F; }
+  .hx-cats .cat.on .cat-h { color: #F7F3EA; }
+  .hx-cats .cat.on .cat-h svg { color: var(--gold); }
+  .cat-panel { background: #FFFFFF; border: 1px solid #E2D7BF; }
+  .cat-panel li a { color: #16150F; background: #F4EFE4; border-color: #E2D7BF; }
+  .cat-panel .cat-more { color: #8A6A2F; }
+  .hx .cats-note { color: #6B675E; margin-bottom: 0; }
+}
 </style>
 </head>
 <body>
