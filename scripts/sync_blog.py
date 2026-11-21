@@ -40,7 +40,7 @@ def image_urls(page, desc):
         if "postfiles" in base or "blogfiles" in base:
             out.append(base.replace("blogfiles", "postfiles") + "?type=w966")
         elif "mblogthumb-phinf" in base or "blogthumb" in base:
-            out.append(base + "?type=w800")
+            out.append(base + "?type=w966")
         else:
             out.append(src)
     return out
@@ -54,12 +54,40 @@ def save_image(data, path):
     except Exception:
         open(path, "wb").write(data)
 
+HIRES_LOG = "images/.hires"
+
+def fetch_best(url):
+    """고화질(w966)을 먼저 받고, 안 되면 w800으로 받습니다."""
+    tries = [url]
+    if "type=w966" in url:
+        tries.append(url.replace("type=w966", "type=w800"))
+    last = None
+    for u in tries:
+        try:
+            return get(u)
+        except Exception as e:
+            last = e
+    raise last
+
+def need_upgrade(path, done):
+    """예전에 800px로 받은 사진은 한 번만 고화질로 다시 받습니다."""
+    if not os.path.exists(path):
+        return True
+    if path in done:
+        return False
+    try:
+        from PIL import Image
+        return Image.open(path).size[0] < 900 and Image.open(path).size[1] < 1100
+    except Exception:
+        return False
+
 def quote_of(t):
     m = re.search(r"의뢰 내용\s*[\"“](.+?)[\"”]", t)
     return m.group(1).strip()[:120] if m else ""
 
 def main():
     os.makedirs("images", exist_ok=True)
+    done = set(open(HIRES_LOG).read().split()) if os.path.exists(HIRES_LOG) else set()
     root = ET.fromstring(get(RSS))
     posts = []
     for item in root.iter("item"):
@@ -85,22 +113,30 @@ def main():
             if len(images) >= IMGS_PER_POST:
                 break
             path = f"images/{pid}-{len(images)+1}.jpg"
-            if not os.path.exists(path):
+            if need_upgrade(path, done):
+                had = os.path.exists(path)
                 try:
-                    save_image(get(u), path); time.sleep(0.5)
+                    save_image(fetch_best(u), path); time.sleep(0.4)
                 except Exception as e:
-                    print("img fail", u, e, file=sys.stderr); continue
+                    print("img fail", u, e, file=sys.stderr)
+                    if not had:
+                        continue
+                done.add(path)
             images.append(path)
         # 글의 마지막 현장 사진 = 보통 시공 완료(After) 사진
         after = ""
         urls = image_urls(page, desc)
         if len(urls) > IMGS_PER_POST:
             apath = f"images/{pid}-a.jpg"
-            if not os.path.exists(apath):
+            if need_upgrade(apath, done):
+                had = os.path.exists(apath)
                 try:
-                    save_image(get(urls[-1]), apath); time.sleep(0.5)
+                    save_image(fetch_best(urls[-1]), apath); time.sleep(0.4)
                 except Exception as e:
-                    print("img fail", urls[-1], e, file=sys.stderr); apath = ""
+                    print("img fail", urls[-1], e, file=sys.stderr)
+                    if not had:
+                        apath = ""
+                done.add(apath)
             after = apath
         posts.append({
             "id": pid, "title": title, "url": f"https://blog.naver.com/{BLOG}/{pid}",
@@ -111,6 +147,7 @@ def main():
             break
     if not posts:
         print("no posts parsed; keeping existing posts.json", file=sys.stderr); return 1
+    open(HIRES_LOG, "w").write("\n".join(sorted(x for x in done if x)))
     json.dump({"updated": time.strftime("%Y-%m-%d %H:%M"), "posts": posts},
               open("posts.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print(f"{len(posts)} posts, {sum(len(p['images']) for p in posts)} images")
