@@ -85,7 +85,7 @@ footer{background:var(--night);color:#8E887B;font-size:14px;padding:30px 0;text-
 
 def page(cat, cases, cats):
     title = f"{cat['name']} | {cat['kw']} - 하우스랩 건설"
-    desc = f"{cat['desc']} 서울·경기·인천 출장 시공, 사진 상담·무료 견적. 실제 시공 사례 {len(cases)}건."
+    desc = f"{cat['desc']} 경기 광주·성남·하남·용인·수원 정기 출장, 사진 상담·무료 견적. 실제 시공 사례 {len(cases)}건."
     url = f"{SITE}/service/{cat['slug']}.html"
     cards = []
     for p in cases:
@@ -120,7 +120,7 @@ def page(cat, cases, cats):
 <div class="hero"><div class="wrap">
 <p class="crumb"><a href="../">홈</a> › 시공 분야 › {e(cat['name'])}</p>
 <h1>{e(cat['name'])}<br><span>{e(cat['kw'])}</span></h1>
-<p class="lead">{e(cat['desc'])} 서울·경기·인천 어디든 직접 방문해 시공합니다.</p>
+<p class="lead">{e(cat['desc'])} 경기 광주·성남·하남·용인·수원과 서울 송파·강동은 정기적으로 방문합니다.</p>
 <ul class="items">{items}</ul>
 <div class="btns"><a class="btn gold" href="tel:{TEL_RAW}">전화하기 {TEL}</a><a class="btn ghost" href="sms:{TEL_RAW}">무료견적 문자하기</a></div>
 </div></div>
@@ -130,12 +130,12 @@ def page(cat, cases, cats):
 <div class="cases">{''.join(cards) if cards else '<p class="sub">시공 사례를 준비 중입니다. 사진과 함께 문의해 주세요.</p>'}</div>
 </div></section>
 <section class="others"><div class="wrap">
-<h2>다른 시공 분야</h2><p class="sub">사진 상담 · 무료 견적 · 현장 직접 시공</p>
+<h2>다른 시공 분야</h2><p class="sub">사진 상담 · 무료 견적 · 현장 직접 시공 · 전체 사진 1장 + 문제 부위 사진 1장</p>
 <div class="olinks">{others}</div>
 <p class="home"><a href="../">하우스랩 건설 홈으로 →</a></p>
 </div></section>
 </main>
-<footer>하우스랩 건설 · 집수리 전문업체 · 서울·경기·인천 출장 시공 · {TEL}</footer>
+<footer>하우스랩 건설 · 집수리·부분 인테리어 전문업체 · 경기 광주·성남·하남·용인·수원 정기 출장 · {TEL}</footer>
 <div class="dock"><a class="btn ghost" href="sms:{TEL_RAW}">무료견적 문자하기</a><a class="btn gold" href="tel:{TEL_RAW}">전화하기</a></div>
 </body></html>
 """
