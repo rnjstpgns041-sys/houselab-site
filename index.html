@@ -833,6 +833,30 @@ footer a:hover { color: var(--gold-2); }
 .about-links a:hover { background: var(--gold); color: #16150F; }
 @media (max-width: 700px) { .about-grid { grid-template-columns: 1fr; gap: 10px; } .about-card { padding: 20px 18px; } .about-n { font-size: 36px; } .about-links a { font-size: 14px; padding: 8px 12px; } }
 .area-legend { align-items: flex-start; } .dot-hot { flex: none; margin-top: 4px; }
+
+/* 모바일 정리: 첫 화면 간소화 + 시공 분야 탭 */
+.cats-title, .cat-panel { display: none; }
+@media (max-width: 700px) {
+  .hx .hx-svc, .hx .hx-steps { display: none; }
+  .hx .hx-sub { font-size: 15px; margin-top: 12px; }
+  .hx-area { font-size: 13.5px; }
+  .cats-title { display: flex; align-items: baseline; justify-content: space-between; margin: 34px 2px 10px; padding-top: 22px; border-top: 1px solid rgba(200,169,106,.25); font-size: 17px; font-weight: 800; color: #F7F3EA; text-align: left; }
+  .cats-title small { font-size: 12.5px; font-weight: 500; color: #A9A398; }
+  .hx-cats { grid-template-columns: repeat(5, minmax(0,1fr)); gap: 6px; margin-top: 0; }
+  .hx-cats .cat { padding: 0; border-radius: 12px; }
+  .hx-cats .cat ul, .hx-cats .cat-n, .hx-cats .cat-arrow { display: none; }
+  .hx-cats .cat-h { flex-direction: column; justify-content: center; gap: 5px; padding: 10px 2px; margin: 0; border: 0; text-align: center; min-height: 64px; }
+  .hx-cats .cat-h svg { width: 22px; height: 22px; }
+  .hx-cats .cat-h b { font-size: 12px; letter-spacing: -0.04em; white-space: nowrap; }
+  .hx-cats .cat.on { background: rgba(200,169,106,.22); border-color: var(--gold); }
+  .cat-panel { display: block; margin-top: 8px; padding: 14px; border-radius: 14px; background: rgba(13,13,11,.72); border: 1px solid rgba(200,169,106,.35); text-align: left; }
+  .cat-panel ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .cat-panel li a { display: inline-block; font-size: 13.5px; padding: 6px 11px; border-radius: 999px; text-decoration: none; color: #F2EEE6; background: rgba(255,255,255,.07); border: 1px solid rgba(242,238,230,.18); }
+  .cat-panel .cat-more { display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .cats-note { font-size: 12.5px; line-height: 1.55; margin-top: 12px; }
+}
+@media (max-width: 360px) { .hx-cats .cat-h b { font-size: 11px; } }
+@media (max-width: 360px) { .hx-cta .pill.big { font-size: 14px; } .hx-cta .ico { display: none; } }
 </style>
 </head>
 <body>
@@ -878,6 +902,7 @@ footer a:hover { color: var(--gold-2); }
       </ol>
     </div>
     <div class="wrap">
+      <p class="cats-title">시공 분야 <small>눌러서 세부 작업 보기</small></p>
       <div class="hx-cats">
         <div class="cat"><a class="cat-h" href="service/kitchen.html"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="8.5" cy="13" r="2.2"/><circle cx="15.5" cy="13" r="2.2"/><path d="M7 4v2M12 4v2M17 4v2"/></svg><b>주방 수리</b><span class="cat-n">6</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="#cases" data-go="kitchen">싱크대 문짝</a></li><li><a href="#cases" data-go="kitchen">경첩</a></li><li><a href="#cases" data-go="kitchen">상판 크랙</a></li><li><a href="tel:01059317025">팝업 배수구</a></li><li><a href="#cases" data-go="kitchen">싱크볼·수전 교체</a></li><li><a href="tel:01059317025">하부장 리폼</a></li></ul></div>
         <div class="cat"><a class="cat-h" href="service/bathroom.html"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M6 12V6a2 2 0 0 1 4 0"/><path d="M8 20l-1 2M16 20l1 2"/></svg><b>욕실 수리</b><span class="cat-n">5</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">세면대 누수</a></li><li><a href="tel:01059317025">배관</a></li><li><a href="#cases" data-go="tile">변기</a></li><li><a href="tel:01059317025">실리콘</a></li><li><a href="#cases" data-go="tile">들뜬 타일 재부착</a></li></ul></div>
@@ -890,6 +915,7 @@ footer a:hover { color: var(--gold-2); }
         <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><b>각종 공사</b><span class="cat-n">3</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">몰딩 교체</a></li><li><a href="tel:01059317025">조명·콘센트 교체</a></li><li><a href="tel:01059317025">선반·커튼레일 설치</a></li></ul></div>
         <div class="cat"><a class="cat-h" href="tel:01059317025"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M12 1.5v1.5M4.5 8H3M21 8h-1.5M6.7 2.7l1 1M17.3 2.7l-1 1"/><path d="M2 21h20M5 21v-5h14v5M9 16v5M15 16v5"/></svg><b>야외작업</b><span class="cat-n">4</span><span class="cat-arrow" aria-hidden="true">›</span></a><ul><li><a href="tel:01059317025">베란다·외벽 실리콘</a></li><li><a href="tel:01059317025">방충망·방범창</a></li><li><a href="tel:01059317025">데크·펜스 보수</a></li><li><a href="tel:01059317025">옥상·외부 방수</a></li></ul></div>
       </div>
+      <div class="cat-panel" aria-live="polite"></div>
       <p class="cats-note">다양한 생활 수리와 설치·철거 작업을 진행합니다. 작업 가능 여부는 현장 사진과 내용을 확인한 후 안내해 드립니다.</p>
       
     </div>
@@ -1637,5 +1663,41 @@ fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).the
 }).catch(() => {});
 </script>
 
+<script>
+(function(){
+  var mq = window.matchMedia('(max-width: 700px)');
+  var cats = [].slice.call(document.querySelectorAll('.hx-cats .cat'));
+  var panel = document.querySelector('.cat-panel');
+  if (!cats.length || !panel) return;
+  function show(c){
+    cats.forEach(function(x){ x.classList.toggle('on', x === c); });
+    var h = c.querySelector('.cat-h');
+    var href = h.getAttribute('href');
+    var name = h.querySelector('b').textContent;
+    panel.innerHTML = '';
+    var ul = c.querySelector('ul').cloneNode(true);
+    panel.appendChild(ul);
+    var more = document.createElement('a');
+    more.className = 'cat-more';
+    if (href.indexOf('tel:') === 0) { more.href = href; more.textContent = name + ' 전화 문의 ›'; }
+    else { more.href = href; more.textContent = name + ' 사례 자세히 보기 ›'; }
+    panel.appendChild(more);
+  }
+  cats.forEach(function(c){
+    c.querySelector('.cat-h').addEventListener('click', function(e){
+      if (!mq.matches) return;
+      if (c.classList.contains('on')) return; // 두 번째 탭은 원래 링크로 이동
+      e.preventDefault(); show(c);
+    });
+  });
+  panel.addEventListener('click', function(e){
+    var a = e.target.closest('[data-go]');
+    if (!a) return;
+    var b = document.querySelector('.filters .chip[data-f="' + a.dataset.go + '"]');
+    if (b) b.click();
+  });
+  show(cats[0]);
+})();
+</script>
 </body>
 </html>
