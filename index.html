@@ -1822,16 +1822,6 @@ fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).the
 </script>
 <script>
 (function(){
-  var list = document.querySelector('.area-list');
-  if (list && matchMedia('(max-width: 700px)').matches) {
-    list.classList.add('compact');
-    list.querySelectorAll('.area-row').forEach(function(r){ if (!r.querySelector('li.hot')) r.classList.add('nohot'); });
-    var total = list.querySelectorAll('.area-chips li').length;
-    var b = document.createElement('button'); b.type = 'button'; b.className = 'area-more';
-    b.textContent = '전체 지역 보기 (' + total + '곳)';
-    b.addEventListener('click', function(){ var c = list.classList.toggle('compact'); b.textContent = c ? '전체 지역 보기 (' + total + '곳)' : '정기 출장 지역만 보기'; });
-    var lg = list.querySelector('.area-legend'); list.insertBefore(b, lg);
-  }
   fetch('posts.json', { cache: 'no-store' }).then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
     if (!d) return;
     var p = d.posts.filter(function(x){ return x.quote && (x.images || []).length; })[0];
