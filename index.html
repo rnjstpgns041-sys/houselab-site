@@ -1536,6 +1536,15 @@ buildStrip(CASES_PHOTOS);
 
 // 작업 전후 비교
 const BA = [
+{ "id": "223834450645", "blog": "ssus7777", "label": "아트월 TV 철거·구멍 복원", "cat": "remove",
+  "title": "아트월 벽걸이 TV 철거 후 브래킷 구멍 복원", "quote": "",
+  "b": "images/s-223834450645-1.jpg", "a": "images/s-223834450645-a.jpg" },
+{ "id": "223843063685", "blog": "ssus7777", "label": "변기 테두리 백시멘트", "cat": "bath",
+  "title": "부서진 변기 테두리 백시멘트 제거 후 실리콘 마감", "quote": "",
+  "b": "images/s-223843063685-1.jpg", "a": "images/s-223843063685-a.jpg" },
+{ "id": "223711406851", "blog": "ssus7777", "label": "백시멘트 보수", "cat": "bath",
+  "title": "오염되고 갈라진 변기 백시멘트 제거 후 실리콘 재시공", "quote": "",
+  "b": "images/s-223711406851-1.jpg", "a": "images/s-223711406851-a.jpg" },
 {
 "id": "224480171508",
 "label": "싱크볼·수전 교체",
@@ -1743,7 +1752,7 @@ function drawBA() {
   document.getElementById("baCats").innerHTML = BA_CATS.filter(([k]) => k === "all" || BA.some(c => c.cat === k))
     .map(([k, n]) => `<button type="button" class="bac" data-k="${k}" aria-pressed="${k === BA_CAT}">${n} <span>${k === "all" ? BA.length : BA.filter(c => c.cat === k).length}</span></button>`).join("");
   document.getElementById("bapGrid").innerHTML = list.slice(0, BA_N).map(c => `
-    <a class="bap" href="https://blog.naver.com/psb-7/${c.id}" target="_blank" rel="noopener">
+    <a class="bap" href="https://blog.naver.com/${c.blog || "psb-7"}/${c.id}" target="_blank" rel="noopener">
       <div class="bap-img"><figure><img src="${c.b}" alt="${esc(c.title)} 시공 전" loading="lazy"><span class="badge">BEFORE</span></figure><figure><img src="${c.a}" alt="${esc(c.title)} 시공 후" loading="lazy"><span class="badge after">AFTER</span></figure></div>
       <b>${esc(c.label)}</b><span>${esc(c.title)}</span>
     </a>`).join("");
