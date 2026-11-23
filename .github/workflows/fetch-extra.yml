@@ -6,6 +6,9 @@ on:
     branches: [main]
     paths: ["scripts/fetch_extra.py", ".github/workflows/fetch-extra.yml"]
 
+permissions:
+  contents: write
+
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -16,8 +19,12 @@ jobs:
           python-version: "3.12"
       - run: pip install pillow
       - run: python scripts/fetch_extra.py
-      - uses: actions/upload-artifact@v4
-        with:
-          name: extra
-          path: extra_out
-          retention-days: 3
+      - name: 결과를 별도 브랜치에 올리기 (사이트에는 반영 안 됨)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout --orphan extra-photos
+          git rm -rq --cached .
+          git add extra_out
+          git commit -qm "다른 블로그 사진 후보"
+          git push -f origin extra-photos

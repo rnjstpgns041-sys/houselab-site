@@ -49,6 +49,14 @@ def main():
     all_t = titles()
     json.dump(all_t, open(f"{OUT}/titles.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     hits = [p for p in all_t if KEYS.search(p["title"])]
+    def prio(p):
+        t = p["title"]
+        if re.search(r"백시멘|백세멘|변기\s*테두리", t): return 0
+        if re.search(r"아트월", t) and re.search(r"TV|티비|tv", t): return 0
+        if re.search(r"아트월", t): return 1
+        if re.search(r"변기", t): return 2
+        return 3
+    hits.sort(key=prio)
     print(len(all_t), "posts,", len(hits), "matches")
     from PIL import Image
     for p in hits[:25]:
@@ -59,7 +67,7 @@ def main():
         urls = images(page)
         p["nimg"] = len(urls)
         d = f"{OUT}/{p['id']}"; os.makedirs(d, exist_ok=True)
-        for i, u in enumerate(urls[:30]):
+        for i, u in enumerate(urls[:16]):
             try:
                 data = None
                 for uu in (u, u.replace("type=w966", "type=w800")):
