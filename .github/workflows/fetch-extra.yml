@@ -1,0 +1,23 @@
+name: 다른 블로그 사진 찾기
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/fetch_extra.py", ".github/workflows/fetch-extra.yml"]
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow
+      - run: python scripts/fetch_extra.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: extra
+          path: extra_out
+          retention-days: 3
