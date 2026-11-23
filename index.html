@@ -1768,7 +1768,7 @@ fetch("posts.json", { cache: "no-store" }).then(r => r.ok ? r.json() : null).the
   if (!d) return;
   const pics = d.posts.filter(p => p.quote && (p.images || []).length).flatMap(p => [p.images[0], p.after || p.images[1]].filter(Boolean).map(src => ({ src, url: p.url, title: p.title })));
   const grid = document.getElementById("gallery-grid"), btn = document.getElementById("moreGallery");
-  let n = innerWidth < 700 ? 6 : 12;
+  let n = innerWidth < 700 ? 9 : 12;
   const draw = () => {
     grid.innerHTML = pics.slice(0, n).map(ph => `<a href="${esc(ph.url)}" target="_blank" rel="noopener"><img src="${esc(ph.src)}" alt="${esc(ph.title)} 현장 사진" loading="lazy"></a>`).join("");
     btn.hidden = n >= pics.length; btn.textContent = `사진 더 보기 (${pics.length - n}장)`;
