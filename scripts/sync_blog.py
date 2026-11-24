@@ -81,6 +81,24 @@ def need_upgrade(path, done):
     except Exception:
         return False
 
+def body_of(page):
+    """글 본문(스마트에디터 영역)만 텍스트로 뽑습니다."""
+    i = page.find("se-main-container")
+    if i < 0:
+        i = page.find("post-view")
+    if i < 0:
+        return ""
+    chunk = page[i:i + 200000]
+    for end in ("post_footer", "wrap_postcomment", "section_t1", "btn_post_list"):
+        j = chunk.find(end)
+        if j > 0:
+            chunk = chunk[:j]
+    chunk = re.sub(r"<(script|style)[^>]*>.*?</\1>", " ", chunk, flags=re.S)
+    chunk = re.sub(r"</(p|div|li|h\d)>", "\n", chunk)
+    t = html.unescape(re.sub(r"<[^>]+>", " ", chunk)).replace("ㅤ", " ").replace("\u200b", " ")
+    lines = [re.sub(r"[ \t]+", " ", l).strip() for l in t.split("\n")]
+    return "\n".join(l for l in lines if l)[:3000]
+
 def quote_of(t):
     m = re.search(r"의뢰 내용\s*[\"“](.+?)[\"”]", t)
     return m.group(1).strip()[:120] if m else ""
@@ -141,7 +159,7 @@ def main():
         posts.append({
             "id": pid, "title": title, "url": f"https://blog.naver.com/{BLOG}/{pid}",
             "date": date, "category": cat, "summary": text_of(desc)[:160],
-            "quote": quote_of(body), "images": images, "after": after, "nimg": len(urls),
+            "quote": quote_of(body), "body": body_of(page), "images": images, "after": after, "nimg": len(urls),
         })
         if len(posts) >= MAX_POSTS:
             break
