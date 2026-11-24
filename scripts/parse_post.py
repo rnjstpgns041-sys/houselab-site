@@ -74,6 +74,12 @@ def parse(body, title=""):
         lines = lines[1:]
     before = section(lines, r"작업 전후 비교")
     done = section(lines, r"작업 전후 달라진 점") or section(lines, r"작업 완료 및 마무리")
+    # 예전 글: '작업 전후 비교' 안에 "작업 완료 후에는 …" 문단이 같이 있음
+    cut = next((i for i, l in enumerate(before) if re.match(r"^(작업 완료 후|작업 후|시공 후|작업을 마친 후)", l)), None)
+    if cut is not None:
+        if not done:
+            done = before[cut:]
+        before = before[:cut]
     done = [l for l in done if not re.search(r"하우스\s?랩|읽어주셔서|감사합니다", l)]
     w = {
         "region": region_of(lines, title),
