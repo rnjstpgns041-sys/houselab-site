@@ -52,7 +52,15 @@ def image_urls(page, desc):
 def save_image(data, path):
     try:
         from PIL import Image
-        im = Image.open(io.BytesIO(data)).convert("RGB")
+        im = Image.open(io.BytesIO(data))
+        # 동그랗게 잘라 올린 PNG 사진은 모서리가 투명 → 원 안쪽 정사각형만 잘라 검은 모서리를 없앤다
+        if im.mode in ("RGBA", "LA", "P"):
+            im = im.convert("RGBA")
+            w, h = im.size
+            if im.getpixel((2, 2))[3] < 20 and im.getpixel((w - 3, h - 3))[3] < 20:
+                d = min(w, h) * 0.707
+                im = im.crop((int((w - d) / 2), int((h - d) / 2), int((w + d) / 2), int((h + d) / 2)))
+        im = im.convert("RGB")
         im.thumbnail((1400, 1400))
         im.save(path, "JPEG", quality=82, optimize=True, progressive=True)
     except Exception:
