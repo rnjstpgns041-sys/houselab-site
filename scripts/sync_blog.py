@@ -28,13 +28,17 @@ def image_urls(page, desc):
         if any(k in src for k in ("ssl.pstatic.net", "blogpfthumb", "dthumb", "storep", "sticker", "mblogvideo")):
             continue
         base = src.split("?")[0]
-        # 현장 카메라 사진(JPEG)만 사용. 표지용 PNG 일러스트는 제외
-        if not re.search(r"\.jpe?g$", base, re.I) or "type=w80_blur" in src:
+        # 현장 카메라 사진(JPEG)과 에디터로 올린 사진(SE-*.png)만 사용. 표지용 PNG 일러스트는 제외
+        if "type=w80_blur" in src:
+            continue
+        if not (re.search(r"\.jpe?g$", base, re.I) or re.search(r"/SE-[0-9a-f-]+\.png$", base, re.I)):
             continue
         if base in [b for b, _ in found]:
             continue
         found.append((base, src))
-    found.sort(key=lambda bs: 0 if re.search(r"\.jpe?g$", bs[0], re.I) else 1)
+    # JPEG 사진이 2장 이상이면 그것만, 아니면 에디터 PNG 사진도 사용 (글 순서 유지)
+    if sum(1 for b, _ in found if re.search(r"\.jpe?g$", b, re.I)) >= 2:
+        found = [bs for bs in found if re.search(r"\.jpe?g$", bs[0], re.I)]
     out = []
     for base, src in found:
         if "postfiles" in base or "blogfiles" in base:
