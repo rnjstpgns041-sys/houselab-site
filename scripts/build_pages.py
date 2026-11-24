@@ -6,6 +6,7 @@ import html, json, os, re, time
 SITE = "https://psb-7.com"
 TEL = "010-5931-7025"
 TEL_RAW = "01059317025"
+FONT = "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
 
 CATS = [
     {"slug": "kitchen", "name": "주방 수리", "kw": "싱크대·상판·수전",
@@ -100,7 +101,7 @@ section{padding:64px 0}h2{font-size:clamp(26px,3.6vw,38px);letter-spacing:-.04em
 .pair .b{left:8px;background:#0D0D0B;color:#F2EEE6}.pair .a{left:calc(50% + 8px);background:var(--gold);color:#16150F}
 .case h3{font-size:18px;line-height:1.4;margin:16px 18px 8px}
 .case blockquote{margin:0 18px 12px;color:var(--muted);font-size:14.5px;border-left:2px solid var(--gold);padding-left:10px}
-.case .meta{margin:auto 18px 16px;font-size:13.5px;color:var(--accent);font-weight:700}
+.case .meta{margin:auto 18px 16px;font-size:13.5px;color:var(--accent);font-weight:700;display:inline-block;padding:6px 0}
 .others{background:var(--alt)}
 .olinks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .olinks a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;text-decoration:none}
@@ -120,6 +121,13 @@ footer{background:var(--night);color:#8E887B;font-size:14px;padding:30px 0;text-
 @media(max-width:600px){.cases{grid-template-columns:1fr}.hero{padding:40px 0 36px}.items li{font-size:13px;padding:5px 10px}section{padding:48px 0}.btn{font-size:16px;padding:0 18px}}
 """
 
+def th(src):
+    """가벼운 미리보기(images/t/*.webp)가 있으면 그것을 쓴다."""
+    m = re.match(r"images/([^/]+)\.jpg$", src or "")
+    if m and os.path.exists(f"images/t/{m.group(1)}.webp"):
+        return f"images/t/{m.group(1)}.webp"
+    return src
+
 def card(p):
     b = p["images"][0]
     a = p.get("after") or (p["images"][1] if len(p["images"]) > 1 else "")
@@ -129,8 +137,8 @@ def card(p):
             ("작업 내용", " → ".join(w.get("steps") or [])),
             ("작업 완료", w.get("done", "")), ("마무리", w.get("wrap", ""))]
     dl = "".join(f"<div><dt>{k}</dt><dd>{e(v)}</dd></div>" for k, v in rows if v)
-    pair = (f'<div class="pair"><img src="../{e(b)}" alt="{e(head)} 시공 전" loading="lazy"><img src="../{e(a)}" alt="{e(head)} 시공 후" loading="lazy"><span class="t b">BEFORE</span><span class="t a">AFTER</span></div>'
-            if a else f'<div class="pair" style="grid-template-columns:1fr"><img src="../{e(b)}" alt="{e(head)} 현장" loading="lazy" style="aspect-ratio:2/1"></div>')
+    pair = (f'<div class="pair"><img src="../{e(th(b))}" alt="{e(head)} 시공 전" loading="lazy" decoding="async"><img src="../{e(th(a))}" alt="{e(head)} 시공 후" loading="lazy" decoding="async"><span class="t b">BEFORE</span><span class="t a">AFTER</span></div>'
+            if a else f'<div class="pair" style="grid-template-columns:1fr"><img src="../{e(th(b))}" alt="{e(head)} 현장" loading="lazy" decoding="async" style="aspect-ratio:2/1"></div>')
     return (f'<article class="case">{pair}<h3>{e(head)}</h3>' + (f'<dl class="work">{dl}</dl>' if dl else "")
             + f'<a class="meta" href="{e(p["url"])}" target="_blank" rel="noopener">{e(p.get("date",""))} · 블로그에서 전체 과정 보기 →</a></article>')
 
@@ -142,8 +150,16 @@ def olist(items):
     return f'<ul class="olist">{lis}</ul>'
 
 def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
-    ld = {"@context": "https://schema.org", "@type": "HomeAndConstructionBusiness", "name": "하우스랩 건설",
-          "url": SITE + "/", "telephone": "+82-10-5931-7025", "description": desc}
+    # 경로 표시(홈 › 시공 분야 › 주방 수리)를 검색에도 알려 준다
+    names = [re.sub(r"<[^>]+>", "", x).strip() for x in crumb.split("›")]
+    hubs = {"시공 분야": SITE + "/#services", "출장 지역": SITE + "/#area"}
+    trail = [("하우스랩 건설", SITE + "/")] + [(n, url if i == len(names) - 1 else hubs.get(n)) for i, n in enumerate(names)]
+    bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        dict({"@type": "ListItem", "position": i + 1, "name": n}, **({"item": u} if u else {})) for i, (n, u) in enumerate(trail)]}
+    ld = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
+          "inLanguage": "ko", "about": {"@type": "HomeAndConstructionBusiness", "@id": SITE + "/#business", "name": "하우스랩 건설",
+          "url": SITE + "/", "telephone": "+82-10-5931-7025"}}
+    img = f"{SITE}/{og_img}" if og_img else f"{SITE}/og.jpg"
     return f"""<!doctype html>
 <html lang="ko"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -152,9 +168,11 @@ def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
 <link rel="canonical" href="{url}">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#0D0D0B">
 <meta property="og:type" content="website"><meta property="og:site_name" content="하우스랩 건설"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{url}">
-{f'<meta property="og:image" content="{SITE}/{e(og_img)}">' if og_img else ''}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<meta property="og:image" content="{e(img)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(title)}"><meta name="twitter:description" content="{e(desc)}"><meta name="twitter:image" content="{e(img)}">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="{FONT}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="{FONT}"></noscript>
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
+<script type="application/ld+json">{json.dumps(bc, ensure_ascii=False)}</script>
 <style>{CSS}</style>
 </head><body>
 <header><div class="wrap"><a class="logo" href="../">하우스랩 건설</a><a class="call" href="tel:{TEL_RAW}">전화하기</a></div></header>
@@ -196,7 +214,7 @@ def page(cat, cases, cats):
 {f'<section class="blog"><div class="wrap"><h2>{e(cat["name"])} 블로그 작업 기록</h2><p class="sub">하우스랩 건설 작업 블로그에 올린 {e(cat["name"])} 현장입니다.</p>{olist(oth)}</div></section>' if oth else ''}
 {links_block(cur_cat=cat)}"""
     og = (cases[0].get("after") or cases[0]["images"][0]) if cases else ""
-    return shell(title, desc, url, f"시공 분야 › {e(cat['name'])}", f"{e(cat['name'])}<br><span>{e(cat['kw'])}</span>",
+    return shell(title, desc, url, f"<a href=\"../#services\">시공 분야</a> › {e(cat['name'])}", f"{e(cat['name'])}<br><span>{e(cat['kw'])}</span>",
                  f"{e(cat['desc'])}", items, body, og)
 
 def area_page(ar, cases):
@@ -215,7 +233,7 @@ def area_page(ar, cases):
     og = (cases[0].get("after") or cases[0]["images"][0]) if cases else ""
     lead = f"{e(ar['full'])}은 하우스랩 건설이 정기적으로 방문하는 지역입니다. 전체 사진 1장과 문제 부위 사진 1장을 문자로 보내 주시면 무료로 견적을 안내해 드립니다."
     items = '<ul class="items">' + "".join(f'<li><a href="../service/{c["slug"]}.html">{e(c["name"])}</a></li>' for c in CATS) + "</ul>"
-    return shell(title, desc, url, f"출장 지역 › {e(ar['name'])}", f"{e(ar['name'])} 집수리<br><span>하우스랩 건설</span>", lead, items, body, og)
+    return shell(title, desc, url, f"<a href=\"../#area\">출장 지역</a> › {e(ar['name'])}", f"{e(ar['name'])} 집수리<br><span>하우스랩 건설</span>", lead, items, body, og)
 
 def main():
     posts = json.load(open("posts.json", encoding="utf-8"))["posts"]

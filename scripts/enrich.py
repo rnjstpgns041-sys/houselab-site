@@ -35,6 +35,9 @@ def main(path="posts.json"):
         p["job"] = jobs.get(p["id"], "")
         p["cat"] = cat_of(p["title"])
     json.dump(d, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    # 홈페이지가 읽는 가벼운 버전: 긴 본문(body, summary)은 빼고 저장
+    lite = {"updated": d.get("updated"), "posts": [{k: v for k, v in p.items() if k not in ("body", "summary")} for p in d["posts"]]}
+    json.dump(lite, open("site.json", "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     print("enriched", len(d["posts"]))
 
 if __name__ == "__main__":

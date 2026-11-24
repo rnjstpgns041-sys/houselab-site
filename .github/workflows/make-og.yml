@@ -1,0 +1,30 @@
+name: 공유 이미지 만들기
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["scripts/make_og.py", ".github/workflows/make-og.yml"]
+
+permissions:
+  contents: write
+
+jobs:
+  og:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq fonts-noto-cjk fonts-noto-cjk-extra
+      - run: pip install pillow
+      - run: python scripts/make_og.py
+      - name: 저장
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add og.jpg
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "공유 이미지 다시 만들기"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done
