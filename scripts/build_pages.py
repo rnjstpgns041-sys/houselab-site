@@ -60,7 +60,11 @@ def cat_of(title):
         return "kitchen"
     return "etc"
 
+SHOW_OTHER_BLOG = False  # ssus7777 글은 다른 상호(메이저)가 보여서 2026-11-24 요청으로 표시하지 않음
+
 def other_posts(rx, limit=12):
+    if not SHOW_OTHER_BLOG:
+        return []
     try:
         allp = json.load(open("data/other_titles.json", encoding="utf-8"))
     except Exception:
@@ -153,11 +157,11 @@ def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
     # 경로 표시(홈 › 시공 분야 › 주방 수리)를 검색에도 알려 준다
     names = [re.sub(r"<[^>]+>", "", x).strip() for x in crumb.split("›")]
     hubs = {"시공 분야": SITE + "/#services", "출장 지역": SITE + "/#area"}
-    trail = [("하우스랩 건설", SITE + "/")] + [(n, url if i == len(names) - 1 else hubs.get(n)) for i, n in enumerate(names)]
+    trail = [("하우스랩건설", SITE + "/")] + [(n, url if i == len(names) - 1 else hubs.get(n)) for i, n in enumerate(names)]
     bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         dict({"@type": "ListItem", "position": i + 1, "name": n}, **({"item": u} if u else {})) for i, (n, u) in enumerate(trail)]}
     ld = {"@context": "https://schema.org", "@type": "WebPage", "name": title, "url": url, "description": desc,
-          "inLanguage": "ko", "about": {"@type": "HomeAndConstructionBusiness", "@id": SITE + "/#business", "name": "하우스랩 건설",
+          "inLanguage": "ko", "about": {"@type": "HomeAndConstructionBusiness", "@id": SITE + "/#business", "name": "하우스랩건설",
           "url": SITE + "/", "telephone": "+82-10-5931-7025"}}
     img = f"{SITE}/{og_img}" if og_img else f"{SITE}/og.jpg"
     return f"""<!doctype html>
@@ -167,7 +171,7 @@ def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{url}">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#0D0D0B">
-<meta property="og:type" content="website"><meta property="og:site_name" content="하우스랩 건설"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{url}">
+<meta property="og:type" content="website"><meta property="og:site_name" content="하우스랩건설"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{url}">
 <meta property="og:image" content="{e(img)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(title)}"><meta name="twitter:description" content="{e(desc)}"><meta name="twitter:image" content="{e(img)}">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="{FONT}" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="{FONT}"></noscript>
@@ -175,7 +179,7 @@ def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
 <script type="application/ld+json">{json.dumps(bc, ensure_ascii=False)}</script>
 <style>{CSS}</style>
 </head><body>
-<header><div class="wrap"><a class="logo" href="../">하우스랩 건설</a><a class="call" href="tel:{TEL_RAW}">전화하기</a></div></header>
+<header><div class="wrap"><a class="logo" href="../">하우스랩건설</a><a class="call" href="tel:{TEL_RAW}">전화하기</a></div></header>
 <main>
 <div class="hero"><div class="wrap">
 <p class="crumb"><a href="../">홈</a> › {crumb}</p>
@@ -186,7 +190,7 @@ def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
 </div></div>
 {body}
 </main>
-<footer>하우스랩 건설 · 집수리·부분 인테리어 전문 · 경기 광주·성남·하남·용인·수원 및 서울·경기 출장 · {TEL}</footer>
+<footer>하우스랩건설 · 집수리 및 종합 인테리어 · 경기 광주·성남·하남·용인·수원 및 서울·경기 출장 · {TEL}</footer>
 <div class="dock"><a class="btn ghost" href="sms:{TEL_RAW}">무료견적 문자하기</a><a class="btn gold" href="tel:{TEL_RAW}">전화하기</a></div>
 </body></html>
 """
@@ -197,43 +201,47 @@ def links_block(cur_cat=None, cur_area=None):
     return f"""<section class="others"><div class="wrap">
 <h2>시공 분야</h2><p class="sub">사진 상담 · 무료 견적 · 직접 시공</p><div class="olinks">{cl}</div>
 <h2 style="margin-top:40px">출장 지역</h2><p class="sub">정기적으로 방문하는 지역입니다</p><div class="olinks">{al}</div>
-<p class="home"><a href="../">하우스랩 건설 홈으로 →</a></p>
+<p class="home"><a href="../">하우스랩건설 홈으로 →</a></p>
 </div></section>"""
 
 def page(cat, cases, cats):
-    title = f"{cat['name']} {cat['kw']} | 하우스랩 건설 집수리"
+    title = f"{cat['name']} {cat['kw']} | 하우스랩건설 집수리"
     desc = f"{cat['desc']} 경기 광주·성남·하남·용인·수원 및 서울·경기 출장, 사진 무료 견적. 실제 시공 사례 {len(cases)}건."
     url = f"{SITE}/service/{cat['slug']}.html"
     items = '<ul class="items">' + "".join(f"<li>{e(i)}</li>" for i in cat["items"]) + "</ul>"
     oth = other_posts(cat["other"])
     body = f"""<section><div class="wrap">
 <h2>{e(cat['name'])} 실제 시공 사례</h2>
-<p class="sub">하우스랩 건설이 직접 시공하고 블로그에 기록한 현장 {len(cases)}건입니다.</p>
-<div class="cases">{''.join(card(p) for p in cases) if cases else '<p class="sub">사진이 있는 사례를 정리하고 있습니다. 아래 블로그 작업 기록을 참고해 주세요.</p>'}</div>
+<p class="sub">하우스랩건설이 직접 시공하고 블로그에 기록한 현장 {len(cases)}건입니다.</p>
+<div class="cases">{''.join(card(p) for p in cases) if cases else '<p class="sub">사진이 있는 사례를 정리하고 있습니다. 궁금한 작업은 사진과 함께 문자로 문의해 주세요.</p>'}</div>
 </div></section>
-{f'<section class="blog"><div class="wrap"><h2>{e(cat["name"])} 블로그 작업 기록</h2><p class="sub">하우스랩 건설 작업 블로그에 올린 {e(cat["name"])} 현장입니다.</p>{olist(oth)}</div></section>' if oth else ''}
+{f'<section class="blog"><div class="wrap"><h2>{e(cat["name"])} 블로그 작업 기록</h2><p class="sub">하우스랩건설 작업 블로그에 올린 {e(cat["name"])} 현장입니다.</p>{olist(oth)}</div></section>' if oth else ''}
 {links_block(cur_cat=cat)}"""
     og = (cases[0].get("after") or cases[0]["images"][0]) if cases else ""
     return shell(title, desc, url, f"<a href=\"../#services\">시공 분야</a> › {e(cat['name'])}", f"{e(cat['name'])}<br><span>{e(cat['kw'])}</span>",
                  f"{e(cat['desc'])}", items, body, og)
 
-def area_page(ar, cases):
+def area_page(ar, cases, recent=()):
     oth = other_posts(ar["other"], 15)
-    title = f"{ar['name']} 집수리 | 싱크대·욕실·가전 설치·철거 복원 - 하우스랩 건설"
+    title = f"{ar['name']} 집수리 | 싱크대·욕실·가전 설치·철거 복원 - 하우스랩건설"
     desc = f"{ar['full']} 집수리 출장. 싱크대 수리, 욕실 보수, 가전 설치, 가구·문 수리, 철거 및 원상복구. {ar['name']} 실제 작업 사례와 사진 무료 견적."
     url = f"{SITE}/area/{ar['slug']}.html"
+    if not cases:
+        cases = recent[:3]
+        h2, sub = "최근 시공 사례", f"{e(ar['name'])} 사례는 정리 중입니다. 가까운 지역에서 최근 직접 시공한 현장입니다."
+    else:
+        h2, sub = f"{e(ar['name'])} 실제 시공 사례", f"{e(ar['name'])}에서 직접 시공하고 사진으로 기록한 현장입니다."
     body = f"""<section><div class="wrap">
-<h2>{e(ar['name'])} 실제 시공 사례</h2>
-<p class="sub">{e(ar['name'])}에서 직접 시공하고 사진으로 기록한 현장입니다.</p>
-<div class="cases">{''.join(card(p) for p in cases) if cases else ''}</div>
-{'' if cases else '<p class="sub">사진 사례는 아래 블로그 작업 기록에서 볼 수 있습니다.</p>'}
+<h2>{h2}</h2>
+<p class="sub">{sub}</p>
+<div class="cases">{''.join(card(p) for p in cases)}</div>
 </div></section>
-{f'<section class="blog"><div class="wrap"><h2>{e(ar["name"])} 블로그 작업 기록</h2><p class="sub">하우스랩 건설 작업 블로그에 올린 {e(ar["name"])} 현장 {len(oth)}건입니다.</p>{olist(oth)}</div></section>' if oth else ''}
+{f'<section class="blog"><div class="wrap"><h2>{e(ar["name"])} 블로그 작업 기록</h2><p class="sub">하우스랩건설 작업 블로그에 올린 {e(ar["name"])} 현장 {len(oth)}건입니다.</p>{olist(oth)}</div></section>' if oth else ''}
 {links_block(cur_area=ar)}"""
     og = (cases[0].get("after") or cases[0]["images"][0]) if cases else ""
-    lead = f"{e(ar['full'])}은 하우스랩 건설이 정기적으로 방문하는 지역입니다. 전체 사진 1장과 문제 부위 사진 1장을 문자로 보내 주시면 무료로 견적을 안내해 드립니다."
+    lead = f"{e(ar['full'])}은 하우스랩건설이 정기적으로 방문하는 지역입니다. 전체 사진 1장과 문제 부위 사진 1장을 문자로 보내 주시면 무료로 견적을 안내해 드립니다."
     items = '<ul class="items">' + "".join(f'<li><a href="../service/{c["slug"]}.html">{e(c["name"])}</a></li>' for c in CATS) + "</ul>"
-    return shell(title, desc, url, f"<a href=\"../#area\">출장 지역</a> › {e(ar['name'])}", f"{e(ar['name'])} 집수리<br><span>하우스랩 건설</span>", lead, items, body, og)
+    return shell(title, desc, url, f"<a href=\"../#area\">출장 지역</a> › {e(ar['name'])}", f"{e(ar['name'])} 집수리<br><span>하우스랩건설</span>", lead, items, body, og)
 
 def main():
     posts = json.load(open("posts.json", encoding="utf-8"))["posts"]
@@ -247,7 +255,7 @@ def main():
         print(c["slug"], len(by[c["slug"]]))
     for ar in AREAS:
         cs = [p for p in jobs if re.search(ar["match"], p.get("area", ""))]
-        open(f"area/{ar['slug']}.html", "w", encoding="utf-8").write(area_page(ar, cs))
+        open(f"area/{ar['slug']}.html", "w", encoding="utf-8").write(area_page(ar, cs, jobs))
         print(ar["slug"], len(cs), len(other_posts(ar["other"], 15)))
     today = time.strftime("%Y-%m-%d")
     urls = [f"{SITE}/"] + [f"{SITE}/service/{c['slug']}.html" for c in CATS] + [f"{SITE}/area/{a['slug']}.html" for a in AREAS]

@@ -28,7 +28,7 @@ im = Image.composite(Image.new("RGB", (W, H), INK), im, shade)
 d = ImageDraw.Draw(im)
 d.rectangle([0, 0, 10, H], fill=GOLD)
 x = 78
-d.text((x, 92), "하우스랩 건설  |  집수리·부분 인테리어 전문", font=font(False, 30), fill=GOLD2)
+d.text((x, 92), "하우스랩건설  |  집수리 및 종합 인테리어", font=font(False, 30), fill=GOLD2)
 d.text((x, 160), "우리 집 불편한 곳,", font=font(True, 66), fill=(255, 255, 255))
 d.text((x, 248), "필요한 부분만 ", font=font(True, 66), fill=(255, 255, 255))
 w = d.textlength("필요한 부분만 ", font=font(True, 66))
