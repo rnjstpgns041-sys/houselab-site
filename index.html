@@ -1109,7 +1109,7 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
 .photo .bt.a { left: calc(50% + 11px); background: #C8A96A; color: #16150F; }
 #reviews { background: #15140F; border-top: 1px solid rgba(200,169,106,.35); }
 .rv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 16px; align-items: start; }
-.rv { margin: 0; background: #1C1B16; border: 1px solid #2C2A23; border-left: 3px solid #C8A96A; border-radius: 16px; padding: 20px 20px 18px; }
+.rvw { margin: 0; background: #1C1B16; border: 1px solid #2C2A23; border-left: 3px solid #C8A96A; border-radius: 16px; padding: 20px 20px 18px; }
 .rv-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
 .rv-stars { color: #E8B04B; letter-spacing: 1px; font-size: 15px; }
 .rv-stars b { color: #F2EEE6; margin-left: 4px; letter-spacing: 0; }
@@ -1117,9 +1117,12 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
 .rv-text { margin: 12px 0 0; color: #ECE7DD; font-size: 15.5px; line-height: 1.75; word-break: keep-all; }
 .rv-text p { margin: 0 0 8px; }
 .rv-text p:last-child { margin-bottom: 0; }
-.rv figcaption { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+.rvw figcaption { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
 .rv-job { background: rgba(200,169,106,.14); color: #E8D5A6; font-size: 13px; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
-.rv-src { color: #A9A398; font-size: 12.5px; }
+#reviews .section-head h2 { color: #F2EEE6; }
+#reviews .section-head p { color: #B9B3A8; }
+#reviews .eyebrow { color: #C8A96A; }
+#reviews .eyebrow::before, #reviews .eyebrow::after { background: rgba(200,169,106,.5); }
 .svc-more, .case .more { min-height: 32px; display: inline-flex; align-items: center; }
 </style>
 </head>
@@ -1297,33 +1300,33 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
           <p class="eyebrow">Reviews</p>
           <h2>고객 후기</h2>
         </div>
-        <p>당근에 고객님들이 직접 남겨 주신 후기입니다. 받은 그대로 옮겼습니다.</p>
+        <p>고객님들이 직접 남겨 주신 후기입니다. 받은 그대로 옮겼습니다.</p>
       </div>
       <div class="rv-grid">
-        <figure class="rv">
+        <figure class="rvw">
           <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">09.22</span></div>
           <blockquote class="rv-text"><p>일부 하부장과 문짝을 교체했는데 상부장 어울리는 색상으로 감각있게 셋팅해 주시고 작업시에도 중간중간 상세한 설명으로 체크도 잘해주시고 마지막으로 마무리까지 꼼꼼하게 해 주셔서 매우 만족했습니다 감사합니다</p></blockquote>
-          <figcaption><span class="rv-job">하부장·문짝 교체</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+          <figcaption><span class="rv-job">하부장·문짝 교체</span></figcaption>
         </figure>
-        <figure class="rv">
+        <figure class="rvw">
           <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">09.18</span></div>
           <blockquote class="rv-text"><p>어머니가 중문 고장으로 맘 고생하셨는데 전화 드리자마자 5분안에 오셨어요~ 너무 친절하게 상태와 조치 방법 모두 알려주시고 순식간에 고쳐주셨어요!! 집에 다른 것도 불편한게 없는지 물어봐 주셨어요 우리 동네 이런 업체가 있다니!! 너무너무 감동 입니다! 번창하세요! 감사합니다~</p></blockquote>
-          <figcaption><span class="rv-job">중문 수리</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+          <figcaption><span class="rv-job">중문 수리</span></figcaption>
         </figure>
-        <figure class="rv">
+        <figure class="rvw">
           <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">09.14</span></div>
           <blockquote class="rv-text"><p>욕조 재코팅과 욕조 수전 교체를 맡겼는데 정말 만족스러웠습니다.</p><p>처음 상담할 때부터 굉장히 친절하셨고, 작업하시는 모습도 꼼꼼해서 믿음이 갔습니다. 단순히 요청한 부분만 빠르게 처리하는 게 아니라 작업하면서 상태를 하나하나 확인해주시고, 왜 이렇게 수리하는지 설명도 잘 해주셔서 좋았습니다.</p><p>욕조 실리콘이나 도어스토퍼, 현관 센서등, 중문 걸림 같은 부분도 같이 봐주셨고, 집안에 다른 수리가 필요한 부분에 대해서도 이것저것 물어보니 어떤 방법이 좋은지, 대략적인 비용은 어느 정도인지 자세하게 알려주셨습니다.</p><p>무엇보다 불필요하게 수리를 권하기보다는 현재 상태에서 어떻게 하는 게 좋을지 솔직하게 말씀해주셔서 더 좋았습니다.</p></blockquote>
-          <figcaption><span class="rv-job">욕조 재코팅·수전 교체</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+          <figcaption><span class="rv-job">욕조 재코팅·수전 교체</span></figcaption>
         </figure>
-        <figure class="rv">
+        <figure class="rvw">
           <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">08.25</span></div>
           <blockquote class="rv-text"><p>ㄱ자로 튀어나온 싱크대, 1자로 리폼했는데 너무 깔끔하게 해주셨어여~~ 사장님 성격도 좋으신데 완성도가 더 맘에 듭니다~~ 싱크대 정리하고 또 사진 올려볼게요 ㅎㅎ 가격도 너무 저렴하게 잘해주셔서 감사합니다 ㅎ 또 수리 필요 시, 연락드릴게요 ^^</p></blockquote>
-          <figcaption><span class="rv-job">싱크대 1자 리폼</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+          <figcaption><span class="rv-job">싱크대 1자 리폼</span></figcaption>
         </figure>
-        <figure class="rv">
+        <figure class="rvw">
           <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">08.23</span></div>
           <blockquote class="rv-text"><p>친절한 상담부터 견적까지 정말 본인집 고치는것 처럼 꼼꼼하고 세심하게 씽크대 문짝 교체를 해 주셨어요~^^</p><p>하나하나 달아주시는데 감탄이 나오더라고요~ …</p></blockquote>
-          <figcaption><span class="rv-job">싱크대 문짝 교체</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+          <figcaption><span class="rv-job">싱크대 문짝 교체</span></figcaption>
         </figure>
       </div>
     </div>
