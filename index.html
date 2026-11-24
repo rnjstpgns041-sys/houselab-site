@@ -1107,6 +1107,19 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
 .photo .bt { position: absolute; top: 10px; z-index: 1; font-size: 11px; font-weight: 800; letter-spacing: .08em; padding: 4px 9px; border-radius: 999px; }
 .photo .bt.b { left: 10px; background: rgba(13,13,11,.82); color: #F2EEE6; }
 .photo .bt.a { left: calc(50% + 11px); background: #C8A96A; color: #16150F; }
+#reviews { background: #15140F; border-top: 1px solid rgba(200,169,106,.35); }
+.rv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 16px; align-items: start; }
+.rv { margin: 0; background: #1C1B16; border: 1px solid #2C2A23; border-left: 3px solid #C8A96A; border-radius: 16px; padding: 20px 20px 18px; }
+.rv-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.rv-stars { color: #E8B04B; letter-spacing: 1px; font-size: 15px; }
+.rv-stars b { color: #F2EEE6; margin-left: 4px; letter-spacing: 0; }
+.rv-date { color: #A9A398; font-size: 13.5px; }
+.rv-text { margin: 12px 0 0; color: #ECE7DD; font-size: 15.5px; line-height: 1.75; word-break: keep-all; }
+.rv-text p { margin: 0 0 8px; }
+.rv-text p:last-child { margin-bottom: 0; }
+.rv figcaption { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
+.rv-job { background: rgba(200,169,106,.14); color: #E8D5A6; font-size: 13px; font-weight: 700; padding: 5px 10px; border-radius: 999px; }
+.rv-src { color: #A9A398; font-size: 12.5px; }
 .svc-more, .case .more { min-height: 32px; display: inline-flex; align-items: center; }
 </style>
 </head>
@@ -1119,6 +1132,7 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
     <nav class="nav" aria-label="주 메뉴">
       <a href="#services">시공 분야</a>
       <a href="#beforeafter">전후 비교</a>
+      <a href="#reviews">고객 후기</a>
       <a href="#cases">작업 기록</a>
       <a href="#process">진행 방법</a>
       <a href="#gallery">현장 사진</a>
@@ -1144,7 +1158,7 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
       <p class="dr-h">무엇을 고칠까요?</p>
       <div class="dr-grid"><a class="dr-tile" href="service/kitchen.html"><span class="dr-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="12" rx="2"/><circle cx="8.5" cy="13" r="2.2"/><circle cx="15.5" cy="13" r="2.2"/><path d="M7 4v2M12 4v2M17 4v2"/></svg></span><span><b>주방 수리</b><small>싱크대·상판·수전</small></span></a><a class="dr-tile" href="service/bathroom.html"><span class="dr-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16v3a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M6 12V6a2 2 0 0 1 4 0"/><path d="M8 20l-1 2M16 20l1 2"/></svg></span><span><b>욕실 수리</b><small>변기·세면대·타일</small></span></a><a class="dr-tile" href="service/appliance.html"><span class="dr-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="13" r="4"/><path d="M8 6.5h2"/></svg></span><span><b>가전 설치</b><small>인덕션·건조기</small></span></a><a class="dr-tile" href="service/repair.html"><span class="dr-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17"/><path d="M3 21h18"/><circle cx="14.5" cy="12" r="1"/></svg></span><span><b>가구·문 수리</b><small>경첩·롤러·문짝</small></span></a><a class="dr-tile" href="service/removal.html"><span class="dr-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4l6 6-3 3-6-6z"/><path d="M11 7L4 14v6h6l7-7"/></svg></span><span><b>철거·복원</b><small>TV 철거·벽면 복원</small></span></a><a class="dr-tile" href="service/etc.html"><span class="dr-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><span><b>기타 집수리</b><small>조명·마루·방수</small></span></a></div>
       <p class="dr-h">둘러보기</p>
-      <ul class="dr-nav"><li><a href="#top">처음으로<span aria-hidden="true">›</span></a></li><li><a href="#services">시공 분야<span aria-hidden="true">›</span></a></li><li><a href="#beforeafter">시공 전후 사진<span aria-hidden="true">›</span></a></li><li><a href="#cases">작업 기록<span aria-hidden="true">›</span></a></li><li><a href="#process">진행 방법<span aria-hidden="true">›</span></a></li><li><a href="#guide">견적 기준·시공 후 점검<span aria-hidden="true">›</span></a></li><li><a href="#gallery">실제 현장 사진<span aria-hidden="true">›</span></a></li><li><a href="#faq">자주 묻는 질문<span aria-hidden="true">›</span></a></li><li><a href="#about">업체 소개<span aria-hidden="true">›</span></a></li><li><a href="#area">시공 지역<span aria-hidden="true">›</span></a></li><li><a href="#contact">무료견적 문자하기<span aria-hidden="true">›</span></a></li></ul>
+      <ul class="dr-nav"><li><a href="#top">처음으로<span aria-hidden="true">›</span></a></li><li><a href="#services">시공 분야<span aria-hidden="true">›</span></a></li><li><a href="#reviews">고객 후기<span aria-hidden="true">›</span></a></li><li><a href="#beforeafter">시공 전후 사진<span aria-hidden="true">›</span></a></li><li><a href="#cases">작업 기록<span aria-hidden="true">›</span></a></li><li><a href="#process">진행 방법<span aria-hidden="true">›</span></a></li><li><a href="#guide">견적 기준·시공 후 점검<span aria-hidden="true">›</span></a></li><li><a href="#gallery">실제 현장 사진<span aria-hidden="true">›</span></a></li><li><a href="#faq">자주 묻는 질문<span aria-hidden="true">›</span></a></li><li><a href="#about">업체 소개<span aria-hidden="true">›</span></a></li><li><a href="#area">시공 지역<span aria-hidden="true">›</span></a></li><li><a href="#contact">무료견적 문자하기<span aria-hidden="true">›</span></a></li></ul>
       <p class="dr-foot">작업 중에는 전화를 못 받을 때가 많아요. 사진과 함께 문자 주시면 확인 후 연락드립니다.</p>
     </div>
   </aside>
@@ -1273,6 +1287,45 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
       <div class="bap-grid" id="bapGrid"></div>
       <div class="more-wrap"><button class="pill ghost-dark" type="button" id="moreBA" hidden>전후 사진 더 보기</button></div>
       <div class="more-wrap"><a class="pill big" href="tel:01059317025"><svg class="ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>비슷한 작업 전화 문의</a></div>
+    </div>
+  </section>
+
+  <section class="section" id="reviews">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Reviews</p>
+          <h2>고객 후기</h2>
+        </div>
+        <p>당근에 고객님들이 직접 남겨 주신 후기입니다. 받은 그대로 옮겼습니다.</p>
+      </div>
+      <div class="rv-grid">
+        <figure class="rv">
+          <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">09.22</span></div>
+          <blockquote class="rv-text"><p>일부 하부장과 문짝을 교체했는데 상부장 어울리는 색상으로 감각있게 셋팅해 주시고 작업시에도 중간중간 상세한 설명으로 체크도 잘해주시고 마지막으로 마무리까지 꼼꼼하게 해 주셔서 매우 만족했습니다 감사합니다</p></blockquote>
+          <figcaption><span class="rv-job">하부장·문짝 교체</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+        </figure>
+        <figure class="rv">
+          <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">09.18</span></div>
+          <blockquote class="rv-text"><p>어머니가 중문 고장으로 맘 고생하셨는데 전화 드리자마자 5분안에 오셨어요~ 너무 친절하게 상태와 조치 방법 모두 알려주시고 순식간에 고쳐주셨어요!! 집에 다른 것도 불편한게 없는지 물어봐 주셨어요 우리 동네 이런 업체가 있다니!! 너무너무 감동 입니다! 번창하세요! 감사합니다~</p></blockquote>
+          <figcaption><span class="rv-job">중문 수리</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+        </figure>
+        <figure class="rv">
+          <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">09.14</span></div>
+          <blockquote class="rv-text"><p>욕조 재코팅과 욕조 수전 교체를 맡겼는데 정말 만족스러웠습니다.</p><p>처음 상담할 때부터 굉장히 친절하셨고, 작업하시는 모습도 꼼꼼해서 믿음이 갔습니다. 단순히 요청한 부분만 빠르게 처리하는 게 아니라 작업하면서 상태를 하나하나 확인해주시고, 왜 이렇게 수리하는지 설명도 잘 해주셔서 좋았습니다.</p><p>욕조 실리콘이나 도어스토퍼, 현관 센서등, 중문 걸림 같은 부분도 같이 봐주셨고, 집안에 다른 수리가 필요한 부분에 대해서도 이것저것 물어보니 어떤 방법이 좋은지, 대략적인 비용은 어느 정도인지 자세하게 알려주셨습니다.</p><p>무엇보다 불필요하게 수리를 권하기보다는 현재 상태에서 어떻게 하는 게 좋을지 솔직하게 말씀해주셔서 더 좋았습니다.</p></blockquote>
+          <figcaption><span class="rv-job">욕조 재코팅·수전 교체</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+        </figure>
+        <figure class="rv">
+          <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">08.25</span></div>
+          <blockquote class="rv-text"><p>ㄱ자로 튀어나온 싱크대, 1자로 리폼했는데 너무 깔끔하게 해주셨어여~~ 사장님 성격도 좋으신데 완성도가 더 맘에 듭니다~~ 싱크대 정리하고 또 사진 올려볼게요 ㅎㅎ 가격도 너무 저렴하게 잘해주셔서 감사합니다 ㅎ 또 수리 필요 시, 연락드릴게요 ^^</p></blockquote>
+          <figcaption><span class="rv-job">싱크대 1자 리폼</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+        </figure>
+        <figure class="rv">
+          <div class="rv-top"><span class="rv-stars" aria-label="별점 5점 만점에 5.0">★★★★★ <b>5.0</b></span><span class="rv-date">08.23</span></div>
+          <blockquote class="rv-text"><p>친절한 상담부터 견적까지 정말 본인집 고치는것 처럼 꼼꼼하고 세심하게 씽크대 문짝 교체를 해 주셨어요~^^</p><p>하나하나 달아주시는데 감탄이 나오더라고요~ …</p></blockquote>
+          <figcaption><span class="rv-job">싱크대 문짝 교체</span><span class="rv-src">당근 동네 고객 후기</span></figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -1408,11 +1461,6 @@ footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); 
         <div class="about-card"><span class="about-n" id="aboutCount">20+</span><b>블로그에 공개한 시공 현장</b><p>현장마다 의뢰 내용과 작업 과정을 사진으로 남깁니다.</p></div>
         <div class="about-card"><span class="about-n">7곳</span><b>정기 출장 지역</b><p>경기 광주·성남·하남·용인·수원, 서울 송파·강동</p></div>
         <div class="about-card"><span class="about-n">무료</span><b>사진 상담·견적</b><p>전체 사진 1장 + 문제 부위 사진 1장이면 견적을 안내해 드립니다.</p></div>
-      </div>
-      <!-- 후기·경력·A/S: 아래 TRUST 값을 채우면 자동으로 보입니다. 실제 내용만 넣으세요. -->
-      <div class="trust" id="trust" hidden>
-        <div class="trust-facts" id="trustFacts"></div>
-        <div class="trust-reviews" id="trustReviews"></div>
       </div>
       <div class="about-fields">
         <h3>작업 가능 분야</h3>
@@ -1938,23 +1986,6 @@ getPosts().then(d => {
   btn.addEventListener("click", () => { n += 12; draw(); });
   draw();
 }).catch(() => {});
-
-// 후기·경력·A/S: 실제 내용을 받으면 여기만 채우면 됩니다 (빈 값은 표시하지 않음)
-const TRUST = {
-  years: "",      // 예: "15년"  → "집수리 경력 15년"
-  as: "",         // 예: "1년"   → "시공 후 A/S 1년"
-  reviews: []     // 예: { text: "후기 내용", who: "용인 수지 · 싱크대 수리" }
-};
-(() => {
-  const facts = [];
-  if (TRUST.years) facts.push(`<div><b>${esc(TRUST.years)}</b><span>집수리 경력</span></div>`);
-  if (TRUST.as) facts.push(`<div><b>${esc(TRUST.as)}</b><span>시공 후 A/S</span></div>`);
-  const revs = (TRUST.reviews || []).filter(r => r && r.text).map(r => `<figure><blockquote>${esc(r.text)}</blockquote><figcaption>${esc(r.who || "")}</figcaption></figure>`);
-  if (!facts.length && !revs.length) return;
-  document.getElementById("trustFacts").innerHTML = facts.join("");
-  document.getElementById("trustReviews").innerHTML = revs.join("");
-  document.getElementById("trust").hidden = false;
-})();
 
 // 소개: 블로그 시공 현장 수
 getPosts().then(d => {
