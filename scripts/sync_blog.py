@@ -97,7 +97,7 @@ def body_of(page):
     chunk = re.sub(r"</(p|div|li|h\d)>", "\n", chunk)
     t = html.unescape(re.sub(r"<[^>]+>", " ", chunk)).replace("ㅤ", " ").replace("\u200b", " ")
     lines = [re.sub(r"[ \t]+", " ", l).strip() for l in t.split("\n")]
-    return "\n".join(l for l in lines if l)[:3000]
+    return "\n".join(l for l in lines if l)[:12000]
 
 def quote_of(t):
     m = re.search(r"의뢰 내용\s*[\"“](.+?)[\"”]", t)
