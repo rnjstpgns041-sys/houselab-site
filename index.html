@@ -1101,6 +1101,12 @@ body.dr-lock { overflow: hidden; }
 footer .wrap { grid-template-columns: minmax(0, 2fr) repeat(4, minmax(0, 1fr)); }
 @media (max-width: 900px) { footer .wrap { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 700px) { .hx .hx-svc { display: block; font-size: 14px; margin: 12px auto 0; color: #E8E2D5; } }
+.photo img.pb { right: calc(50% + 1px); width: auto; }
+.photo img.pa { left: calc(50% + 1px); width: auto; }
+.case:hover .photo img.pb, .case:hover .photo img.pa { transform: none; }
+.photo .bt { position: absolute; top: 10px; z-index: 1; font-size: 11px; font-weight: 800; letter-spacing: .08em; padding: 4px 9px; border-radius: 999px; }
+.photo .bt.b { left: 10px; background: rgba(13,13,11,.82); color: #F2EEE6; }
+.photo .bt.a { left: calc(50% + 11px); background: #C8A96A; color: #16150F; }
 .svc-more, .case .more { min-height: 32px; display: inline-flex; align-items: center; }
 </style>
 </head>
@@ -1574,7 +1580,7 @@ function fromPost(p) {
     f: kind[0], tex: TEX[kind[0]], region,
     space: kind[1], scope: c.scope || p.title,
     date: (p.date || c.date || "").slice(0, 7), complex: c.complex || "",
-    title: c.title || p.title, quote: p.quote || c.quote || "", url: p.url, img: (p.images || [])[1] || (p.images || [])[0] || "",
+    title: c.title || p.title, quote: p.quote || c.quote || "", url: p.url, img: (p.images || [])[1] || (p.images || [])[0] || "", b: (p.images || [])[0] || "", a: p.after || (p.images || [])[1] || "",
     area: p.area || "", job: p.job || "", work: p.work || null
   };
 }
@@ -1599,7 +1605,9 @@ function card(c) {
   return `
     <article class="case">
       <a class="photo ${c.img ? "" : c.tex}" href="${esc(c.url)}" target="_blank" rel="noopener" ${c.img ? "" : `role="img" aria-label="현장 사진 자리: ${esc(head)}"`}>
-        ${c.img ? `<img src="${esc(th(c.img))}" alt="${esc(head)} 현장 사진" loading="lazy" decoding="async">` : `<span class="ph-note">BEFORE / AFTER</span>`}
+        ${c.b && c.a && c.b !== c.a
+          ? `<img class="pb" src="${esc(th(c.b))}" alt="${esc(head)} 시공 전" loading="lazy" decoding="async"><img class="pa" src="${esc(th(c.a))}" alt="${esc(head)} 시공 후" loading="lazy" decoding="async"><span class="bt b">BEFORE</span><span class="bt a">AFTER</span>`
+          : c.img ? `<img src="${esc(th(c.img))}" alt="${esc(head)} 현장 사진" loading="lazy" decoding="async">` : `<span class="ph-note">BEFORE / AFTER</span>`}
         ${tag ? `<span class="tag">${esc(tag)}</span>` : ""}
       </a>
       <h3>${esc(head)}</h3>
