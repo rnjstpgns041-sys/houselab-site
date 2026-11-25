@@ -212,7 +212,7 @@ def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{url}">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#0D0D0B">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="theme-color" content="#0D0D0B"><link rel="manifest" href="../site.webmanifest">
 <meta property="og:type" content="website"><meta property="og:site_name" content="하우스랩건설"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{url}">
 <meta property="og:image" content="{e(img)}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(title)}"><meta name="twitter:description" content="{e(desc)}"><meta name="twitter:image" content="{e(img)}">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
