@@ -75,6 +75,13 @@ def other_posts(rx, limit=12):
 e = lambda s: html.escape(str(s or ""), quote=True)
 
 CSS = """
+.price{padding:8px 0 48px}.price h2{font-size:26px;margin:0 0 6px}
+.plist{list-style:none;margin:16px 0 0;padding:6px 22px;border-radius:18px;background:linear-gradient(165deg,#1B1A15,#0D0D0B 70%);border:1px solid rgba(200,169,106,.38);max-width:720px}
+.plist li{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;color:#E9E4D8;font-weight:600}
+.plist li+li{border-top:1px solid rgba(244,239,228,.08)}
+.plist small{display:block;font-size:12.5px;font-weight:500;color:#9D978B}
+.plist b{white-space:nowrap;font-size:19px;font-weight:800;background:linear-gradient(180deg,#F3E3B8,#C8A96A 60%,#A8853F);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pnote{margin:12px 0 0;font-size:14px;color:var(--muted)}.pnote a{color:var(--accent);font-weight:700}
 :root{--bg:#FBFAF7;--alt:#F3F0E9;--surface:#fff;--ink:#16150F;--muted:#5C584F;--line:#E4DED2;--gold:#C8A96A;--gold2:#E8D5A6;--night:#0D0D0B;--accent:#8A6A2F}
 @media (prefers-color-scheme:dark){:root{--bg:#0D0D0B;--alt:#15140F;--surface:#1C1B16;--ink:#F2EEE6;--muted:#A9A398;--line:#2C2A23;--accent:#D4B57A}}
 *{box-sizing:border-box}html,body{overflow-x:clip}
@@ -124,6 +131,41 @@ footer{background:var(--night);color:#8E887B;font-size:14px;padding:30px 0;text-
 @media(max-width:900px){.cases{grid-template-columns:1fr 1fr}.olinks{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.cases{grid-template-columns:1fr}.hero{padding:40px 0 36px}.items li{font-size:13px;padding:5px 10px}section{padding:48px 0}.btn{font-size:16px;padding:0 18px}}
 """
+
+# 작업별 참고 가격 (사장님이 준 금액 그대로, 2026-11-25). 바꿀 때는 index.html 가격표도 같이 바꾸기
+P = {
+    "base": ("기본 설치", "15만원부터", ""),
+    "dish": ("식기세척기 설치", "20~30만원", "하부장 빼고 설치"),
+    "lower": ("싱크대 하부장 제작", "35~45만원", ""),
+    "marble": ("인조대리석 연마·광택", "30~80만원", ""),
+    "film": ("문짝 필름 보수", "20~30만원", ""),
+    "tub": ("욕조 코팅", "38~45만원", ""),
+    "basin": ("세면대 코팅", "28~30만원", ""),
+    "tile": ("타일 보수", "20만원부터", "1장 추가마다 8만원"),
+    "grab": ("안전손잡이 설치", "25만원부터", "1개 추가마다 8만원"),
+    "rack": ("건조기 렉 설치", "26~30만원", ""),
+    "upper": ("세탁실 상부장 철거", "15~20만원", ""),
+    "crack": ("크랙 복원", "20~65만원", ""),
+    "paper": ("도배", "9~18만원", "소폭합지·광폭합지·실크 · 1평 기준"),
+    "maru": ("마루", "11~15만원", "1평 기준"),
+}
+CAT_PRICES = {
+    "kitchen": ["lower", "dish", "marble", "film", "crack"],
+    "bathroom": ["tub", "basin", "tile", "grab"],
+    "appliance": ["dish", "rack", "base"],
+    "repair": ["film", "lower", "base"],
+    "removal": ["upper", "crack", "tile"],
+    "etc": ["paper", "maru", "grab", "base"],
+}
+
+def price_block(slug):
+    keys = CAT_PRICES.get(slug, [])
+    if not keys:
+        return ""
+    rows = "".join(f'<li><span>{e(P[k][0])}{f"<small>{e(P[k][2])}</small>" if P[k][2] else ""}</span><b>{e(P[k][1])}</b></li>' for k in keys)
+    return (f'<section class="price"><div class="wrap"><h2>참고 가격</h2><p class="sub">자주 맡기시는 작업의 기준 가격입니다.</p>'
+            f'<ul class="plist">{rows}</ul><p class="pnote">현장 상황, 작업 범위, 자재·제품에 따라 금액은 달라질 수 있습니다. '
+            f'<a href="../#price">전체 가격표 보기 →</a></p></div></section>')
 
 def th(src):
     """가벼운 미리보기(images/t/*.webp)가 있으면 그것을 쓴다."""
@@ -215,6 +257,7 @@ def page(cat, cases, cats):
 <p class="sub">하우스랩건설이 직접 시공하고 블로그에 기록한 현장 {len(cases)}건입니다.</p>
 <div class="cases">{''.join(card(p) for p in cases) if cases else '<p class="sub">사진이 있는 사례를 정리하고 있습니다. 궁금한 작업은 사진과 함께 문자로 문의해 주세요.</p>'}</div>
 </div></section>
+{price_block(cat["slug"])}
 {f'<section class="blog"><div class="wrap"><h2>{e(cat["name"])} 블로그 작업 기록</h2><p class="sub">하우스랩건설 작업 블로그에 올린 {e(cat["name"])} 현장입니다.</p>{olist(oth)}</div></section>' if oth else ''}
 {links_block(cur_cat=cat)}"""
     og = (cases[0].get("after") or cases[0]["images"][0]) if cases else ""
