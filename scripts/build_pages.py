@@ -44,6 +44,38 @@ AREAS = [
     {"slug": "songpa", "name": "서울 송파", "full": "서울특별시 송파구 (잠실·가락·문정·오금·방이)", "match": r"^서울 송파", "other": r"송파|잠실|가락|문정|오금|방이|석촌|장지"},
     {"slug": "gangdong", "name": "서울 강동", "full": "서울특별시 강동구 (천호·명일·고덕·암사·성내·둔촌)", "match": r"^서울 강동", "other": r"강동|천호|명일|고덕|암사|성내|둔촌|길동|상일|강일"},
 ]
+AREAS += [
+    {"slug": "gangnam", "name": "서울 강남", "full": "서울특별시 강남구 (압구정·청담·대치·도곡·개포·역삼·삼성)", "match": r"^서울 강남", "other": r"강남구|압구정|청담|대치|도곡|개포|역삼|삼성동|수서|일원", "tier": "extra"},
+    {"slug": "seocho", "name": "서울 서초", "full": "서울특별시 서초구 (반포·잠원·방배·서초·양재·내곡)", "match": r"^서울 서초", "other": r"서초|반포|잠원|방배|양재|내곡", "tier": "extra"},
+    {"slug": "gwangjin", "name": "서울 광진", "full": "서울특별시 광진구 (자양·구의·광장·화양·중곡)", "match": r"^서울 광진", "other": r"광진|자양|구의|광장동|화양|중곡", "tier": "extra"},
+    {"slug": "seongdong", "name": "서울 성동", "full": "서울특별시 성동구 (성수·옥수·금호·왕십리·행당)", "match": r"^서울 성동", "other": r"성동|성수|옥수|금호동|왕십리|행당", "tier": "extra"},
+    {"slug": "mapo", "name": "서울 마포", "full": "서울특별시 마포구 (공덕·아현·상암·합정·망원)", "match": r"^서울 마포", "other": r"마포|공덕|아현|상암|합정|망원", "tier": "extra"},
+    {"slug": "yeongdeungpo", "name": "서울 영등포", "full": "서울특별시 영등포구 (여의도·당산·문래·신길)", "match": r"^서울 영등포", "other": r"영등포|여의도|당산|문래|신길", "tier": "extra"},
+    {"slug": "nowon", "name": "서울 노원", "full": "서울특별시 노원구 (상계·중계·하계·공릉·월계)", "match": r"^서울 노원", "other": r"노원|상계|중계|하계|공릉|월계", "tier": "extra"},
+    {"slug": "gangseo", "name": "서울 강서", "full": "서울특별시 강서구 (마곡·화곡·등촌·가양·발산)", "match": r"^서울 강서", "other": r"강서구|마곡|화곡|등촌|가양|발산", "tier": "extra"},
+    {"slug": "icheon", "name": "이천", "full": "경기도 이천시 (증포·안흥·중리·부발·마장)", "match": r"^이천", "other": r"이천|증포|안흥|부발|마장", "tier": "extra"},
+    {"slug": "namyangju", "name": "남양주", "full": "경기도 남양주시 (다산·별내·와부·화도·진접·호평)", "match": r"^남양주", "other": r"남양주|다산|별내|와부|덕소|화도|진접|호평|평내", "tier": "extra"},
+    {"slug": "guri", "name": "구리", "full": "경기도 구리시 (인창·교문·수택·갈매)", "match": r"^구리", "other": r"구리|인창|교문|수택|갈매", "tier": "extra"},
+    {"slug": "yeoju", "name": "여주", "full": "경기도 여주시", "match": r"^여주", "other": r"여주", "tier": "extra"},
+    {"slug": "yangpyeong", "name": "양평", "full": "경기도 양평군", "match": r"^양평", "other": r"양평", "tier": "extra"},
+    {"slug": "anyang", "name": "안양", "full": "경기도 안양시 (평촌·범계·인덕원·만안)", "match": r"^안양", "other": r"안양|평촌|범계|인덕원|만안", "tier": "extra"},
+    {"slug": "gwacheon", "name": "과천", "full": "경기도 과천시", "match": r"^과천", "other": r"과천", "tier": "extra"},
+    {"slug": "uiwang", "name": "의왕", "full": "경기도 의왕시 (내손·포일·오전·백운)", "match": r"^의왕", "other": r"의왕|내손|포일", "tier": "extra"},
+    {"slug": "gunpo", "name": "군포", "full": "경기도 군포시 (산본·금정·당동)", "match": r"^군포", "other": r"군포|산본", "tier": "extra"},
+    {"slug": "hwaseong", "name": "화성", "full": "경기도 화성시 (동탄·병점·봉담·향남)", "match": r"^화성", "other": r"화성|동탄|병점|봉담|향남", "tier": "extra"},
+    {"slug": "osan", "name": "오산", "full": "경기도 오산시 (세교·원동)", "match": r"^오산", "other": r"오산|세교", "tier": "extra"},
+    {"slug": "pyeongtaek", "name": "평택", "full": "경기도 평택시 (고덕·소사벌·비전·송탄)", "match": r"^평택", "other": r"평택|소사벌|송탄", "tier": "extra"},
+    {"slug": "gwangmyeong", "name": "광명", "full": "경기도 광명시 (철산·하안·소하·일직)", "match": r"^광명", "other": r"광명|철산|하안|소하", "tier": "extra"},
+    {"slug": "bucheon", "name": "부천", "full": "경기도 부천시 (중동·상동·송내·옥길)", "match": r"^부천", "other": r"부천|상동|송내|옥길", "tier": "extra"},
+    {"slug": "goyang", "name": "고양", "full": "경기도 고양시 (일산·삼송·원흥·화정·행신)", "match": r"^고양", "other": r"고양|일산|삼송|원흥|화정|행신", "tier": "extra"},
+    {"slug": "gimpo", "name": "김포", "full": "경기도 김포시 (한강신도시·운양·장기·구래)", "match": r"^김포", "other": r"김포|운양|장기동|구래", "tier": "extra"},
+    {"slug": "siheung", "name": "시흥", "full": "경기도 시흥시 (배곧·은계·정왕·목감)", "match": r"^시흥", "other": r"시흥|배곧|은계|정왕|목감", "tier": "extra"},
+    {"slug": "ansan", "name": "안산", "full": "경기도 안산시 (고잔·초지·본오·상록)", "match": r"^안산", "other": r"안산|고잔|초지|본오|상록", "tier": "extra"},
+    {"slug": "uijeongbu", "name": "의정부", "full": "경기도 의정부시 (민락·장암·신곡)", "match": r"^의정부", "other": r"의정부|민락|장암|신곡", "tier": "extra"},
+    {"slug": "incheon", "name": "인천", "full": "인천광역시 (송도·청라·부평·검단·연수·남동)", "match": r"^인천", "other": r"인천|송도|청라|부평|검단|연수|남동구", "tier": "extra"},
+]
+CORE = [a for a in AREAS if a.get("tier") != "extra"]
+EXTRA = [a for a in AREAS if a.get("tier") == "extra"]
 OTHER_BLOG = "ssus7777"
 
 def cat_of(title):
@@ -116,6 +148,7 @@ section{padding:64px 0}h2{font-size:clamp(26px,3.6vw,38px);letter-spacing:-.04em
 .others{background:var(--alt)}
 .olinks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .olinks a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;text-decoration:none}
+.xh{font-size:17px;margin:28px 0 4px}.xlinks{display:flex;flex-wrap:wrap;gap:8px}.xlinks a{padding:8px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:14px;text-decoration:none}.xlinks a:hover{border-color:var(--gold)}
 .olinks b{display:block;font-size:17px}.olinks span{font-size:13.5px;color:var(--muted)}
 .home{text-align:center;margin-top:24px}.home a{color:var(--accent);font-weight:700}
 footer{background:var(--night);color:#8E887B;font-size:14px;padding:30px 0;text-align:center}
@@ -239,10 +272,12 @@ def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
 
 def links_block(cur_cat=None, cur_area=None):
     cl = "".join(f'<a href="../service/{c["slug"]}.html"><b>{e(c["name"])}</b><span>{e(c["kw"])}</span></a>' for c in CATS if c is not cur_cat)
-    al = "".join(f'<a href="../area/{a["slug"]}.html"><b>{e(a["name"])} 집수리</b><span>{e(a["full"].split(" (")[0])}</span></a>' for a in AREAS if a is not cur_area)
+    al = "".join(f'<a href="../area/{a["slug"]}.html"><b>{e(a["name"])} 집수리</b><span>{e(a["full"].split(" (")[0])}</span></a>' for a in CORE if a is not cur_area)
+    xl = "".join(f'<a href="../area/{a["slug"]}.html">{e(a["name"])}</a>' for a in EXTRA if a is not cur_area)
     return f"""<section class="others"><div class="wrap">
 <h2>시공 분야</h2><p class="sub">사진 상담 · 무료 견적 · 직접 시공</p><div class="olinks">{cl}</div>
 <h2 style="margin-top:40px">출장 지역</h2><p class="sub">정기적으로 방문하는 지역입니다</p><div class="olinks">{al}</div>
+<h3 class="xh">그 밖의 출장 지역</h3><p class="sub">서울·경기·인천 어디든 일정과 작업 내용에 맞춰 방문합니다</p><div class="xlinks">{xl}</div>
 <p class="home"><a href="../">하우스랩건설 홈으로 →</a></p>
 </div></section>"""
 
@@ -282,7 +317,9 @@ def area_page(ar, cases, recent=()):
 {f'<section class="blog"><div class="wrap"><h2>{e(ar["name"])} 블로그 작업 기록</h2><p class="sub">하우스랩건설 작업 블로그에 올린 {e(ar["name"])} 현장 {len(oth)}건입니다.</p>{olist(oth)}</div></section>' if oth else ''}
 {links_block(cur_area=ar)}"""
     og = (cases[0].get("after") or cases[0]["images"][0]) if cases else ""
-    lead = f"{e(ar['full'])}은 하우스랩건설이 정기적으로 방문하는 지역입니다. 전체 사진 1장과 문제 부위 사진 1장을 문자로 보내 주시면 무료로 견적을 안내해 드립니다."
+    base = re.sub(r"[^가-힣]", "", ar['full'])[-1]
+    josa = "은" if (ord(base) - 0xAC00) % 28 else "는"
+    lead = f"{e(ar['full'])}{josa} 하우스랩건설이 {'일정과 작업 내용에 맞춰 출장하는' if ar.get('tier') == 'extra' else '정기적으로 방문하는'} 지역입니다. 전체 사진 1장과 문제 부위 사진 1장을 문자로 보내 주시면 무료로 견적을 안내해 드립니다."
     items = '<ul class="items">' + "".join(f'<li><a href="../service/{c["slug"]}.html">{e(c["name"])}</a></li>' for c in CATS) + "</ul>"
     return shell(title, desc, url, f"<a href=\"../#area\">출장 지역</a> › {e(ar['name'])}", f"{e(ar['name'])} 집수리<br><span>하우스랩건설</span>", lead, items, body, og)
 
