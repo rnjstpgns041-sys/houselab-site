@@ -342,6 +342,15 @@ def main():
     open("sitemap.xml", "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + "".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls) + "</urlset>\n")
+    from email.utils import formatdate
+    now = formatdate(usegmt=True)
+    items = [(f"{c['name']} {c['kw']} | 하우스랩건설", f"{SITE}/service/{c['slug']}.html", c["desc"]) for c in CATS]
+    items += [(f"{a['name']} 집수리 | 하우스랩건설", f"{SITE}/area/{a['slug']}.html", f"{a['full']} 집수리 출장. 싱크대 수리, 욕실 보수, 가전 설치, 가구·문 수리, 철거 및 원상복구. 사진 무료 견적.") for a in AREAS]
+    open("rss.xml", "w", encoding="utf-8").write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>\n'
+        f"<title>하우스랩건설</title><link>{SITE}/</link><description>하우스랩 집수리 및 종합 인테리어. 서울·경기·인천 집수리, 사진 무료 견적.</description><language>ko</language><lastBuildDate>{now}</lastBuildDate>\n"
+        + "".join(f"<item><title>{e(t)}</title><link>{u}</link><guid>{u}</guid><description>{e(d)}</description><pubDate>{now}</pubDate></item>\n" for t, u, d in items)
+        + "</channel></rss>\n")
     open("robots.txt", "w", encoding="utf-8").write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 
 if __name__ == "__main__":
