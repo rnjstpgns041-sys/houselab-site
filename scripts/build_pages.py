@@ -161,6 +161,18 @@ footer{background:var(--night);color:#8E887B;font-size:14px;padding:30px 0;text-
 .olist li{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-top:1px solid var(--line);font-size:15.5px}.olist li:first-child{border-top:0}
 .olist a{text-decoration:none;font-weight:600}.olist span{flex:none;color:var(--muted);font-size:13px}
 .items a{text-decoration:none}
+.case h3 a{text-decoration:none}.case h3 a:hover{color:var(--accent)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:960px;margin:0 auto}
+.ba figure{margin:0;position:relative}.ba img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:18px;display:block;background:var(--alt)}
+.ba figcaption{position:absolute;top:12px;left:12px;font-size:12px;font-weight:800;letter-spacing:.1em;padding:5px 10px;border-radius:999px;background:#0D0D0B;color:#F2EEE6}
+.ba figure+figure figcaption{background:var(--gold);color:#16150F}
+.rec{max-width:760px;margin:0 auto}.rec h3{font-size:19px;margin:30px 0 8px;color:var(--accent)}.rec p{margin:0}
+.rec ol{margin:0;padding-left:22px}.rec ol li{padding:3px 0}
+.ask{margin:0;padding:16px 20px;border-radius:16px;background:var(--alt);border-left:3px solid var(--gold);font-size:16px}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0;padding:0;list-style:none}.facts li{font-size:14.5px;padding:7px 13px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.facts a{color:var(--accent);font-weight:700;text-decoration:none}
+.rec .blogl{margin-top:22px}.blogl a{color:var(--accent);font-weight:700}
+@media(max-width:600px){.ba{gap:8px}.ba img{border-radius:12px}}
 @media(max-width:900px){.cases{grid-template-columns:1fr 1fr}.olinks{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.cases{grid-template-columns:1fr}.hero{padding:40px 0 36px}.items li{font-size:13px;padding:5px 10px}section{padding:48px 0}.btn{font-size:16px;padding:0 18px}}
 """
@@ -218,7 +230,7 @@ def card(p):
     dl = "".join(f"<div><dt>{k}</dt><dd>{e(v)}</dd></div>" for k, v in rows if v)
     pair = (f'<div class="pair"><img src="../{e(th(b))}" alt="{e(head)} 시공 전" loading="lazy" decoding="async"><img src="../{e(th(a))}" alt="{e(head)} 시공 후" loading="lazy" decoding="async"><span class="t b">BEFORE</span><span class="t a">AFTER</span></div>'
             if a else f'<div class="pair" style="grid-template-columns:1fr"><img src="../{e(th(b))}" alt="{e(head)} 현장" loading="lazy" decoding="async" style="aspect-ratio:2/1"></div>')
-    return (f'<article class="case">{pair}<h3>{e(head)}</h3>' + (f'<dl class="work">{dl}</dl>' if dl else "")
+    return (f'<article class="case">{pair}<h3><a href="../work/{e(p["id"])}.html">{e(head)}</a></h3>' + (f'<dl class="work">{dl}</dl>' if dl else "")
             + f'<a class="meta" href="{e(p["url"])}" target="_blank" rel="noopener">{e(p.get("date",""))} · 블로그에서 전체 과정 보기 →</a></article>')
 
 def olist(items):
@@ -231,7 +243,7 @@ def olist(items):
 def shell(title, desc, url, crumb, h1, lead, items_html, body, og_img=""):
     # 경로 표시(홈 › 시공 분야 › 주방 수리)를 검색에도 알려 준다
     names = [re.sub(r"<[^>]+>", "", x).strip() for x in crumb.split("›")]
-    hubs = {"시공 분야": SITE + "/#services", "출장 지역": SITE + "/#area"}
+    hubs = {"시공 분야": SITE + "/#services", "출장 지역": SITE + "/#area", "시공 사례": SITE + "/#cases"}
     trail = [("하우스랩건설", SITE + "/")] + [(n, url if i == len(names) - 1 else hubs.get(n)) for i, n in enumerate(names)]
     bc = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         dict({"@type": "ListItem", "position": i + 1, "name": n}, **({"item": u} if u else {})) for i, (n, u) in enumerate(trail)]}
@@ -323,6 +335,60 @@ def area_page(ar, cases, recent=()):
     items = '<ul class="items">' + "".join(f'<li><a href="../service/{c["slug"]}.html">{e(c["name"])}</a></li>' for c in CATS) + "</ul>"
     return shell(title, desc, url, f"<a href=\"../#area\">출장 지역</a> › {e(ar['name'])}", f"{e(ar['name'])} 집수리<br><span>하우스랩건설</span>", lead, items, body, og)
 
+def head_of(p):
+    return (p.get("area", "") + " " + p["job"]).strip() if p.get("job") else p["title"]
+
+def area_of(p):
+    """글의 지역에 맞는 지역 페이지 (없으면 None)"""
+    for a in AREAS:
+        if re.search(a["match"], p.get("area", "")):
+            return a
+    return None
+
+def work_page(p, same):
+    """블로그 시공 글 하나를 '지역 + 작업명' 페이지로 만든다 (사진·작업 기록은 실제 글 내용 그대로)."""
+    cat = next(c for c in CATS if c["slug"] == cat_of(p["title"]))
+    ar = area_of(p)
+    w = p.get("work") or {}
+    head = head_of(p)
+    region = w.get("region") or p.get("area", "")
+    title = f"{head} | {cat['name']} 시공 사례 - 하우스랩건설"
+    first = w.get("before") or p.get("quote") or cat["desc"]
+    desc = f"{region + ' ' if region else ''}{p.get('job') or p['title']} 실제 시공 사례. {first}"[:150]
+    url = f"{SITE}/work/{p['id']}.html"
+    b = p["images"][0]
+    a = p.get("after") or (p["images"][1] if len(p["images"]) > 1 else "")
+    figs = f'<figure><img src="../{e(b)}" alt="{e(head)} 시공 전" decoding="async"><figcaption>{"BEFORE" if a else "현장"}</figcaption></figure>'
+    if a:
+        figs += f'<figure><img src="../{e(a)}" alt="{e(head)} 시공 후" loading="lazy" decoding="async"><figcaption>AFTER</figcaption></figure>'
+    rec = ""
+    if p.get("quote"):
+        rec += f'<h3>고객 요청</h3><p class="ask">“{e(p["quote"])}”</p>'
+    if w.get("before"):
+        rec += f'<h3>작업 전 상태</h3><p>{e(w["before"])}</p>'
+    if w.get("steps"):
+        rec += "<h3>작업 과정</h3><ol>" + "".join(f"<li>{e(x)}</li>" for x in w["steps"]) + "</ol>"
+    if w.get("done"):
+        rec += f'<h3>작업 완료</h3><p>{e(w["done"])}</p>'
+    if w.get("wrap"):
+        rec += f'<h3>마무리 안내</h3><p>{e(w["wrap"])}</p>'
+    facts = [f'<li>작업일 {e(p.get("date", ""))}</li>' if p.get("date") else "",
+             f'<li>지역 {e(region)}</li>' if region else "",
+             f'<li><a href="../service/{cat["slug"]}.html">{e(cat["name"])} 더 보기</a></li>',
+             f'<li><a href="../area/{ar["slug"]}.html">{e(ar["name"])} 집수리</a></li>' if ar else ""]
+    more = [x for x in same if x is not p][:3]
+    body = f"""<section><div class="wrap">
+<div class="ba">{figs}</div>
+<div class="rec">{rec}
+<ul class="facts">{''.join(facts)}</ul>
+<p class="blogl"><a href="{e(p['url'])}" target="_blank" rel="noopener">블로그에서 사진 {e(p.get('nimg') or '')}장과 전체 과정 보기 →</a></p>
+</div></div></section>
+{price_block(cat["slug"])}
+{f'<section><div class="wrap"><h2>다른 {e(cat["name"])} 사례</h2><p class="sub">하우스랩건설이 직접 시공한 비슷한 현장입니다.</p><div class="cases">{"".join(card(x) for x in more)}</div></div></section>' if more else ''}
+{links_block(cur_cat=cat)}"""
+    lead = f"{e(region)} 현장에서 하우스랩건설이 직접 시공한 기록입니다. 비슷한 문제가 있으시면 전체 사진 1장과 문제 부위 사진 1장을 문자로 보내 주세요." if region else "하우스랩건설이 직접 시공한 기록입니다. 비슷한 문제가 있으시면 사진을 문자로 보내 주세요."
+    return shell(title, desc, url, f"<a href=\"../#cases\">시공 사례</a> › {e(head)}", e(head), lead, "", body, a or b)
+
 def main():
     posts = json.load(open("posts.json", encoding="utf-8"))["posts"]
     jobs = [p for p in posts if p.get("images") and p.get("quote")]
@@ -337,15 +403,29 @@ def main():
         cs = [p for p in jobs if re.search(ar["match"], p.get("area", ""))]
         open(f"area/{ar['slug']}.html", "w", encoding="utf-8").write(area_page(ar, cs, jobs))
         print(ar["slug"], len(cs), len(other_posts(ar["other"], 15)))
+    # 시공 글마다 페이지 (사진이 있는 실제 시공 글만)
+    works = [p for p in posts if p.get("images")]
+    os.makedirs("work", exist_ok=True)
+    keep = set()
+    for p in works:
+        same = [x for x in works if cat_of(x["title"]) == cat_of(p["title"])]
+        open(f"work/{p['id']}.html", "w", encoding="utf-8").write(work_page(p, same))
+        keep.add(f"{p['id']}.html")
+    for f in os.listdir("work"):
+        if f.endswith(".html") and f not in keep:
+            os.remove(os.path.join("work", f))
+    print("work", len(works))
     today = time.strftime("%Y-%m-%d")
-    urls = [f"{SITE}/"] + [f"{SITE}/service/{c['slug']}.html" for c in CATS] + [f"{SITE}/area/{a['slug']}.html" for a in AREAS]
+    urls = [(f"{SITE}/", today)] + [(f"{SITE}/service/{c['slug']}.html", today) for c in CATS] + [(f"{SITE}/area/{a['slug']}.html", today) for a in AREAS]
+    urls += [(f"{SITE}/work/{p['id']}.html", p.get("date", today).replace(".", "-")) for p in works]
     open("sitemap.xml", "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-        + "".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>\n" for u in urls) + "</urlset>\n")
+        + "".join(f"  <url><loc>{u}</loc><lastmod>{d}</lastmod></url>\n" for u, d in urls) + "</urlset>\n")
     from email.utils import formatdate
     now = formatdate(usegmt=True)
     items = [(f"{c['name']} {c['kw']} | 하우스랩건설", f"{SITE}/service/{c['slug']}.html", c["desc"]) for c in CATS]
     items += [(f"{a['name']} 집수리 | 하우스랩건설", f"{SITE}/area/{a['slug']}.html", f"{a['full']} 집수리 출장. 싱크대 수리, 욕실 보수, 가전 설치, 가구·문 수리, 철거 및 원상복구. 사진 무료 견적.") for a in AREAS]
+    items = [(f"{head_of(p)} | 하우스랩건설", f"{SITE}/work/{p['id']}.html", (p.get("work") or {}).get("before") or p.get("quote") or p["title"]) for p in works] + items
     open("rss.xml", "w", encoding="utf-8").write(
         '<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel>\n'
         f"<title>하우스랩건설</title><link>{SITE}/</link><description>하우스랩 집수리 및 종합 인테리어. 서울·경기·인천 집수리, 사진 무료 견적.</description><language>ko</language><lastBuildDate>{now}</lastBuildDate>\n"

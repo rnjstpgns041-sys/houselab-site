@@ -1,12 +1,15 @@
 """매일 사이트 주소를 네이버(IndexNow)와 Bing 등에 색인 요청한다.
 
-sitemap.xml의 주소 중 사람들이 많이 찾을 만한 순서(홈 > 욕실·주방 등 서비스 > 주요 출장 지역 >
-인구 많은 지역)로 최대 50개를 보낸다.
+sitemap.xml의 주소 중 최대 50개를 보낸다.
+- 매일 보냄: 홈, 서비스 6개, 정기 출장 지역 7개, 최신 시공 사례 10개
+- 나머지 칸: 남은 시공 사례와 지역 페이지를 날마다 돌아가며 채워 이틀이면 전부 한 번씩 보낸다
 """
-import glob, json, os, re, sys, urllib.request, urllib.error
+import datetime, glob, json, os, re, sys, urllib.request, urllib.error
 
 HOST = "psb-7.com"
 LIMIT = 50
+FIXED = 14       # PRIORITY 앞부분 (홈·서비스·정기 출장 지역)은 매일
+NEW_WORK = 10    # 최신 시공 사례는 매일
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 많이 검색될 만한 순서 (앞일수록 먼저 보냄)
@@ -38,11 +41,19 @@ def key():
 
 def urls():
     xml = open(os.path.join(ROOT, "sitemap.xml"), encoding="utf-8").read()
-    found = re.findall(r"<loc>\s*([^<\s]+)\s*</loc>", xml)
-    paths = {u.split(HOST, 1)[1] or "/": u for u in found if HOST in u}
+    found = re.findall(r"<url>\s*<loc>\s*([^<\s]+)\s*</loc>(?:\s*<lastmod>([^<]*)</lastmod>)?", xml)
+    date = {u: d for u, d in found if HOST in u}
+    paths = {u.split(HOST, 1)[1] or "/": u for u in date}
     ordered = [paths.pop(p) for p in PRIORITY if p in paths]
-    ordered += list(paths.values())  # 새로 생긴 페이지는 뒤에
-    return ordered[:LIMIT]
+    works = sorted((u for p, u in paths.items() if p.startswith("/work/")), key=lambda u: date[u], reverse=True)
+    rest = [u for p, u in paths.items() if not p.startswith("/work/")]  # 새로 생긴 다른 페이지
+    fixed = ordered[:FIXED] + works[:NEW_WORK]
+    pool = rest + ordered[FIXED:] + works[NEW_WORK:]
+    room = max(0, LIMIT - len(fixed))
+    if len(pool) > room:
+        start = (datetime.date.today().toordinal() * room) % len(pool)
+        pool = (pool[start:] + pool[:start])[:room]
+    return fixed + pool
 
 
 def send(endpoint, body):
